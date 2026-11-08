@@ -62,6 +62,8 @@ Aucune donnée sensible, aucun secret, aucune PII.
 | 53 | 2026-11-09T01:30Z / UTC | v3 — documentation | Agent | `README.md` (12 sections), `docs/` (4 documents), `.env.example` | Commandes vérifiées, chiffres issus des exécutions, limites déclarées |
 | 54 | 2026-11-09T01:40Z / UTC | v3 — contrôle complet | Agent | `npm run controle` | lint 0 · typecheck 0 · tests 44/44 · audit 6/6 · rendu 30/30 · build 616,81 kB (188,11 kB gzip) |
 
+| 55 | 2026-11-09T02:10Z / UTC | Constat de deux dépôts non liés | Agent (constat) | `00_SUIVI/DECISIONS_REGISTER.md` (D-022) | `origin` du poste du directeur = `EM-Auth_Maquette` (souligné) ; merge refusé : histoires non liées. **Aucune opération destructive exécutée** |
+
 ## Entrées à venir
 
 Les entrées suivantes sont ajoutées à chaque phase, décision, blocage, correction et reprise. Le journal ne remplace pas la preuve : il pointe vers elle.

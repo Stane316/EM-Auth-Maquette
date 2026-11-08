@@ -138,3 +138,22 @@ git merge --no-ff arena/53c9aa9d-em-auth-maquette
 Le merge, le rebase et le cherry-pick affectent l'historique partagé : ils
 restent soumis à autorisation expresse. Aucun `git reset --hard`, aucun
 `git clean -fd`, aucun `git push --force` n'a été exécuté.
+
+### Deux dépôts, deux histoires (constaté le 2026-11-09)
+
+| Dépôt | Remarque |
+|---|---|
+| `Stane316/EM-Auth-Maquette` (traits d'union) | dépôt de travail de l'agent : historique continu, 13 commits, branche publiée |
+| `Stane316/EM-Auth_Maquette` (souligné) | `origin` du poste du directeur : `main` d'origine différente, branche publiée mais**non fusionnable en l'état** |
+
+`git merge` entre les deux échoue : `refusing to merge unrelated histories`. Les
+deux dépôts n'ont pas d'ancêtre commun, donc GitHub ne peut pas non plus ouvrir
+de pull request entre eux. Trois issues, aucune automatique :
+
+1. **garder un seul dépôt de référence** (recommandé) — l'autre devient un miroir
+   ou est archivé ;
+2. **fusionner en acceptant les histoires non liées**
+   (`git merge --allow-unrelated-histories`), puis résoudre les conflits
+   fichier par fichier — l'historique d'origine est conservé ;
+3. **aligner `main` sur la branche** — exige un `push --force`, donc une
+   autorisation écrite du responsable. Non exécuté, non recommandé.
