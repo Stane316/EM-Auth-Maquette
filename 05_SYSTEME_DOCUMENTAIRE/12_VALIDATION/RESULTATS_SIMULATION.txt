@@ -1,0 +1,10 @@
+OK source ambiguë → PH00:EN_ATTENTE_HUMAIN
+OK suivi non autorisé → PH00:EN_ATTENTE_HUMAIN
+OK DRI manquante → PH02:EN_ATTENTE_HUMAIN
+OK vues indisponibles → PH03:EN_ATTENTE_OUTIL
+OK direction non validée → PH03:EN_ATTENTE_HUMAIN
+OK Figma inaccessible → PH04:EN_ATTENTE_OUTIL
+OK anomalie bloquante → PH07:BLOQUÉ
+OK réception absente → PH09:EN_ATTENTE_HUMAIN
+OK hypothèse toutes portes satisfaites → PH09:TERMINÉ
+9 scénarios abstraits réussis ; aucune exécution d’agent ni d’outil réel.

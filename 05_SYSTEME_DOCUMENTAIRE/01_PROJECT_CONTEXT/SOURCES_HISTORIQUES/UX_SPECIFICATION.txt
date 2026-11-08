@@ -1,0 +1,109 @@
+# P14 — Spécification UX et accessibilité
+**Version :** 0.1 | **Statut :** PROPOSED | **Date :** 28-10-2026  
+[Cycle de vie P06](../02-SECURITY-RESEARCH/IDENTITY_LIFECYCLE.md) · [Sessions P07](../02-SECURITY-RESEARCH/SESSIONS_AND_TOKENS.md) · [MVP P12](../04-PRODUCT-SPECIFICATION/MVP_SCOPE.md) · [Exigences P13](../04-PRODUCT-SPECIFICATION/REQUIREMENTS.md) · [Catalogue d’écrans](SCREEN_CATALOG.md) · [Protocole d’évaluation](UX_ACCESSIBILITY_TEST_PLAN.md) · [Sources UX14](../00-GOVERNANCE/SOURCE_REGISTER.md#sources-de-recherche-p14) · [Bilan](../00-GOVERNANCE/P14_PHASE_REPORT.md).
+
+## 1. Résumé et décision de travail
+**DEC-18 RECOMMANDÉ :** concevoir un parcours web en français, simple, utilisable au clavier et avec technologies d’assistance, à messages explicites mais non révélateurs, avec assistance humaine sûre et authentification forte adaptée au rôle. Prévoir les états « en cours », « confirmé », « refusé » et **« résultat inconnu »**, notamment après coupure. Sur poste partagé, privilégier une méthode personnelle autorisée et ne pas inviter à enregistrer de secrets sur le poste ; prévoir explications de sortie sans promettre que toutes les applications sont déconnectées.
+
+Il s’agit d’une **spécification documentaire**, ni d’une interface implémentée, ni d’un choix d’IdP, d’une validation utilisateur ou d’une preuve WCAG. Le client, les utilisateurs, langues effectivement nécessaires, navigateurs, appareils, réseau et support sont inconnus. Le scénario P12 reste une organisation et une application web intégrable, à titre de travail. Le directeur prévoit de gérer hébergement et coûts ; les responsabilités et le canal d’assistance restent à convenir.
+
+Les écrans décrivent le **service complet**, qu’ils soient opérés par EM, l’application ou un fournisseur tiers. Si l’IdP héberge sa propre page, EM ne maîtrise pas automatiquement son texte, son accessibilité ou son comportement : mesurer les pages et boîtes natives réellement traversées ; obtenir les possibilités de configuration et engager le propriétaire. Une expérience incapable de respecter les exigences essentielles ou d’offrir une alternative accessible et sûre invalide ce scénario, sans justifier l’abaissement de la MFA privilégiée.
+
+## 2. Utilisateurs, buts et contraintes hypothétiques
+| Rôle | But / contexte à étudier | Risque ou besoin, non observé |
+|---|---|---|
+| Collaborateur | Entrer dans l’application, comprendre l’erreur, se déconnecter. | Appareil personnel ou partagé, réseau et compétences inconnus ; ne pas déduire la possession d’un smartphone. |
+| Administrateur | Effectuer action sensible et confirmer l’identité/les effets. | Compromission et confusion de compte ; MFA résistante au phishing et réauthentification fraîche P13. |
+| Approveur client | Approuver entrée, retrait ou reprise, comprendre statut et conséquences. | Faux succès, contexte erroné, demande usurpée ; les rôles sont à contractualiser. |
+| Support mandaté | Aider sans demander de secret ni créer une voie faible. | Ingénierie sociale ; procédure indépendante et double contrôle pour opération sensible P06. |
+| Utilisateur de technologie d’assistance | Effectuer le même parcours et obtenir une aide sûre. | Cognition, vision, mobilité ou audition : besoins variés ; pas de supposition sur handicap ou accessibilité native. |
+
+Ne pas se fier à une couleur, un son, une animation ou un QR seul pour transmettre une instruction critique. Français initial candidat ; supports et traductions adaptés après recherche. Pas de donnée biométrique collectée par défaut : si une vérification locale de l’appareil existe, ne pas promettre biométrie obligatoire ni affirmer que tout fournisseur la traite de la même manière ; vérifier P03 et technologie retenue.
+
+## 3. Parcours et états de référence
+```text
+Invitation autorisée → E01 Accueil → E02 Identification
+ → E03 Méthode autorisée → E04 Défi natif / vérification
+ → E05 Retour et application → E06 Session / déconnexion
+                    ↘ E07 Aide et perte de moyen → E08 Suivi de reprise
+Admin / responsable → E09 Demande ou approbation → E10 Effets par cible
+Tout parcours → E11 Réseau / résultat inconnu ; E12 Expiration ; E13 Incident
+```
+
+| Parcours | Déclencheur / actions et retour normal | Erreur ou refus / règles |
+|---|---|---|
+| Enrôlement | Invitation destinée au compte, vérification et autorisation P06 → moyen adapté → activation confirmée par le système. | Lien expiré/rejoué, destinataire ou approbation incorrecte : aucune activation, aide sans révélation inutile ; lien seul ne prouve pas l’identité. E01–E04. |
+| Connexion | Identifiant si nécessaire → choisir une méthode permise → défi → validation côté serveur → accéder à l’application. | Identité ou facteur incorrect, rejet, annulation ou preuve inconnue : pas de session ; message générique et aide. E02–E05. |
+| Perte du moyen | Signaler la perte sans confirmer l’existence du compte → assistance vérifie par canaux indépendants → approbateur distinct si sensible → nouvel enrôlement conforme. | Preuve insuffisante, source indisponible ou doute : attente/refus et possibilité de contestation ; ne jamais demander mot de passe, OTP, PIN, QR ou code de secours. E07–E08. |
+| Action sensible | Afficher action et cible avant confirmation ; obtenir preuve forte **fraîche** et autorisation ; afficher résultat seulement après confirmation. | Annulation, absence de preuve ou expiration : action non autorisée ; une assertion silencieuse n’est pas une preuve fraîche. E04/E09. |
+| Retrait | Responsable autorisé confirme cible et portée → affichage des résultats distincts IdP, RP et API selon inventaire → confirmation globale uniquement si toutes les cibles prévues sont confirmées. | Cible en attente/erreur ou non vérifiée = « non confirmé » ; éviter « accès supprimé partout ». E09–E10. |
+| Poste partagé et fin | Indiquer de se déconnecter et de verrouiller le poste ; invalider session RP côté serveur et signaler la portée réelle des autres sessions. | Cookie effacé ou fenêtre fermée ne prouve pas invalidation serveur ; session IdP ou autre RP peut rester active. E06. |
+| Coupure / délai | Après réponse absente : état inconnu ; proposer vérification du statut depuis service autorisé, puis choix éclairé. | Ne pas réémettre en boucle une opération d’enrôlement, approbation, retrait ou récupération ; pas de reconnexion hors ligne affirmée. E11. |
+
+## 4. Comparaison des méthodes de présentation
+| Option | Intérêt UX / accessibilité | Risque et décision conditionnelle |
+|---|---|---|
+| Clé d’accès WebAuthn sur appareil personnel | Interaction native et possibilité de PIN local ou autre méthode proposée par l’appareil ; pas de secret à dicter. | Compatibilité, comptes de synchronisation et usage local inconnus ; le domaine et la politique de vérification doivent être corrects. « Vérification de l’utilisateur » n’identifie pas à elle seule la personne sur un appareil dont PIN ou profils sont partagés [UX14-04]. |
+| Clé de sécurité personnelle amovible | Peut éviter l’enregistrement sur un ordinateur partagé et fournir méthode résistante au phishing. | Coût, disponibilité, connecteur, manipulation, perte et accessibilité à vérifier ; il faut un secours indépendant P06, pas de supposition de stock. |
+| Clé d’accès sur autre appareil à proximité / QR si disponible | Peut aider sur terminal partagé sans enregistrer la clé sur celui-ci. | Dépend de capacités, proximité et interactions de plateforme ; QR non suffisant pour tous : méthode alternative accessible et sûre, assistance ; ne jamais envoyer ou demander une capture du QR. Aucune compatibilité ou disponibilité présumée. |
+| Mot de passe + code OTP si admis pour utilisateur ordinaire | Possibilité selon politique et appareils. | Code et mot de passe sont relayables et **non résistants au phishing** ; ne pas proposer comme remplacement automatique pour privilèges ou action sensible nécessitant MFA résistante. Permettre gestionnaire et collage si applicable. |
+| Assistance humaine vérifiée | Répond aux pertes d’appareil et difficultés d’usage. | Coût d’exploitation, horaires et double contrôle ; jamais fondée sur un numéro donné par l’appelant, une simple affirmation ou une suppression générale de MFA. |
+
+Les solutions ne sont ni classées ni sélectionnées sur documentation seule. P05 détermine les méthodes acceptables et P06 les preuves de récupération. Un moyen accessible mais insuffisant du point de vue du risque ne rend pas le parcours admissible ; une méthode forte mais inutilisable sans solution équivalente empêche son déploiement pour les utilisateurs concernés.
+
+## 5. Interface : exigences transversales
+### Structure et navigation
+- Une page, un titre descriptif et un objectif principal ; ordre de lecture et de tabulation cohérents ; libellés explicites, boutons et liens nommés selon action ; langue de document et des changements de langue déterminée correctement.
+- Contrôles opérables au clavier sans piège ; focus visible, non entièrement masqué ; retour du focus cohérent après dialogue ; jamais lancer l’authentification ou envoyer une action lors d’un simple changement de focus.
+- Champs associés à libellés et instructions ; erreurs proches du champ et résumé atteignable, liens vers champs ; messages dynamiques annoncés sans doublons ni saturation. Utiliser HTML sémantique en premier, et ARIA seulement si nécessaire [UX14-02].
+- Afficher sous forme de texte les états, avertissements, étapes et erreurs ; couleurs et pictogrammes ne suffisent pas. Contraste, redimensionnement, orientation et zones tactiles testés selon critères WCAG applicables ; pas d’engagement de conformité sans audit couvrant le service complet.
+- Textes courts et compréhensibles, sans jargon ni ambiguïté ; le libellé d’action doit distinguer « vérifier », « demander » et « confirmer ». Les contacts et horaires affichés sont **à renseigner après contrat**, jamais des coordonnées fictives présentées comme réelles.
+
+### Interaction et sécurité
+- Séparer validation de forme locale (« Renseignez votre identifiant ») d’une réponse d’authentification non authentifiée (« Connexion impossible. Vérifiez vos informations ou demandez de l’aide. »). Le texte, codes, redirections et délais ne doivent pas constituer une voie évidente d’énumération ; évaluation de timing en environnement autorisé [UX14-05].
+- Ne jamais demander à l’utilisateur de communiquer mot de passe, code OTP, PIN, clé, code de secours, capture de QR, jeton ou copie de pièce par défaut. Les champs sensibles ne sont pas conservés automatiquement dans le navigateur ni affichés dans une notification ou un journal. Ne pas interdire le collage ou le gestionnaire de mots de passe lorsqu’un mot de passe est utilisé sans solution d’accessibilité équivalente [UX14-01].
+- Préserver uniquement les saisies **non sensibles** nécessaires après une erreur, si analyse de risque et environnement le permettent ; effacer les champs sensibles et ne pas prétendre que le travail a été sauvegardé sans confirmation. Sur poste partagé, éviter toute persistance de données sensibles dans historique, cache, stockage local et prévisualisations ; tester toutes couches sous contrôle du produit.
+- Une erreur doit dire ce qu’il est sûr de faire ensuite ; une erreur interne n’expose ni diagnostic technique, ni données d’un autre compte. Un identifiant de référence est facultatif, opaque, sans secret ni données personnelles et transmis seulement au support autorisé.
+- Sur poste partagé, ne pas proposer par défaut « se souvenir de moi » ou création locale de passkey ; expliciter qu’une session peut subsister ailleurs. L’utilisateur peut choisir poste personnel/partagé **sans considérer cette déclaration comme preuve de sécurité**.
+
+### Réseau, lenteur et reprise
+États à présenter : prêt, traitement en cours, réponse confirmée, rejet explicite, erreur connue avant envoi, **issue inconnue après envoi**, expiration et indisponibilité. Un indicateur de chargement ne certifie pas la réussite. Si une demande sensible a pu être reçue mais la réponse est perdue : afficher « Nous ne pouvons pas confirmer le résultat. Vérifiez son état avant de recommencer. » ; consulter un état côté serveur **avec les droits appropriés**, ou contacter le support ; si aucun état fiable n’existe, maintenir INCONNU et escalader.
+
+La prévention de doublons demande une conception côté service : identifiant d’opération/idempotence **si faisable et qualifié**, contrôle des effets et états côté serveur ; désactiver le bouton réduit les clics multiples mais ne garantit pas l’unicité. Ne pas mettre automatiquement en file persistante ni rejouer des demandes sensibles après retour réseau ; les exigences techniques éventuelles seront précisées en P15. Ne pas conserver dans cache une réponse privée ou une session au titre du confort hors ligne. L’accès hors ligne n’est pas prévu ni démontré ; sur indisponibilité de l’état d’autorisation, les actions sensibles sont refusées P07/P13. Un simple signal navigateur de connectivité ne prouve pas la disponibilité du service.
+
+### Expiration
+Avant expiration, un avertissement accessible peut être présenté si la politique et le contexte le permettent ; ne pas inventer de durée. La prolongation n’est autorisée que selon la politique côté serveur : **continuer** peut réinitialiser l’inactivité si permis, mais ne doit pas effacer la limite depuis dernière authentification forte ou un plafond absolu. Si une preuve fraîche est requise, demander réellement cette preuve ; aucun rafraîchissement silencieux n’est présenté comme réauthentification. Si la session est expirée, masquer informations et demander une nouvelle connexion ; les autres sessions peuvent subsister. Ne promettre conservation du travail que si elle est confirmée et sûre.
+
+## 6. Référence WCAG et arbitrages
+**Cible de conception proposée : WCAG 2.2 niveau AA** pour le périmètre web retenu, sous réserve de décision contractuelle ; le niveau AA exige l’ensemble des critères applicables A et AA et les règles de conformité, pas seulement ceux ci-dessous. W3C publie une recommandation, pas une obligation juridique béninoise automatique. Aucun audit ni conformité du service, ni des pages fournisseur, n’est établi [UX14-01].
+
+| Critère WCAG | Intention concrète | Vérification candidate |
+|---|---|---|
+| 1.3.1 / 1.3.5 | Structure, liens champs et objectif des champs lorsque applicable. | Inspecter nom, rôle et associations ; tester remplissage et lecteur. |
+| 1.4.3 / 1.4.11 | Contraste du texte et des composants/indicateurs pertinents selon conditions et exceptions. | Mesures de contraste en tous états, ne pas inférer depuis une palette non créée. |
+| 1.4.4 / 1.4.10 / 1.4.12 | Redimensionnement et réagencement, espacement. | Essais zoom, écran réduit et réglages utilisateur selon paramètres du critère. |
+| 2.1.1 / 2.1.2 | Clavier et absence de piège. | Effectuer tous les parcours, y compris fenêtres et composants tiers au clavier. |
+| 2.4.3 / 2.4.7 / 2.4.11 | Focus logique, visible et non totalement masqué. | Tabulation, dialogues, bandeaux et clavier mobile. |
+| 2.2.1 / 2.2.6 | Temps ajustable selon critères et exceptions ; informer sur expiration pouvant entraîner perte. | Mesurer politiques, avertissement et limites ; ne pas utiliser l’accessibilité pour contourner une réauthentification nécessaire. |
+| 2.5.8 | Taille ou espacement des cibles conformément au critère et ses exceptions. | Mesurer dimensions effectives ; ne pas présenter une taille cible comme preuve globale. |
+| 3.3.1 / 3.3.2 / 3.3.3 | Identifier erreurs, instructions et suggestions sûres si connues. | Erreur liée au champ, message et résumé accessibles, sans révélation de compte. |
+| 3.3.8 | Authentification accessible (minimum AA) avec alternatives/mécanismes et exceptions du critère. | Parcours complet, incluant étape MFA et reprise applicable, support des gestionnaires/coller ou autre mécanisme conforme ; ne pas dire que l’aide humaine seule garantit la conformité. |
+| 4.1.2 / 4.1.3 | Nom, rôle, valeur et messages d’état accessibles. | Inspecter contrôles et tester annonces par lecteurs ; résultat inconnu si tiers non testable. |
+
+Une évaluation d’utilisabilité et un audit technique se complètent : ni un test automatisé seul, ni l’exécution d’un petit groupe, ni le respect d’un seul critère ne démontrent la conformité globale. Les délais de session peuvent créer des tensions avec 2.2.1 ; analyser les exceptions et mécanismes accessibles sur le parcours réel, sans décider à l’avance qu’une exception s’applique ou sacrifier sécurité.
+
+## 7. Catalogue et traçabilité
+Les 13 [écrans E01–E13](SCREEN_CATALOG.md) incluent contenu, actions, états, messages et focus. Ils sont des **maquettes textuelles** : aucun design visuel, application ni interaction réelle n’est livré. L’ordre affiché n’oblige pas à créer un écran distinct si l’IdP ou le RP fournit une expérience équivalente et testée.
+
+| Besoin / exigence | Risque | Écrans / parcours | Essai et critère proposés |
+|---|---|---|---|
+| REQ-13-03/04 — enrôlement | R31/R30, mauvais rattachement | E01–E04 | UXT14-01/02 : invitation expirée et collision refusées ; compte non activé. |
+| REQ-13-05/06/20 — MFA et action sensible | R19/R28/R55, phishing et preuve périmée | E03/E04/E09 | UXT14-03/04 : forte preuve requise, pas de repli faible silencieux. |
+| REQ-13-08/09 — reprise | R30/R35, usurpation et double contrôle | E07/E08 | UXT14-05/06 : indépendance et second contrôle, support ne demande aucun secret. |
+| REQ-13-11/12/13 — départ | R37/R76, faux succès | E09/E10 | UXT14-07 : statut par cible ; absence de confirmation = inconnu. |
+| REQ-13-18/19/31 — session | R36/R66, poste partagé | E05/E06/E12 | UXT14-08/09 : session RP refusée après fermeture, limites clairement indiquées. |
+| REQ-13-21 — panne | R58, doublon ou bypass | E11/E12 | UXT14-10/11 : résultat inconnu, pas de relecture automatique, action sensible refusée. |
+| REQ-13-22/24/25 — données | R17/R34/R57, divulgation et minimisation | E07/E08/E13 | UXT14-12 : pas de secrets ni preuve excessive et accès restreint. |
+| REQ-13-30 — inclusion | R74, exclusion | tous | UXT14-13–18 : clavier, lecteur, zoom, erreurs, tests avec participants et appareils autorisés. |
+
+Tous les essais sont NON EXÉCUTÉS. La recherche documentaire est clôturée sous hypothèses ; la validation UX et accessibilité exige essais sur appareils et utilisateurs réels, revue des pages tierces, critères et décisions documentés. Les phases P15–P18 peuvent se poursuivre sans approbation intermédiaire ; les tests réels exigent les autorisations nécessaires.

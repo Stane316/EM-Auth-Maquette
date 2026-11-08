@@ -1,0 +1,42 @@
+# P14 — Plan de tests UX, appareils et accessibilité
+**Version :** 0.1 | **Statut :** PROPOSED | **Date :** 28-10-2026  
+[Spécification](UX_SPECIFICATION.md) · [Écrans](SCREEN_CATALOG.md) · [Métriques produit P12](../04-PRODUCT-SPECIFICATION/PRODUCT_EVIDENCE_AND_METRICS.md). **18 tests UXT14 sont proposés, tous NON EXÉCUTÉS.**
+
+## 1. Autorisations et éthique
+Avant tout accès ou test : accord du propriétaire de l’environnement, périmètre écrit, participants informés et volontaires, conditions d’assistance et d’arrêt, coût autorisé ; données fictives et comptes de test au départ. Tests destructifs ou production et données réelles seulement sous mandat exprès et portes P03. Participation volontaire ne suffit pas à établir à elle seule la base juridique du traitement. Ne pas demander secrets, codes, biométrie, copie de pièce ou diagnostic médical ; possibilité de pause, retrait, canal alternatif et accompagnement. Notes pseudonymisées, durée et accès définis selon P03 ; enregistrement audio/vidéo seulement si nécessaire, autorisé et juridiquement cadré.
+
+## 2. Matrice à renseigner, pas des plateformes prétendues compatibles
+| Dimension | Profils à examiner, disponibilité inconnue | Preuve à conserver |
+|---|---|---|
+| Appareil | Ordinateur individuel et partagé ; téléphone personnel si disponible ; périphérique de sécurité si fourni. | Modèle, OS/version, type poste, méthode et politique, sans identifiant personnel inutile. |
+| Navigateur / lecteur | Navigateurs réellement utilisés et leur version ; combinaisons lecteur d’écran/système ; clavier seul, zoom et préférences d’affichage. | Version, configuration, parcours et anomalies ; jamais supposer résultat d’une combinaison sur une autre. |
+| Connectivité | Réseau normal, latence, interruption avant envoi et après effet serveur ; dégradation simulée contrôlée. | Conditions, point de coupure, horodatages, état serveur et affiché. |
+| Participants | Utilisateurs, support, administrateurs et approbateurs ; diversité des compétences et besoins, incluant personnes utilisant aides techniques si consentantes. | Rôle et tâches, obstacle observé ; échantillon qualitatif non représentatif et sans collecte de diagnostic. |
+| Fournisseur | Parcours IdP/RP, fenêtres navigateur ou OS et support réel selon contrat. | Qui contrôle chaque écran, possibilités de changement et anomalie non corrigible. |
+
+## 3. Protocole et mesure
+Présenter tâches neutres, laisser faire sans guider sauf si danger ou demande d’aide, noter réussites, erreurs, incompréhensions, assistance sollicitée, temps et variantes ; ne pas interpréter petit échantillon comme estimation de marché. Contrôler les flux critiques par inspection manuelle et outils ; l’évaluation WCAG s’étend au processus complet, tiers et étapes applicables. Enregistrer date, version, environnement, acteur, préconditions, étapes, attendu, observé, limites, anomalies, preuve expurgée et décision. Utiliser PASS / FAIL / INCONNU / NON APPLICABLE justifié / NON EXÉCUTÉ. Un test laboratoire ou une démonstration ne vaut ni conformité AA ni acceptation réelle. Pas de seuil de réussite chiffré décidé ; mesurer baseline, comparer et définir critères métier avant évaluation réelle.
+
+| ID | Scénario et préconditions | Critère attendu, jamais résultat constaté |
+|---|---|---|
+| UXT14-01 | Invitation fictive valide, expirée ou rejouée. | Seule la cérémonie autorisée continue ; pas d’activation sur lien invalide ; aide compréhensible. |
+| UXT14-02 | Deux identités fictives ambiguës et invitation destinée à une autre personne. | Aucune fusion ou activation automatique ; escalade sans exposition d’identité. |
+| UXT14-03 | Admin tente authentification sans facteur fort ou par OTP seul. | Privilège refusé, pas de repli faible automatique ; instruction utile. |
+| UXT14-04 | Défi frais, annulé ou périmé lors d’une action sensible. | Seule preuve conforme et fraîche autorise l’action ; focus et annulation corrects. |
+| UXT14-05 | Perte de facteur et personne fictive usurpant le compte. | Aucune information de compte révélée ; preuve indépendante et double contrôle sensible requis. |
+| UXT14-06 | Jeu de rôle support, source et second approbateur. | Aucun secret demandé ; indépendance, notification et voie de contestation conformément P06. |
+| UXT14-07 | Retrait sur IdP, RP, API, une cible délibérément non répondante. | Chaque cible affichée ; état global non confirmé et escalade ; pas de succès indu. |
+| UXT14-08 | Fin RP puis rejeu cookie et tentative via autre RP sur poste partagé fictif. | Ancienne session RP refusée ; information honnête sur autres sessions ; aucune donnée sensible résiduelle accessible dans le périmètre contrôlé. |
+| UXT14-09 | Expiration/inactivité et retour d’utilisateur sur poste partagé. | Contenu protégé masqué ; reconnexion réellement requise selon politique ; avertissement accessible si applicable. |
+| UXT14-10 | Couper réseau avant envoi d’une demande sensible. | Pas de confirmation injustifiée ; erreur utile et aucune action serveur si prouvé. |
+| UXT14-11 | Couper réseau après effet serveur avant réponse, puis demander l’état. | Résultat inconnu initial, pas de réémission automatique ; contrôle autorisé de l’état, pas de doublon d’effet. |
+| UXT14-12 | Inspecter écrans, notifications et preuves de support fictives. | Aucun secret, OTP, code, QR ou donnée superflue ; accès limité. |
+| UXT14-13 | Parcourir toutes les étapes au clavier et vérifier focus/dialogues. | Actions atteignables, focus visible et logique, pas de piège ni focus caché. |
+| UXT14-14 | Vérifier noms/rôles/états et changements avec lecteurs d’écran pertinents. | Champs, erreurs et statuts annoncés une fois de façon intelligible, y compris composants tiers si accessibles. |
+| UXT14-15 | Essayer zoom, dimensions réduites, espacement et contraste. | Aucun contenu nécessaire perdu ; critères applicables évalués individuellement, mesures consignées. |
+| UXT14-16 | Tester authentification et récupération, collage/gestionnaire ou autre mécanisme conforme. | Parcours évalué selon 3.3.8 et exceptions applicables, sans supprimer MFA ; tests ciblés ne valent pas AA globale. |
+| UXT14-17 | Étude autorisée avec rôles et besoins divers, tâches neutres et version fictive. | Compréhension des messages, complétion, obstacles et aide documentés ; aucun chiffre cible supposé. |
+| UXT14-18 | Tester moyens personnels, clé amovible ou autre appareil lorsque disponibles, y compris sans smartphone. | Voie accessible et sûre réellement utilisable ou scénario marqué non admissible ; compatibilité réelle enregistrée. |
+
+## 4. Acceptation
+Clôture UX réelle exige résultats d’utilisateurs et appareils pertinents autorisés, résolution des obstacles et revue de sécurité, critères de service établis, preuve de contrôle sur étapes tierces, audit de conformité à l’étendue annoncée et acceptation des risques par acteurs responsables. Anomalie critique de sécurité ou exclusion non compensée = pas de validation de pilote pour le cas. L’absence de tests n’empêche pas la poursuite de recherche et de conception sous hypothèses.

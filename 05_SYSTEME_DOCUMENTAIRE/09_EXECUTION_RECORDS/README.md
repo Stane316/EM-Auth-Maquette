@@ -1,0 +1,3 @@
+# Utilisation des modèles
+
+Ces fichiers sont des modèles, pas la preuve d'une exécution. Les copier dans une zone isolée explicitement autorisée, hors dépôt par défaut, et y ajouter les livrables de phases. Ne pas écraser une exécution précédente : créer un identifiant distinct. Mettre à jour le journal append-only, puis décisions, problèmes et livrables, enfin l'état récapitulatif après chaque action/porte. Une interruption au milieu impose une réconciliation à la reprise selon [le protocole](../00_MASTER_ORCHESTRATOR/EXECUTION_PROTOCOL.md). Si l'agent ne peut pas écrire, afficher l'état provisoire et demander une zone autorisée.

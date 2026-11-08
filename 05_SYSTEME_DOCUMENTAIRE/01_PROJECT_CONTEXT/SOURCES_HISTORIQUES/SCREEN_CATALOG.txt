@@ -1,0 +1,74 @@
+# P14 — Catalogue textuel des écrans et messages
+**Version :** 0.1 | **Statut :** PROPOSED | **Date :** 28-10-2026  
+[Spécification UX](UX_SPECIFICATION.md) · [Plan d’essais](UX_ACCESSIBILITY_TEST_PLAN.md) · [FRD](../04-PRODUCT-SPECIFICATION/FRD.md). Ceci décrit des écrans **hypothétiques**, pas un prototype ni une interface validée. Textes à tester, adapter aux conditions et langues réelles ; aucun contact, délai, adresse ou résultat n’est inventé.
+
+## Convention
+Pour chaque écran : titre de page, contenu dans l’ordre, actions et états ; le focus initial suit l’objectif de la page, le résumé d’erreur reçoit le focus après une soumission invalide si nécessaire, et les mises à jour asynchrones sont annoncées sans duplication. Les messages d’authentification avant identification sont génériques ; une erreur de format évidente peut être précise sans révéler l’existence d’un compte. Les exemples ne doivent pas apparaître comme confirmations sans preuve côté service.
+
+### E01 — Invitation / accueil
+- **Titre :** « Accéder à votre application » ; expliquer qui fournit le service et ce qui va suivre, sans nom de domaine inventé.
+- **Contenu :** invitation liée au compte selon P06, politique et aide ; si valide, « Continuer » ; lien « Besoin d’aide ».
+- **États :** traitement, autorisé ; expiré ou rejoué : « Ce lien ne peut pas être utilisé. Demandez une nouvelle invitation par le canal prévu. » Ne pas révéler d’autres données de compte. Aucune activation sans preuve et approbation.
+
+### E02 — Identification
+- **Titre :** « Se connecter » ; champ « Identifiant » associé à son aide, sans préremplir une identité sur poste partagé ; bouton « Continuer » ; « Obtenir de l’aide ».
+- **Champ vide :** « Renseignez votre identifiant. » Résumé lié au champ. Après tentative non vérifiée : « Connexion impossible. Vérifiez vos informations ou demandez de l’aide. » Même famille de réponse pour compte inconnu, désactivé ou mauvaise preuve ; examiner également différences de code, taille et temps.
+- Ne pas afficher de liste d’utilisateurs ou de photo/nom basé uniquement sur un identifiant non vérifié.
+
+### E03 — Choix du moyen autorisé
+- **Titre :** « Choisir comment vous connecter » ; liste uniquement des méthodes autorisées et applicables au compte et rôle, sous réserve que l’affichage ne permette pas d’énumération avant identification suffisante ; explication courte, action et aide.
+- Méthodes natives éventuellement « Utiliser votre clé d’accès » / « Utiliser une clé de sécurité », sans présumer leur disponibilité. « Je ne peux pas utiliser ces moyens » ouvre la procédure d’aide ; pas de passage automatique à une méthode plus faible pour privilèges.
+- **Aucun moyen utilisable :** « Impossible de poursuivre avec les moyens disponibles. Contactez l’assistance prévue. » Si aucun canal validé, ne pas inventer de numéro ou délai.
+
+### E04 — Défi / authentification fraîche
+- **Titre :** « Confirmer votre identité » ; expliquer que le navigateur ou l’appareil peut afficher une fenêtre et demander sa propre méthode de déverrouillage ; ne jamais demander de transmettre son PIN.
+- Actions « Continuer », « Annuler », « Besoin d’aide » si appropriées. Après retour de fenêtre native, restituer le focus au contexte utile ; les contrôles et annonces de l’OS restent hors maîtrise directe et doivent être testés.
+- **Annulé ou non vérifié :** « Vérification non terminée. Vous pouvez réessayer ou demander de l’aide. » Défi expiré : relancer seulement après nouvelle demande de l’utilisateur. Pas d’action sensible après simple retour silencieux.
+
+### E05 — Transition vers l’application
+- **Titre :** « Connexion en cours » ; statut annoncé sans répétition ; ne pas révéler de jeton, code ou URL contenant des secrets.
+- **Succès :** transférer seulement après vérification serveur ; présenter le nom de l’application confirmé s’il est approprié. **Échec de retour :** message générique avec aide. Si résultat non confirmé : E11, pas « Vous êtes connecté ».
+
+### E06 — Fin de session / poste partagé
+- **Titre :** « Se déconnecter de cette application » ; expliquer la portée avant action ; « Se déconnecter », « Annuler ».
+- Après confirmation serveur de fin RP : « Vous êtes déconnecté de cette application. D’autres applications ou votre fournisseur d’identité peuvent rester connectés. Sur un appareil partagé, verrouillez le poste et suivez les consignes de votre organisation. »
+- Si invalidation non confirmée : « Nous ne pouvons pas confirmer la déconnexion. Contactez l’assistance prévue et évitez de laisser le poste accessible. » Fermer le navigateur ou effacer visuellement n’est pas une preuve de fin serveur.
+
+### E07 — Signaler perte ou besoin d’aide
+- **Titre :** « Vous ne pouvez plus vous connecter ? » ; demander uniquement le minimum ; expliquer que la demande ne confirme pas l’existence d’un compte.
+- « Ne communiquez jamais votre mot de passe, votre code, votre PIN ou une image de clé d’accès à l’assistance. » Actions : « Demander de l’aide », « Annuler ».
+- Réponse générique : « Si la demande peut être traitée, l’assistance utilisera les coordonnées vérifiées par votre organisation. » Pas de délai ni promesse de prise en charge non contractée.
+
+### E08 — Suivi de récupération
+- **Titre :** « Suivi de votre demande » ; uniquement après authentification/autorisation adéquate, ou par canal de support vérifié. Étapes : demande reçue si accusé confirmé, vérifications en cours, décision, nouvel enrôlement, clôture ; pas de détail qui facilite fraude.
+- **Preuve insuffisante :** « Nous ne pouvons pas confirmer cette demande. Contactez l’assistance par le canal prévu. » Contestation et autre voie accessible à prévoir ; aucun accès avant procédure P06. Une notification manquée reste un événement à traiter côté support.
+
+### E09 — Demande ou approbation sensible
+- **Titre :** « Vérifier la demande » ; afficher action, cible et conséquences minimales, avec accès contrôlé. Boutons « Confirmer » et « Annuler » ; demander preuve forte fraîche selon politique.
+- Approveur et initiateur distincts si exigé ; pas de confirmation par clic d’une même personne. Après double clic ou coupure, E11 ; pas de message de succès avant preuve d’effet.
+
+### E10 — État du retrait par cible
+- **Titre :** « État du retrait d’accès » ; liste des cibles autorisées et statut **confirmé / en cours / échec / non confirmé** avec heure de mesure et portée ; accessible sans couleur seule.
+- « Retrait confirmé pour toutes les cibles prévues » seulement si toutes sont confirmées conformément au critère. Sinon : « Certaines cibles ne sont pas confirmées. Une vérification est nécessaire. » Suivi et escalade selon couverture ; le statut est protégé et non accessible aux utilisateurs non habilités.
+
+### E11 — Réseau ou résultat inconnu
+- **Titre :** « Résultat non confirmé » ; texte : « La connexion a été interrompue. Nous ne pouvons pas confirmer si votre demande a été traitée. Vérifiez son état avant de recommencer. »
+- Action « Vérifier l’état » uniquement si service et autorisation le permettent ; sinon « Contacter l’assistance prévue ». Pas de réenvoi automatique ; aucun succès présumé si le serveur a pu traiter la demande. Annoncer état, gérer focus et éviter notification répétitive.
+
+### E12 — Expiration et inactivité
+- Si avertissement possible : « Votre session va bientôt se terminer pour protéger vos informations. » « Continuer » n’étend l’inactivité que si autorisé et ne remplace pas preuve fraîche ni plafond absolu ; durée exacte à convenir.
+- **Expirée :** « Votre session est terminée. Connectez-vous à nouveau. » « Se connecter » / « Besoin d’aide ». Masquer le contenu protégé et ne pas promettre sauvegarde non confirmée ; prévenir le risque de perte si applicable.
+
+### E13 — Service indisponible / signalement
+- **Titre :** « Service momentanément indisponible » ; « Réessayez plus tard ou contactez l’assistance prévue. Aucune action sensible ne peut être confirmée pour le moment. » Si l’état est incertain après soumission, utiliser E11 plutôt qu’un simple « échec ».
+- Signalement de fraude par canal autorisé, sans demander de mot de passe, de code ou de copie de pièce non nécessaire. Pas de durée de rétablissement ou de notification légale inventée.
+
+## Tableau des messages sensibles
+| Situation | Message sûr | À éviter |
+|---|---|---|
+| Compte inexistant / suspendu / preuve erronée | « Connexion impossible. Vérifiez vos informations ou demandez de l’aide. » | « Ce compte existe mais est suspendu. » |
+| Demande de récupération non authentifiée | « Si la demande peut être traitée, l’assistance utilisera le canal prévu. » | « Un message a été envoyé à votre adresse » si cela confirme l’existence. |
+| Retrait partiel | « Certaines cibles ne sont pas confirmées. » | « Tous les accès sont supprimés. » |
+| Session RP fermée | « Déconnecté de cette application ; d’autres sessions peuvent rester actives. » | « Déconnecté de partout. » |
+| Expiration | « Votre session est terminée. Connectez-vous à nouveau. » | « Votre travail a été sauvegardé » sans preuve. |
+| Réponse perdue | « Résultat non confirmé. Vérifiez l’état avant de recommencer. » | « Échec » ou « Terminé » sans confirmation. |

@@ -1,0 +1,56 @@
+OK   fichiers obligatoires
+OK   liens Markdown relatifs
+OK   phase indexée PH00_INITIALISATION
+OK   phase indexée PH01_COMPREHENSION
+OK   phase indexée PH02_DRI
+OK   phase indexée PH03_FONDATION
+OK   phase indexée PH04_DESIGN_SYSTEM
+OK   phase indexée PH05_ECRANS
+OK   phase indexée PH06_PARCOURS
+OK   phase indexée PH07_AUDITS
+OK   phase indexée PH08_HANDOFF
+OK   phase indexée PH09_VALIDATION
+OK   écran inventorié et présent E01
+OK   écran inventorié et présent E02
+OK   écran inventorié et présent E03
+OK   écran inventorié et présent E04
+OK   écran inventorié et présent E05
+OK   écran inventorié et présent E06
+OK   écran inventorié et présent E07
+OK   écran inventorié et présent E08
+OK   écran inventorié et présent E09
+OK   écran inventorié et présent E10
+OK   écran inventorié et présent E11
+OK   écran inventorié et présent E12
+OK   écran inventorié et présent E13
+OK   écran inventorié et présent A01
+OK   écran inventorié et présent A02
+OK   écran inventorié et présent A03
+OK   écran inventorié et présent A04
+OK   écran inventorié et présent A05
+OK   écran inventorié et présent A06
+OK   écran inventorié et présent A07
+OK   écran inventorié et présent A08
+OK   écran inventorié et présent A09
+OK   aucun écran omis ou surnuméraire — []
+OK   contrat phase PH00_INITIALISATION
+OK   contrat phase PH01_COMPREHENSION
+OK   contrat phase PH02_DRI
+OK   contrat phase PH03_FONDATION
+OK   contrat phase PH04_DESIGN_SYSTEM
+OK   contrat phase PH05_ECRANS
+OK   contrat phase PH06_PARCOURS
+OK   contrat phase PH07_AUDITS
+OK   contrat phase PH08_HANDOFF
+OK   contrat phase PH09_VALIDATION
+OK   empreinte PDF V3
+OK   domaine audit UX
+OK   domaine audit UI
+OK   domaine audit Sécurité
+OK   domaine audit Accessibilité
+OK   domaine audit Responsive
+OK   domaine audit Performance
+OK   domaine audit SEO
+OK   domaine audit Fonctionnel
+
+54 vérifications, 0 erreur(s). Contrôles statiques uniquement.

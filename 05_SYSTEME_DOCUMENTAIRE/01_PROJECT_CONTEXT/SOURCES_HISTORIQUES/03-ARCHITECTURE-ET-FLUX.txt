@@ -1,0 +1,72 @@
+# Architecture, stack, outils et flux opérationnels
+
+[Retour à la référence globale](00-REFERENCE-GLOBALE-EM-AUTH.md) · **Autorité :** [cahier officiel](../Documentation/CAHIER_DES_CHARGES_OFFICIEL_EM_Auth_DEPLOY.pdf), notamment p. 4–9. Statuts : familles **retenues dans le cahier**, pas installées ni vérifiées ; composants, versions corrigées, comptes, domaines et moyens restent à confirmer à l'exécution.
+
+## 1. Composants et responsabilités
+
+| Composant | Rôle / interface | Statut et frontières |
+|---|---|---|
+| Navigateur | Parcours en français, poste partagé éventuel, vers proxy ; redirects OIDC | Prévu ; navigateurs/appareils réels non qualifiés. |
+| Nginx HTTPS | Entrée et routage ; frontière de confiance | Retenu, non configuré ; certificats, domaine, ports et réseau non établis. |
+| React 19 + Vite | Interface utilisateur, états et erreurs accessibles | Retenu, non implémenté ; ne décide pas des droits métier. |
+| BFF Node/TypeScript/Express | Session serveur, flux client confidentiel OIDC, protections CSRF et cookies | Retenu ; contrats/API détaillés et persistance à confirmer ; jetons gardés côté serveur. |
+| Keycloak 26.x | Identité, authentification, WebAuthn, politiques et sessions | Retenu ; realm, configuration et extensions non vérifiés ; pas d'IdP maison. |
+| Application/API | Consomme identité/jetons adaptés et applique les droits à chaque ressource | Une application à qualifier ; aucun propriétaire, endpoint ou API réelle attestés. |
+| PostgreSQL 18.x | Données logiquement séparées, accès minimaux ; sauvegardes | Retenu, non installé ; pas de promesse de chiffrement applicatif. |
+| Sauvegardes et supervision | Copies chiffrées/isolées, alertes, support et réconciliation | Capacités requises, prestataire/stockage non choisis ; pas de restauration attestée. |
+| Opérateurs, suppléant, approbateurs | Support, double contrôle, incidents et reprise | Rôles requis, personnes et habilitations inconnues. |
+| Multi-organisation, SAML, SCIM, HA | Extensions futures possibles | Hors première tranche ; pas d'architecture ni de solution adoptée. |
+
+[Architecture P15](../../EM-AUTH/06-ARCHITECTURE/SYSTEM_ARCHITECTURE.md) et [contrats sémantiques](../../EM-AUTH/06-ARCHITECTURE/API_CONTRACTS.md) sont des propositions historiques : ne pas les interpréter comme endpoints effectivement présents. Le PDF ne fixe pas tous les schémas physiques, chemins de fichiers, durées ou interfaces ; les définir sous mandat selon exigences et tests.
+
+## 2. Stack détaillée et conditions
+
+| Catégorie / technologie | Rôle et justification du cahier | Choix, limites et alternatives | Config / test, dépendances et coût | Référence / sprint indicatif |
+|---|---|---|---|---|
+| IdP Keycloak 26.x | OIDC, WebAuthn et sessions sans recréer un IdP | Famille retenue ; géré OIDC/WebAuthn comme alternative à réexaminer si exploitation impossible, changement à valider ; migration facteurs nécessite réenrôlement. | Conteneur officiel, PostgreSQL, admin privée ; coût d'exploitation non connu ; MFA/récupération/interop à tester. | [Keycloak](https://www.keycloak.org/documentation) · S03–S05. |
+| Base PostgreSQL 18.x | Stockage relationnel, bases logiquement séparées | Retenue ; point de panne unique si une instance ; pas de HA implicite. | Version et sauvegarde chiffrée/restore, rôles minimaux ; coût stockage inconnu. | [PostgreSQL](https://www.postgresql.org/docs/) · S03/S08. |
+| Node.js 24 LTS / TypeScript | Runtime et langage BFF | Familles retenues ; patch et support à revalider. | Installation autorisée, compatibilité testée ; coût machine/maintenance non estimé. | [Node](https://nodejs.org/en/about/previous-releases) · S03. |
+| Express 5 / openid-client 6 | HTTP BFF, client OIDC Code + PKCE S256 | Retenus ; aucune implémentation maison d'OIDC ; versions/avis à vérifier, y compris body-parser transitif. | State, nonce, redirect, issuer, audience et signature ; tests négatifs sur IdP réel. | [Express](https://expressjs.com/) · [openid-client](https://github.com/panva/openid-client) · S04/S07. |
+| React 19 / Vite | Interface française | Retenus ; bibliothèque UI non choisie ; accessibilité à tester. | Build et E2E autorisés ; compatibilité/packs et licences à examiner. | [React](https://react.dev/) · [Vite](https://vite.dev/) · S03/S09. |
+| Debian supportée / OCI / Docker Compose | Environnement reproductible | Retenus ; version, matériel et OS local non vérifiés ; Composer ne procure pas HA. | Images corrigées épinglées par digest, ressources et licences ; coût inconnu. | [Docker Compose](https://docs.docker.com/compose/) · S03/S08. |
+| Nginx / HTTPS | Reverse proxy et transport chiffré | Retenus ; domaine/fournisseur non connus ; ACME étudié, pas une souscription. | Certificat valide et renouvellement/alerte à exercer ; coûts domaine/exploitation inconnus. | [Nginx](https://nginx.org/en/docs/) · [Let's Encrypt](https://letsencrypt.org/docs/) · S08/S11. |
+| Vitest / Playwright | Tests unitaires et E2E | Retenus ; navigateurs et versions non testés ; doubles seulement quand appropriés. | Unitaires + composants Keycloak/Postgres réels, E2E ; pas de PASS avant exécution. | [Vitest](https://vitest.dev/) · [Playwright](https://playwright.dev/) · S03–S09. |
+| Forge privée / GitHub Actions | Code et CI ; GitHub examiné dans la roadmap | Dépôt privé exigé par PDF ; fournisseur, plan et capacité technique de protection non attestés. | Vérifier compatibilité plan, secrets et règles ; frais inconnus, aucun achat. | [GitHub docs](https://docs.github.com/) · S07. |
+| Messagerie et support | Invitation/notification et escalade | Nécessaires selon flux, fournisseur non choisi ; pas de notification présumée délivrée. | Mandat, protection contre abus, tests de panne et coût. | [Runbooks](../../EM-AUTH/08-OPERATIONS/INCIDENT_AND_RECOVERY_RUNBOOKS.md) · S05/S10. |
+| Systèmes métier/API | Ressources et contrôle d'autorisation | Dépend du propriétaire de l'application ; fournisseur et technologie inconnus. | Qualifier intégration, bypass, jetons, rôles et tests ; coût de migration inconnu. | [Interop P09](../../EM-AUTH/03-TECHNOLOGY-RESEARCH/INTEGRATION_INTEROP_TESTS.md) · S04/S10. |
+
+Chaque composant est sujet à dépendances, licence, maintenabilité et sécurité à revérifier. Une alternative qui affecte une famille retenue par le PDF est une **proposition de modification**, pas une substitution automatique. Les historiques de prix ne sont ni devis ni coûts à jour ; voir [TCO](../../EM-AUTH/03-TECHNOLOGY-RESEARCH/TCO_MODEL.md).
+
+## 3. Flux de bout en bout
+
+### F1 — Qualification d'application
+**Déclencheur/acteurs :** demande autorisée, propriétaire et intégrateur. **Prérequis :** mandat et inventaire permis. **Étapes/données :** recenser entrées, API, identité existante, rôles et chemins directs ; identifier responsabilité et criticité. **Erreurs/sécurité :** accès non maîtrisé, propriétaire absent ou données non autorisées → suspendre/limiter la promesse. **Résultat/vérification :** inventaire et essais de contournement approuvés ; T13-01/17 et PDF p. 5–7, non exécutés.
+
+### F2 — Enrôlement et connexion
+**Déclencheur/acteurs :** identité éligible autorisée, opérateur, utilisateur et approbateur selon mandat. **Prérequis :** identité stable, destinataire vérifié et politique. **Étapes :** invitation à usage unique, facteur, navigateur → proxy → interface/BFF → Keycloak, retour de code et contrôle PKCE/state/nonce, validation des jetons, session serveur et accès ressource. **Données :** identité minimale, transaction, facteur et jetons côté serveur. **Erreurs :** invitation rejouée, utilisateur ambigu, mauvaise audience ou chemin direct → refus/escalade. **Contrôles :** cookies protégés, CSRF, MFA résistante pour privilèges et action sensible, droits par ressource. **Vérification :** T13-03–07, 14, 16–18, 36 ; composants réels de test autorisés, non exécutés.
+
+### F3 — Récupération sensible
+**Déclencheur/acteurs :** perte de facteur, utilisateur, opérateur et second approbateur indépendant. **Prérequis :** mandat, moyens de preuve et relais ; pas de donnée réelle sans droits. **Étapes :** preuve indépendante, double contrôle, retrait ancien facteur, notification, enrôlement neuf. **Erreurs :** preuves insuffisantes, même approbateur ou notification indisponible → refus ou escalade ; aucune MFA désactivée globalement. **Vérification :** T13-08–10, scénarios de fraude et perte ; non exécutés.
+
+### F4 — Retrait et déconnexion
+**Déclencheur/acteurs :** ordre autorisé de suspension ou départ de poste. **Prérequis :** inventaire IdP/RP/API et seuils par cible. **Étapes :** empêcher nouvelle connexion, traiter sessions et droits, tester rejeu jusqu'au dernier refus sur chaque cible. **Données :** ordre horodaté et état minimal par cible, sans jetons. **Erreurs :** cible inaccessible = INCONNU, pas succès global ; déconnexion locale ne prouve pas fin globale. **Vérification :** T13-11–13/19, horloges et seuils convenus ; non exécutés.
+
+### F5 — Incident, panne et reprise
+**Déclencheur/acteurs :** alerte, opérateur/suppléant et responsable. **Prérequis :** procédures et accès mandatés. **Étapes :** qualifier, préserver preuves expurgées, escalader, restaurer copie chiffrée isolée, réconcilier retraits/facteurs/sessions postérieurs avant réouverture. **Données :** événements minimisés, trace indépendante et temps/point de reprise. **Erreurs :** historique absent ou contrôle indisponible → accès sensible concerné fermé ; notification et règles juridiques à qualifier. **Vérification :** T13-21–29/35 et exercices OP17 ; non exécutés.
+
+### F6 — Sortie
+**Déclencheur/acteurs :** fin de service autorisée, organisation, opérateur et responsable des données. **Prérequis :** contrat/mandat et destination acceptée. **Étapes :** exporter données convenues, vérifier intégrité/droits, retirer accès par cible, migrer application et réenrôler facteurs non transférables. **Données :** inventaire et mapping minimaux ; clés privées/jetons non exportés. **Erreurs :** export incomplet ou cible inconnue → arrêt/escalade, pas de succès global. **Vérification :** T13-32/33, exercice fictif puis opération réelle séparément autorisée ; non exécuté.
+
+## 4. Outils et services
+
+| Outil ou service | Statut observé / besoin | Action avant usage |
+|---|---|---|
+| Workspace de l'agent / shell | Lecture/écriture et commandes locales observées pendant cette mission | Dans les limites du workspace et des mandats ; non équivalent à l'ordinateur de l'utilisateur. |
+| Git / dépôt | Commande Git exécutée mais aucun dépôt détecté dans le workspace | Obtenir chemin et accès réel, vérifier branche et travail non commité. |
+| GitHub | Envisagé pour dépôt/CI ; aucun accès ou plan vérifié | Autorisation, droits, protection et coût à confirmer ; jamais de PR. |
+| VS Code / ordinateur utilisateur | Modèle de collaboration exprimé par utilisateur ; logiciel, OS et matériel non observés | Inventaire humain ou relevé autorisé, partie III après accord. |
+| MCP / API agentiques | Aucune intégration MCP requise par le PDF ; disponibilité et connexion non établies | Évaluer besoin et accès en partie III ; ne pas créer de serveur par principe. |
+| Recherche web / documentation | Sources historiques consultées, références datées | Vérifier versions, licences, compatibilité, prix et CVE avant choix ou implémentation. |
+| Containers, navigateur E2E, authentificateurs | Prévus pour essais, mais installation et capacité non vérifiées dans l'environnement cible | Inventaire et mandat S03/S05 ; aucune preuve de fonctionnalité actuellement. |
+| Domaine, DNS, hébergement, certificats, messagerie, monitoring, sauvegarde | Services nécessaires ou candidats suivant conception ; fournisseurs inconnus | Responsables, comptes, droits, coût et tests à établir ; voir [registre](06-GIT-ET-CONFIGURATIONS.md#3-registre-des-configurations-externes). |
+| Identifiants et stockage des secrets | Besoin de protéger secrets hors dépôt | Choisir mécanisme autorisé ; aucune valeur dans conversation, rapport ou fichier versionné. |
