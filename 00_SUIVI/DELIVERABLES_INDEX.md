@@ -27,4 +27,14 @@ Distinguer : fichier local réel · export · lien d'outil effectif · simulatio
 | L-048 | PH09 | Bilan de réception v2 — `01_PHASES/PH09_BILAN_RECEPTION_v2.md` | v2 | **évaluation interne** ; réception client non prononcée | D-014 |
 | L-049 | — | Dossier de démonstration — route `/dossier` | v2 | **rendu sans erreur** | — |
 
+| L-050 | v3 | Couche de contrats — `03_INTERFACE_REACT/src/services/contracts/` | v3 | **vérifié par test** (29 codes, égalité hors accents) | — |
+| L-051 | v3 | Backend de démonstration — `src/services/demo/backendDemo.ts` | v3 | **10 tests exécutés** | — |
+| L-052 | v3 | Client HTTP + contrats BFF — `src/services/http/` | v3 | **compilé** ; non exercé contre le BFF (pas de serveur lancé) | — |
+| L-053 | v3 | Session, garde, notifications — `src/session/`, `src/components/ui/Notifications.tsx` | v3 | **test de garde exécuté** | D-020 |
+| L-054 | v3 | Parcours de bout en bout — `src/features/Parcours.tsx` | v3 | **3 tests d'interface exécutés** | D-018 |
+| L-055 | v3 | Tests automatisés — `03_INTERFACE_REACT/tests/` | v3 | **44/44 réussis** | D-021 |
+| L-056 | v3 | Configuration de lint — `03_INTERFACE_REACT/eslint.config.js` | v3 | **0 erreur** | D-021 |
+| L-057 | v3 | Documentation — `README.md`, `docs/{ARCHITECTURE,API_INTEGRATION,ROUTES,COMPOSANTS}.md`, `.env.example` | v3 | **fichiers locaux vérifiés** | — |
+| L-058 | v3 | Référentiel de prompts — `05_SYSTEME_DOCUMENTAIRE/` | v3 | **77 fichiers copiés** | — |
+
 | — | — | Aucun livrable Figma, Stitch, export ou maquette n'existe à ce stade | — | — | — |

@@ -49,6 +49,19 @@ Aucune donnée sensible, aucun secret, aucune PII.
 | 41 | 2026-11-08T22:45Z / UTC | PH08 v2 — handoff technique | Agent | `01_PHASES/PH08_HANDOFF_TECHNIQUE.md` | Procédure d'ajout d'écran, versions installées, dette assumée, ce qui n'est pas réutilisable |
 | 42 | 2026-11-08T22:55Z / UTC | PH09 v2 — réception interne | Agent (évaluation) | `01_PHASES/PH09_BILAN_RECEPTION_v2.md` | **PRÊT POUR DÉMONSTRATION / NON PRÊT POUR RÉCEPTION CLIENT** ; UX-1 levé ; 0 P0, 2 P1 |
 
+| 43 | 2026-11-08T23:10Z / UTC | Transfert du référentiel de prompts dans le dépôt | Agent | `05_SYSTEME_DOCUMENTAIRE/` | 77 fichiers, 1,3 Mo copiés depuis `EM_AUTH_PROTOTYPING_SYSTEM` ; plus aucune affirmation d'indisponibilité |
+| 44 | 2026-11-08T23:20Z / UTC | v3 — contrats et configuration | Agent | `src/config/env.ts`, `src/services/contracts/` | Types DTO, catalogue S05 (29 codes, texte contractuel), politique S05 lue depuis le JSON du projet |
+| 45 | 2026-11-08T23:35Z / UTC | v3 — backend de démonstration | Agent | `src/services/demo/backendDemo.ts` | Règles appliquées : anti-énumération, OTP seul refusé, auto-approbation refusée, approbateur habilité, preuve fraîche, cible non observable non traitée |
+| 46 | 2026-11-08T23:50Z / UTC | v3 — client HTTP | Agent | `src/services/http/{client,authHttp,backofficeHttp}.ts` | CSRF, cookie HttpOnly, `RESEAU`/`CSRF_INVALIDE`/`SESSION_EXPIREE` ; contrats absents → `NON_SUPPORTE` |
+| 47 | 2026-11-09T00:05Z / UTC | v3 — session, garde, notifications, soumission | Agent | `src/session/`, `src/hooks/useSoumission.ts`, `src/components/ui/Notifications.tsx` | Fraîcheur calculée à la réception, jamais au rendu ; anti-double-soumission |
+| 48 | 2026-11-09T00:20Z / UTC | v3 — parcours de bout en bout | Agent | `src/features/Parcours.tsx` (+ CSS) | 8 étapes exécutées réellement, journal des appels avec code et statut |
+| 49 | 2026-11-09T00:35Z / UTC | v3 — écrans branchés | Agent | `E02Identification`, `E03MoyenAutorise`, `E06FinDeSession` | E02 : mot de passe non collecté (saisie Keycloak) ; E03 : facteurs du service ; E06 : déconnexion réelle |
+| 50 | 2026-11-09T00:50Z / UTC | v3 — tests exécutés | Agent | `tests/` (4 fichiers) | **44 tests, 44 réussis** : contrat S05, 10 règles du backend, 3 parcours de test, garde d'accès ; 3 défauts réels trouvés et corrigés (négation OTP inversée, attente manquante, sélecteur ambigu) |
+| 51 | 2026-11-09T01:05Z / UTC | v3 — lint | Agent | `eslint.config.js` | 2 erreurs réelles (`setState` dans un effet, `Date.now()` au rendu) → `SessionProvider` restructuré → **0 erreur** |
+| 52 | 2026-11-09T01:15Z / UTC | v3 — audit et rendu mis à jour | Agent | `scripts/audit.mjs`, `scripts/rendu.mjs`, `vite.rendu.config.ts` | Contrôle 5 reformulé (appels confinés à `services/http`) : **6/6** ; rendu cassé par le fournisseur de session (19/29) → session de démonstration pré-ouverte pour le test seul : **30/30** |
+| 53 | 2026-11-09T01:30Z / UTC | v3 — documentation | Agent | `README.md` (12 sections), `docs/` (4 documents), `.env.example` | Commandes vérifiées, chiffres issus des exécutions, limites déclarées |
+| 54 | 2026-11-09T01:40Z / UTC | v3 — contrôle complet | Agent | `npm run controle` | lint 0 · typecheck 0 · tests 44/44 · audit 6/6 · rendu 30/30 · build 616,81 kB (188,11 kB gzip) |
+
 ## Entrées à venir
 
 Les entrées suivantes sont ajoutées à chaque phase, décision, blocage, correction et reprise. Le journal ne remplace pas la preuve : il pointe vers elle.
