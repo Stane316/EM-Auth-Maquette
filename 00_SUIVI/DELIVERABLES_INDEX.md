@@ -10,8 +10,21 @@ Distinguer : fichier local réel · export · lien d'outil effectif · simulatio
 | L-002 | PH00 | Cinq registres de suivi — `00_SUIVI/` | v1 | **fichiers locaux vérifiés**, copies de travail (modèles intactes) | D-003 proposée || L-010 | PH01 | Compréhension et écarts — `01_PHASES/PH01_COMPREHENSION_ET_ECARTS.md` | v1 | **fichier local vérifié** | D-001 proposée |
 | L-011 | PH01 | Matrice de périmètre des 22 écrans — `01_PHASES/PH01_MATRICE_PERIMETRE_ECRANS.md` | v1 | **fichier local vérifié** ; tous `À_ARBITRER` | G1 ouverte |
 | L-012 | PH02 | Sélection DRI — `01_PHASES/PH02_SELECTION_DRI.md` | v1 | **fichier local vérifié** ; 0 ressource intégrée | G5/G6 si intégration future |
-| L-020 | PH03 | Six vues HTML (E02, A03 × A/B/C) — `02_MAQUETTES/direction-{a,b,c}/` | v1, 2026-11-08T18:00Z | **produites et contrôlées syntaxiquement** ; **rendu NON TESTÉ** (aucun navigateur) | D-004 proposée ; G2 attendue |
-| L-021 | PH03 | Portail de comparaison — `02_MAQUETTES/index.html` | v1 | **fichier local vérifié** ; rendu non vérifié | G2 attendue |
+| L-020 | PH03 | Six vues HTML (E02, A03 × A/B/C) — `02_MAQUETTE_HTML_V1/direction-{a,b,c}/` | v1, 2026-11-08T18:00Z | **produites et contrôlées syntaxiquement** ; **rendu NON TESTÉ** (aucun navigateur) | D-004 proposée ; G2 attendue |
+| L-021 | PH03 | Portail de comparaison — `02_MAQUETTE_HTML_V1/index.html` | v1 | **fichier local vérifié** ; rendu non vérifié | G2 attendue |
 | L-022 | PH03 | Comparaison des directions — `01_PHASES/PH03_DIRECTION_ET_COMPARAISON.md` | v1 | **fichier local vérifié** ; contrastes calculés | G2 attendue |
+
+| L-030 | PH02 | Analyse DRI v2 — `01_PHASES/PH02_SELECTION_DRI_v2.md` | v2, 2026-11-08 | **fichier local vérifié** ; 177 ressources couvertes ; licences non revérifiées à la source | D-012 |
+| L-031 | PH00 | Conventions d'écriture et de nommage — `00_SUIVI/CONVENTIONS.md` | v1 | **fichier local vérifié** | D-016 |
+| L-040 | PH04 | Jetons et base — `03_INTERFACE_REACT/src/styles/` | v2 | **vérifié par script** (contrastes recalculés) | D-010 |
+| L-041 | PH04 | Primitives (9) — `03_INTERFACE_REACT/src/components/ui/` | v2 | **fichiers locaux vérifiés** | D-011 |
+| L-042 | PH04 | Galerie du système — route `/systeme` | v2 | **rendue sans erreur** (jsdom) ; rendu visuel non testé | — |
+| L-043 | PH05 | 17 écrans React — `03_INTERFACE_REACT/src/features/` | v2 | **71 états catalogués et vérifiés** ; rendu visuel non testé | D-013 |
+| L-044 | PH05 | Catalogue d'états — `03_INTERFACE_REACT/src/donnees/etats.ts` | v2 | **vérifié par script** (unicité, couverture) | — |
+| L-045 | PH07 | Audit outillé — `03_INTERFACE_REACT/scripts/audit.mjs` | v2 | **6/6 contrôles** | — |
+| L-046 | PH07 | Preuve de rendu — `03_INTERFACE_REACT/scripts/rendu.mjs` | v2 | **29/29 routes, 0 erreur JS** | — |
+| L-047 | PH08 | Handoff technique — `01_PHASES/PH08_HANDOFF_TECHNIQUE.md` | v2 | **fichier local vérifié** | — |
+| L-048 | PH09 | Bilan de réception v2 — `01_PHASES/PH09_BILAN_RECEPTION_v2.md` | v2 | **évaluation interne** ; réception client non prononcée | D-014 |
+| L-049 | — | Dossier de démonstration — route `/dossier` | v2 | **rendu sans erreur** | — |
 
 | — | — | Aucun livrable Figma, Stitch, export ou maquette n'existe à ce stade | — | — | — |

@@ -1,0 +1,282 @@
+/* =============================================================================
+   SCÈNE D'AUTHENTIFICATION — présentation « produit », sans habillage de démo
+   ========================================================================== */
+
+.scene {
+  padding: clamp(var(--e-4), 2.4vw, var(--e-6));
+  border: 1px solid var(--trait);
+  border-radius: var(--r-4);
+  background: var(--canvas);
+}
+
+.scene__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
+  gap: clamp(var(--e-4), 2.6vw, var(--e-6));
+  align-items: start;
+}
+
+.scene__grille--large {
+  grid-template-columns: minmax(0, 1fr) minmax(400px, 560px);
+}
+
+.scene__contexte {
+  min-width: 0;
+}
+
+.scene__carte {
+  min-width: 0;
+  padding: clamp(var(--e-4), 2vw, var(--e-5));
+  border: 1px solid var(--trait);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--ombre-2);
+}
+
+/* --- Bloc de contexte ----------------------------------------------------- */
+.contexte {
+  padding: var(--e-2) 0;
+}
+
+.contexte__marque {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--accent-trait);
+  border-radius: var(--r-1);
+  background: var(--surface);
+  color: var(--accent-fonce);
+  font-family: var(--police-mono);
+  font-size: var(--t-3xs);
+  font-weight: var(--graisse-forte);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.contexte__titre {
+  margin-top: var(--e-3);
+  font-size: var(--t-2xl);
+}
+
+.contexte__texte {
+  max-width: 46ch;
+  margin-top: var(--e-2);
+  color: var(--encre-700);
+  font-size: var(--t-s);
+  line-height: var(--interligne-normal);
+}
+
+.contexte__points {
+  display: grid;
+  gap: var(--e-2);
+  margin-top: var(--e-4);
+}
+
+.contexte__points li {
+  position: relative;
+  padding-left: var(--e-4);
+  color: var(--encre-700);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+.contexte__points li::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- Titre interne de carte ---------------------------------------------- */
+.carteTitre {
+  font-size: var(--t-xl);
+}
+
+.carteTexte {
+  margin-top: var(--e-2);
+  color: var(--encre-500);
+  font-size: var(--t-s);
+  line-height: var(--interligne-normal);
+}
+
+.formulaire {
+  display: grid;
+  gap: var(--e-4);
+  margin-top: var(--e-5);
+}
+
+.actions {
+  display: grid;
+  gap: var(--e-2);
+  margin-top: var(--e-2);
+}
+
+.lienSecondaire {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-4);
+  margin-top: var(--e-4);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--trait);
+  font-size: var(--t-xs);
+}
+
+@media (max-width: 900px) {
+  .scene__grille,
+  .scene__grille--large {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .scene__contexte {
+    order: 2;
+  }
+}
+
+/* --- Liste de faits (fiche d'invitation, récapitulatifs) ------------------ */
+.faits {
+  display: grid;
+  margin-top: var(--e-4);
+  border: 1px solid var(--trait);
+  border-radius: var(--r-2);
+  overflow: hidden;
+}
+
+.fait {
+  display: grid;
+  grid-template-columns: minmax(120px, 40%) minmax(0, 1fr);
+  gap: var(--e-3);
+  padding: 9px var(--e-3);
+  border-bottom: 1px solid var(--trait);
+  font-size: var(--t-xs);
+}
+
+.fait:last-child {
+  border-bottom: none;
+}
+
+.fait:nth-child(odd) {
+  background: var(--surface-douce);
+}
+
+.fait__terme {
+  color: var(--encre-500);
+}
+
+.fait__valeur {
+  color: var(--encre-900);
+  font-weight: var(--graisse-moyenne);
+  line-height: 1.45;
+}
+
+/* --- Choix exclusif (moyens d'authentification) --------------------------- */
+.choix {
+  display: grid;
+  gap: var(--e-2);
+  margin-top: var(--e-4);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--e-3);
+  padding: 12px var(--e-3);
+  border: 1px solid var(--trait-fort);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color var(--duree-court) var(--courbe), background var(--duree-court) var(--courbe);
+}
+
+.option:hover {
+  border-color: var(--encre-500);
+  background: var(--surface-douce);
+}
+
+.option:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-voile);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.option--indisponible {
+  cursor: not-allowed;
+  background: var(--canvas-creux);
+  color: var(--encre-500);
+}
+
+.option--indisponible:hover {
+  border-color: var(--trait-fort);
+  background: var(--canvas-creux);
+}
+
+.option input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.option__titre {
+  display: block;
+  color: var(--encre-900);
+  font-size: var(--t-s);
+  font-weight: var(--graisse-moyenne);
+}
+
+.option__detail {
+  display: block;
+  margin-top: 1px;
+  color: var(--encre-500);
+  font-size: var(--t-2xs);
+}
+
+.option__icone {
+  width: 18px;
+  height: 18px;
+  color: var(--encre-500);
+}
+
+/* --- Saisie de code ------------------------------------------------------- */
+.code {
+  min-height: 56px;
+  padding: 12px var(--e-4);
+  border: 1px solid var(--encre-500);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  color: var(--encre-900);
+  font-family: var(--police-mono);
+  font-size: 1.375rem;
+  letter-spacing: 0.42em;
+  text-align: center;
+}
+
+.code::placeholder {
+  color: var(--texte-placeholder);
+  letter-spacing: 0.3em;
+}
+
+/* --- Bandeau de simulation ------------------------------------------------ */
+.simulation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: var(--e-4);
+  padding: 10px var(--e-3);
+  border: 1px dashed var(--encre-500);
+  border-radius: var(--r-2);
+  background: var(--canvas-creux);
+  color: var(--encre-700);
+  font-size: var(--t-2xs);
+  line-height: 1.5;
+}
+
+.simulation svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  flex: none;
+  color: var(--encre-500);
+}

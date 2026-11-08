@@ -31,7 +31,7 @@ L'option retenue en G1 avait été annoncée « 17 écrans ». Son énumération
 
 ## 3. Écrans produits (fichiers vérifiés)
 
-Tous dans `02_MAQUETTES/ecrans/`, générés par `02_MAQUETTES/systeme/generer_ecrans.py` à partir du système de design PH04.
+Tous dans `02_MAQUETTE_HTML_V1/ecrans/`, générés par `02_MAQUETTE_HTML_V1/systeme/generer_ecrans.py` à partir du système de design PH04.
 
 | ID | Écran | Acteur | États | Trace V3 |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ Tous dans `02_MAQUETTES/ecrans/`, générés par `02_MAQUETTES/systeme/generer_e
 | A04 | Orchestration du retrait | responsable habilité | 5 | M05 · REQ-13-11/12/13 |
 | A08 | Enrôlement du facteur | utilisateur invité | 5 | M02/M03 · REQ-13-04/05 |
 
-**Total : 16 écrans, 60 états nommés**, + `02_MAQUETTES/ecrans/index.html`.
+**Total : 16 écrans, 60 états nommés**, + `02_MAQUETTE_HTML_V1/ecrans/index.html`.
 
 Chaque page contient : acteur, rendu pressenti (à arbitrer), vue principale, la liste des états avec **événement d'entrée / actions autorisées / destination**, les annotations (ordre clavier, annonce d'état, retour de focus, zoom 200 %) et les limites.
 

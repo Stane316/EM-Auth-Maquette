@@ -3,7 +3,7 @@
 **Phase :** PH07 · **Statut :** TERMINÉ AVEC RÉSERVES — 8 modules évalués, 3 défauts corrigés, réserves non levables ici
 **Version auditée :** maquette statique v1 · direction A · 16 écrans · 60 états · 26 fichiers HTML
 **Horodatage :** 2026-11-08T19:10Z (UTC)
-**Preuves mesurées :** `01_PHASES/PH07_PREUVES_CONTROLES.txt` (généré par `02_MAQUETTES/systeme/audit_structurel.py`)
+**Preuves mesurées :** `01_PHASES/PH07_PREUVES_CONTROLES.txt` (généré par `02_MAQUETTE_HTML_V1/systeme/audit_structurel.py`)
 
 > **Portée.** Cet audit porte sur des **fichiers HTML/CSS statiques**. Il ne remplace ni un navigateur, ni un lecteur d'écran, ni un audit WCAG, ni un test de sécurité. Les constats visuels ne valent pas essais en navigateur. Les modules 5, 6 et 7 sont partiellement ou totalement **NON APPLICABLES** ici, avec justification.
 

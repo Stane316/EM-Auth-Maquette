@@ -11,15 +11,15 @@
 
 | Direction | Écran | Fichier | Taille |
 |---|---|---|---|
-| A — Clarté institutionnelle | E02 Identification | `02_MAQUETTES/direction-a/e02-identification.html` | 5 130 o |
-| A | A03 Décision de récupération | `02_MAQUETTES/direction-a/a03-decision-recuperation.html` | 6 670 o |
-| B — Console de précision | E02 | `02_MAQUETTES/direction-b/e02-identification.html` | 5 505 o |
-| B | A03 | `02_MAQUETTES/direction-b/a03-decision-recuperation.html` | 7 050 o |
-| C — Accompagnement humain | E02 | `02_MAQUETTES/direction-c/e02-identification.html` | 5 548 o |
-| C | A03 | `02_MAQUETTES/direction-c/a03-decision-recuperation.html` | 7 423 o |
-| Portail de comparaison | — | `02_MAQUETTES/index.html` | — |
-| Feuilles de style | — | `02_MAQUETTES/assets/{base,dir-a,dir-b,dir-c}.css` | — |
-| Générateur (provenance) | — | `02_MAQUETTES/assets/generer_ph03.py` | — |
+| A — Clarté institutionnelle | E02 Identification | `02_MAQUETTE_HTML_V1/direction-a/e02-identification.html` | 5 130 o |
+| A | A03 Décision de récupération | `02_MAQUETTE_HTML_V1/direction-a/a03-decision-recuperation.html` | 6 670 o |
+| B — Console de précision | E02 | `02_MAQUETTE_HTML_V1/direction-b/e02-identification.html` | 5 505 o |
+| B | A03 | `02_MAQUETTE_HTML_V1/direction-b/a03-decision-recuperation.html` | 7 050 o |
+| C — Accompagnement humain | E02 | `02_MAQUETTE_HTML_V1/direction-c/e02-identification.html` | 5 548 o |
+| C | A03 | `02_MAQUETTE_HTML_V1/direction-c/a03-decision-recuperation.html` | 7 423 o |
+| Portail de comparaison | — | `02_MAQUETTE_HTML_V1/index.html` | — |
+| Feuilles de style | — | `02_MAQUETTE_HTML_V1/assets/{base,dir-a,dir-b,dir-c}.css` | — |
+| Générateur (provenance) | — | `02_MAQUETTE_HTML_V1/assets/generer_ph03.py` | — |
 
 **Ce sont de vraies vues HTML/CSS**, pas des descriptions textuelles. Elles s'ouvrent sans serveur, sans réseau, sans dépendance.
 

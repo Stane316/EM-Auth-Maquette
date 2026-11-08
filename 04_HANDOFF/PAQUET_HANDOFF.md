@@ -38,17 +38,17 @@
 
 | Chemin | Objet | Empreinte SHA-256 (16 premiers) |
 |---|---|---|
-| `02_MAQUETTES/ecrans/` (16 pages + index) | écrans du lot, 60 états | voir §7 |
-| `02_MAQUETTES/systeme/tokens.css` | jetons sémantiques | `c749089dc13afcb5` |
-| `02_MAQUETTES/systeme/base.css` | socle, focus, gabarits | `c6fbf91ef46530b3` |
-| `02_MAQUETTES/systeme/composants.css` | composants et variantes | `631b71f39a304730` |
-| `02_MAQUETTES/systeme/galerie.html` | galerie de composants rendue | `e5c891697b2bf53e` |
-| `02_MAQUETTES/parcours.html` | portail de parcours (liens réels) | `9c9babfff5d466f6` |
-| `02_MAQUETTES/index.html` | comparaison A/B/C | `82bceb62772d8b97` |
-| `02_MAQUETTES/direction-{a,b,c}/` | archive de la comparaison PH03 (6 vues) | voir §7 |
-| `02_MAQUETTES/systeme/generer_ecrans.py` | générateur (provenance, reproductibilité) | `97cb1c3630250500` |
-| `02_MAQUETTES/systeme/generer_ph03.py` | générateur des vues de comparaison | `69f6c3ca64591b10` |
-| `02_MAQUETTES/systeme/audit_structurel.py` | audit outillé (preuves PH07) | `c67773351c0f1c89` |
+| `02_MAQUETTE_HTML_V1/ecrans/` (16 pages + index) | écrans du lot, 60 états | voir §7 |
+| `02_MAQUETTE_HTML_V1/systeme/tokens.css` | jetons sémantiques | `c749089dc13afcb5` |
+| `02_MAQUETTE_HTML_V1/systeme/base.css` | socle, focus, gabarits | `c6fbf91ef46530b3` |
+| `02_MAQUETTE_HTML_V1/systeme/composants.css` | composants et variantes | `631b71f39a304730` |
+| `02_MAQUETTE_HTML_V1/systeme/galerie.html` | galerie de composants rendue | `e5c891697b2bf53e` |
+| `02_MAQUETTE_HTML_V1/parcours.html` | portail de parcours (liens réels) | `9c9babfff5d466f6` |
+| `02_MAQUETTE_HTML_V1/index.html` | comparaison A/B/C | `82bceb62772d8b97` |
+| `02_MAQUETTE_HTML_V1/direction-{a,b,c}/` | archive de la comparaison PH03 (6 vues) | voir §7 |
+| `02_MAQUETTE_HTML_V1/systeme/generer_ecrans.py` | générateur (provenance, reproductibilité) | `97cb1c3630250500` |
+| `02_MAQUETTE_HTML_V1/systeme/generer_ph03.py` | générateur des vues de comparaison | `69f6c3ca64591b10` |
+| `02_MAQUETTE_HTML_V1/systeme/audit_structurel.py` | audit outillé (preuves PH07) | `c67773351c0f1c89` |
 | `01_PHASES/` | rapports PH01, PH02, PH03, PH05, PH06, PH07, PH09 | — |
 | `00_SUIVI/` | 5 registres + capacités + manifeste d'empreintes | — |
 
@@ -129,7 +129,7 @@
 
 ## 7. Empreintes des fichiers de maquette
 
-Les 37 fichiers de `02_MAQUETTES/` sont versionnés dans le dépôt ; les empreintes sont recalculables par `sha256sum`. Extrait (16 premiers caractères) :
+Les 37 fichiers de `02_MAQUETTE_HTML_V1/` sont versionnés dans le dépôt ; les empreintes sont recalculables par `sha256sum`. Extrait (16 premiers caractères) :
 
 ```
 tokens.css c749089dc13afcb5 · base.css c6fbf91ef46530b3 · composants.css 631b71f39a304730
@@ -150,7 +150,7 @@ Aucun accès Figma n'existe ici : le critère B08 n'est **pas** satisfait. Pour 
 2. Nommer les frames `{ID}/desktop/{état}` et `{ID}/mobile/{état}`, par exemple `E04/desktop/annulé`, conformément aux prompts d'écran.
 3. Poser les jetons du §3 en variables (couleurs, espacements, rayons, typographie) ; documenter les contrastes mesurés.
 4. Créer les composants : bouton (4 variantes + désactivé), champ (normal/erreur/désactivé), message (5 niveaux), étiquette d'état (5), carte, liste de vérification, tableau, étapes, rail.
-5. Reproduire les 16 écrans et leurs 60 états depuis les fichiers HTML de `02_MAQUETTES/ecrans/`, en **hors-maquette** pour les fenêtres natives (annotation « non maîtrisée par EM AUTH »).
+5. Reproduire les 16 écrans et leurs 60 états depuis les fichiers HTML de `02_MAQUETTE_HTML_V1/ecrans/`, en **hors-maquette** pour les fenêtres natives (annotation « non maîtrisée par EM AUTH »).
 6. Relier uniquement les transitions documentées en `01_PHASES/PH06_MATRICE_PARCOURS.md` ; vérifier chaque destination manuellement.
 7. Consigner dans le fichier l'avertissement : maquette fictive, aucune preuve de sécurité ni de conformité.
 
@@ -185,3 +185,36 @@ Aucun accès Figma n'existe ici : le critère B08 n'est **pas** satisfait. Pour 
 | Conclusion « prêt » | **NON** — des blocages restent ouverts (PH07 §11) |
 
 **Verdict : PH08 TERMINÉ — paquet transférable constitué, sans conclusion de disponibilité.**
+
+---
+
+# ADDENDUM v2 — interface React (2026-11-08)
+
+Le paquet ci-dessus décrit la maquette **HTML statique** du cycle 1. Le cycle 2 ajoute un livrable distinct, qui **ne remplace pas** le premier.
+
+## Ce qui s'ajoute
+
+| Livrable | Emplacement | Nature |
+|---|---|---|
+| Interface React (17 écrans, 71 états) | `03_INTERFACE_REACT/` | application réelle, données fictives |
+| Système de design en code | `03_INTERFACE_REACT/src/styles/` + `components/ui/` | 9 primitives, 15 paires de contraste vérifiées |
+| Galerie consultable | route `/systeme` | preuve visuelle des jetons et composants |
+| Dossier de démonstration | route `/dossier` | couverture, décisions, limites |
+| Handoff technique | `01_PHASES/PH08_HANDOFF_TECHNIQUE.md` | procédure d'ajout d'écran, dette, ce qui n'est pas réutilisable |
+| Audit outillé | `scripts/audit.mjs` | 6 contrôles reproductibles |
+| Preuve de rendu | `scripts/rendu.mjs` | 29 routes, 0 erreur JS |
+
+## Ce que l'intégrateur doit savoir avant de toucher au code
+
+1. **Aucune logique d'authentification n'existe.** Les boutons changent d'état ; rien n'est vérifié.
+2. **Aucun appel réseau.** `scripts/audit.mjs` échoue si un `fetch`, un `XMLHttpRequest` ou un `navigator.credentials.` apparaît.
+3. **Les licences sont déclarées par le DRI, pas vérifiées à la source.** À faire avant tout usage commercial (JUR-1).
+4. **L'accessibilité est conçue, pas prouvée.** Aucun test navigateur, clavier, lecteur d'écran, zoom ou 320 px.
+5. **Le thème Keycloak est écarté pour la démonstration** (D-015) : dans la cible, plusieurs écrans seraient rendus ailleurs.
+
+## Commandes de vérification
+
+```bash
+cd 03_INTERFACE_REACT
+npm run verifier && npm run audit && npm run rendu && npm run build
+```

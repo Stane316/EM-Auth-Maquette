@@ -11,7 +11,7 @@
 |---|---|
 | Matrice source / acteur / action / condition / destination / état | **OUI** (§2) |
 | Liens réels entre écrans | **OUI** — 156 liens internes vérifiés, **0 cassé** (§5) |
-| Portail de parcours navigable | **OUI** — `02_MAQUETTES/parcours.html` |
+| Portail de parcours navigable | **OUI** — `02_MAQUETTE_HTML_V1/parcours.html` |
 | Parcours de chaque branche retenue « parcouru » dans le prototype | **PARTIEL** — navigation d'écran en écran réelle ; **les enchaînements d'états ne sont pas déclenchables** (pages statiques) |
 | Boutons sans action, impasses, rôles contradictoires, points natifs simulés | **RECENSÉS** (§4) |
 | Liens créés dans Figma | **NON** — aucun Figma (B-008) ; instructions manuelles fournies en PH08 |

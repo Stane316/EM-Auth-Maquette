@@ -145,3 +145,23 @@ Ces points ne sont pas bloquants pour la lecture et l'analyse (PH01/PH02), mais 
 | Conflit G0 | **OUI, partiel** — dépôt de travail vide, source réelle dans un autre dépôt (D-001) |
 
 **Verdict PH00 : TERMINÉ pour la découverte ; la porte G0 reste OUVERTE sur D-001/D-003/D-004.** Les phases suivantes sont menées en analyse, sans production d'écran avant arbitrage du lot (G1).
+
+---
+
+## 6. Capacités ajoutées le 2026-11-08 (cycle 2 — interface React)
+
+| Capacité | État mesuré | Preuve |
+|---|---|---|
+| Node.js / npm | **disponible** — node 22.22.3, npm opérationnel | `npm install` : 80 paquets en 15 s |
+| Registre npm (`registry.npmjs.org`) | **accessible** | installation réussie de React 19, Vite 7, TypeScript, Motion, Lucide, fontsource |
+| `jsdom` (test de rendu hors navigateur) | **installé** (dev) | 29 routes rendues |
+| Navigateur (Chrome/Firefox), axe-core, Lighthouse | **toujours absents** | aucune capture, aucun test visuel, aucune conformité revendiquée |
+| Figma / Stitch | **toujours absents** | B-008 non applicable justifié |
+
+### Paquets installés — déclaration explicite (D-011)
+
+**Production (6) :** `react` 19.3.1 · `react-dom` 19.3.1 · `react-router-dom` 7.18.5 · `motion` 12.43.0 · `lucide-react` 0.545.0 · `@fontsource-variable/inter` 5.3.0 · `@fontsource-variable/jetbrains-mono` 5.3.0.
+**Développement (6) :** `vite` 7.3.7 · `typescript` 5.9.3 · `@vitejs/plugin-react` 5.2.0 · `@types/react` 19.3.0 · `@types/react-dom` 19.3.0 · `jsdom` 31.0.0.
+
+**Motifs :** exigence V3 §6.1 (React + Vite), ressources du DRI §9.1 (Motion, Lucide), accessibilité sans dépendance (dialogue natif), tests exécutables sans navigateur (jsdom).
+**Aucune dépendance de style n'est imposée** : pas de Tailwind, pas de shadcn/ui (brief §4 + avertissement du DRI sur l'empilement de registries).

@@ -1,0 +1,308 @@
+.page {
+  display: grid;
+  gap: var(--e-7);
+}
+
+/* --- Héros ---------------------------------------------------------------- */
+.heros {
+  position: relative;
+  padding: clamp(var(--e-5), 4vw, var(--e-8)) clamp(var(--e-5), 4vw, var(--e-7));
+  border: 1px solid var(--trait);
+  border-radius: var(--r-4);
+  background: linear-gradient(180deg, var(--texte-sur-accent) 0%, var(--surface-heros) 100%);
+  box-shadow: var(--ombre-1);
+}
+
+.heros__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent-trait);
+  border-radius: var(--r-rond);
+  background: var(--surface);
+  color: var(--accent-fonce);
+  font-size: var(--t-3xs);
+  font-weight: var(--graisse-forte);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.heros__titre {
+  max-width: 22ch;
+  margin-top: var(--e-3);
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  letter-spacing: -0.035em;
+}
+
+.heros__titre em {
+  position: relative;
+  color: var(--accent-fonce);
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.heros__chapo {
+  max-width: 60ch;
+  margin-top: var(--e-3);
+  color: var(--encre-700);
+  font-size: var(--t-l);
+  line-height: 1.6;
+}
+
+.heros__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-top: var(--e-5);
+}
+
+/* --- Chiffres ------------------------------------------------------------- */
+.chiffres {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0;
+  margin-top: var(--e-6);
+  border-top: 1px solid var(--trait);
+}
+
+.chiffre {
+  padding: var(--e-4) var(--e-4) 0 0;
+}
+
+.chiffre__valeur {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--encre-900);
+  font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem);
+  font-weight: var(--graisse-forte);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.chiffre__libelle {
+  margin-top: 2px;
+  color: var(--encre-700);
+  font-size: var(--t-xs);
+  font-weight: var(--graisse-moyenne);
+}
+
+.chiffre__detail {
+  color: var(--encre-500);
+  font-size: var(--t-3xs);
+}
+
+/* --- Sections ------------------------------------------------------------- */
+.section__entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-3);
+  margin-bottom: var(--e-4);
+}
+
+.section__titre {
+  font-size: var(--t-2xl);
+}
+
+.section__texte {
+  max-width: 62ch;
+  color: var(--encre-500);
+  font-size: var(--t-s);
+}
+
+.groupes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--e-4);
+}
+
+.groupe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: var(--e-4);
+  border: 1px solid var(--trait);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  transition: border-color var(--duree-moyen) var(--courbe), box-shadow var(--duree-moyen) var(--courbe);
+}
+
+.groupe:hover {
+  border-color: var(--accent-trait);
+  box-shadow: var(--ombre-2);
+}
+
+.groupe__entete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  padding-bottom: var(--e-2);
+  border-bottom: 1px solid var(--trait);
+}
+
+.groupe__titre {
+  font-size: var(--t-m);
+}
+
+.groupe__compte {
+  color: var(--encre-500);
+  font-family: var(--police-mono);
+  font-size: var(--t-3xs);
+}
+
+.groupe__sousTitre {
+  color: var(--encre-500);
+  font-size: var(--t-xs);
+}
+
+.groupe__liste {
+  display: grid;
+  gap: 2px;
+  margin-top: var(--e-1);
+}
+
+.lienEcran {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--e-2);
+  padding: 7px 6px;
+  border-radius: var(--r-2);
+  color: var(--encre-700);
+  font-size: var(--t-xs);
+  text-decoration: none;
+  transition: background var(--duree-court) var(--courbe);
+}
+
+.lienEcran:hover {
+  background: var(--accent-voile);
+  color: var(--accent-fonce);
+}
+
+.lienEcran__id {
+  color: var(--encre-500);
+  font-family: var(--police-mono);
+  font-size: var(--t-3xs);
+}
+
+.lienEcran__etats {
+  color: var(--encre-500);
+  font-size: var(--t-3xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Deux colonnes -------------------------------------------------------- */
+.deuxColonnes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--e-4);
+}
+
+.panneau {
+  padding: var(--e-5);
+  border: 1px solid var(--trait);
+  border-radius: var(--r-3);
+  background: var(--surface);
+}
+
+.panneau--nuance {
+  background: var(--surface-douce);
+}
+
+.panneau__titre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--t-m);
+}
+
+.panneau__titre svg {
+  width: 17px;
+  height: 17px;
+  color: var(--accent);
+}
+
+.panneau__liste {
+  display: grid;
+  gap: var(--e-2);
+  margin-top: var(--e-3);
+}
+
+.panneau__liste li {
+  display: flex;
+  gap: var(--e-2);
+  color: var(--encre-700);
+  font-size: var(--t-s);
+  line-height: 1.5;
+}
+
+.panneau__liste svg {
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  flex: none;
+}
+
+.ok {
+  color: var(--succes);
+}
+
+.non {
+  color: var(--encre-500);
+}
+
+/* --- Socle technique ------------------------------------------------------ */
+.socle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--e-3);
+}
+
+.jeton {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--e-3) var(--e-4);
+  border: 1px solid var(--trait);
+  border-radius: var(--r-2);
+  background: var(--surface);
+}
+
+.jeton__nom {
+  color: var(--encre-900);
+  font-size: var(--t-s);
+  font-weight: var(--graisse-forte);
+}
+
+.jeton__role {
+  color: var(--encre-500);
+  font-size: var(--t-xs);
+  line-height: 1.45;
+}
+
+.jeton__origine {
+  margin-top: var(--e-1);
+  font-family: var(--police-mono);
+  font-size: var(--t-3xs);
+  color: var(--accent-fonce);
+}
+
+.noteFinn {
+  margin-top: var(--e-4);
+  padding: var(--e-4);
+  border-left: 3px solid var(--alerte);
+  border-radius: 0 var(--r-2) var(--r-2) 0;
+  background: var(--alerte-voile);
+  color: var(--encre-700);
+  font-size: var(--t-s);
+  line-height: 1.55;
+}
+
+.noteFinn strong {
+  color: var(--encre-900);
+}

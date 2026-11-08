@@ -1,0 +1,144 @@
+/* =============================================================================
+   JETONS — source unique de vérité visuelle
+   Tous les contrastes de texte ci-dessous ont été CALCULÉS (WCAG 2.x, sRGB).
+   Valeur entre parenthèses = rapport sur fond blanc / sur canvas.
+   Aucune couleur ne doit être écrite en dur ailleurs que dans ce fichier.
+   ========================================================================== */
+
+:root {
+  /* --- Encres (texte) ------------------------------------------------------ */
+  --encre-900: #0a1725; /* 18,07 — titres */
+  --encre-700: #2a3f55; /* 10,82 — texte courant */
+  --encre-500: #4c6178; /*  6,39 — texte secondaire, bordures de champ */
+  --encre-300: #7b8fa3; /*  3,4  — JAMAIS pour du texte : filets, icônes décoratives */
+
+  /* --- Surfaces ------------------------------------------------------------ */
+  --surface: #ffffff;
+  --canvas: #f5f8fc;
+  --canvas-creux: #eef3f9;
+  --nuit: #0b2239; /* chrome de navigation — blanc dessus = 16,13 */
+  --nuit-2: #10304c;
+  --nuit-3: #1a4060;
+  --nuit-bord: #06182a;
+  --nuit-focus: #7fb0ff;
+  --marque-clair: #2f7bff;
+  --marque-fonce: #0f3f96;
+  --point-arbitrage: #e0a33e;
+  --point-arbitre: #4ecf9b;
+  /* Textes et accents de la navigation — contrastes vérifiés sur --nuit */
+  --nuit-texte: #c7d6e6; /* 10,90 */
+  --nuit-texte-attenue: #9fb4c9; /*  7,56 */
+  --nuit-titre: #8fa8bf; /*  6,54 */
+  --nuit-lien-actif: #9cc0ff; /*  8,75 */
+  --nuit-accent: #5b9bff; /*  5,82 */
+
+  /* --- Surfaces dérivées --------------------------------------------------- */
+  --surface-douce: #fbfcfe; /* pieds de carte, lignes alternées */
+  --surface-survol: #fafcff;
+  --surface-entete-tableau: #f8fafd;
+  --surface-erreur: #fffbfa;
+  --surface-heros: #f8fbff;
+  --texte-sur-accent: #ffffff;
+  --texte-placeholder: #5c7288; /* 5,14 sur blanc — au-delà du minimum */
+
+  /* --- Filets (décoratifs, non informatifs) -------------------------------- */
+  --trait: #dce4ee;
+  --trait-fort: #c2cedc;
+
+  /* --- Filets sémantiques (alertes) ---------------------------------------- */
+  --bord-succes: #b8dccb;
+  --bord-alerte: #ecd3a8;
+  --bord-danger: #eec4bf;
+  --bord-inconnu: #cfc3e9;
+
+  /* --- Accent institutionnel ---------------------------------------------- */
+  --accent: #175cd3; /* blanc dessus 5,99 · sur blanc 5,99 */
+  --accent-fonce: #124a9e; /* 8,40 */
+  --accent-voile: #eaf1fd;
+  --accent-trait: #b9d0f5;
+
+  /* --- Signaux sémantiques (toujours doublés d'un mot et d'une icône) ------ */
+  --succes: #0b6e4f; /* 6,25 */
+  --succes-voile: #e6f4ee;
+  --alerte: #8a4b00; /* 6,80 */
+  --alerte-voile: #fdf1e0;
+  --danger: #a81d14; /* 7,37 */
+  --danger-survol: #8d1710;
+  --danger-voile: #fbeae8;
+  --inconnu: #4a3a78; /* 8,9 — état « non confirmé », jamais confondu avec l'échec */
+  --inconnu-voile: #efeaf9;
+
+  /* --- Typographie --------------------------------------------------------- */
+  --police-titre: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+  --police-texte: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+  --police-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  --t-3xs: 0.6875rem;
+  --t-2xs: 0.75rem;
+  --t-xs: 0.8125rem;
+  --t-s: 0.875rem;
+  --t-m: 1rem;
+  --t-l: 1.125rem;
+  --t-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --t-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --t-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.75rem);
+
+  --graisse-normale: 400;
+  --graisse-moyenne: 500;
+  --graisse-forte: 600;
+  --graisse-max: 700;
+
+  --interligne-serre: 1.15;
+  --interligne-normal: 1.55;
+  --interligne-large: 1.7;
+  --interlettre-titre: -0.021em;
+  --interlettre-caps: 0.08em;
+
+  /* --- Espacement (échelle de 4 px) --------------------------------------- */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+  --e-8: 4rem;
+  --e-9: 6rem;
+
+  /* --- Rayons -------------------------------------------------------------- */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-3: 12px;
+  --r-4: 16px;
+  --r-rond: 999px;
+
+  /* --- Ombres (discrètes : un produit de sécurité ne brille pas) ---------- */
+  --ombre-1: 0 1px 2px rgb(10 23 37 / 6%), 0 1px 1px rgb(10 23 37 / 4%);
+  --ombre-2: 0 2px 6px rgb(10 23 37 / 6%), 0 8px 24px rgb(10 23 37 / 6%);
+  --ombre-3: 0 4px 12px rgb(10 23 37 / 8%), 0 24px 48px rgb(10 23 37 / 10%);
+
+  /* --- Mouvement ----------------------------------------------------------- */
+  --duree-court: 120ms;
+  --duree-moyen: 200ms;
+  --duree-long: 320ms;
+  --courbe: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  /* --- Gabarit ------------------------------------------------------------- */
+  --largeur-lecture: 68ch;
+  --largeur-page: 1240px;
+  --hauteur-entete: 64px;
+  --largeur-nav: 268px;
+
+  /* --- Anneau de focus : 5,99:1 sur blanc, jamais supprimé ---------------- */
+  --anneau: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+  --anneau-nuit: 0 0 0 2px var(--nuit), 0 0 0 4px #7fb0ff;
+}
+
+/* Le mouvement est une décoration : il disparaît sur demande explicite. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duree-court: 1ms;
+    --duree-moyen: 1ms;
+    --duree-long: 1ms;
+  }
+}

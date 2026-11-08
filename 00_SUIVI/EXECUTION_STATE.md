@@ -1,24 +1,29 @@
 # État d'exécution — instance EM-AUTH-MAQUETTE
 
-**Instance :** `EM-AUTH-MAQUETTE` · **Racine système/version :** `EM-Auth/EM_AUTH_PROTOTYPING_SYSTEM` @ `a80a47855277ae851679790b56d7e640c7e9b41d` (référence en lecture seule) · **Projet/zone de travail :** dépôt `EM-Auth-Maquette`, branche `arena/53c9aa9d-em-auth-maquette` · **DRI/empreinte :** `dri/` 13 fichiers @ `a80a478` (annexes `12*`–`15` INCONNUES ; confirmation D-002 en attente) · **Fuseau/horloge :** UTC, bac à sable
+**Instance :** `EM-AUTH-MAQUETTE` · **Racine système/version :** `EM-Auth/EM_AUTH_PROTOTYPING_SYSTEM` @ `a80a478` (référence en lecture seule) · **Projet/zone de travail :** dépôt `EM-Auth-Maquette`, branche `arena/53c9aa9d-em-auth-maquette` · **DRI/empreinte :** `dri/` **13 fichiers, restaurés dans le dépôt** (`catalogue-dri.csv` `fcb025c7cbd9`) · **Fuseau/horloge :** UTC
 
-**Phase actuelle :** PH09 · **Statut global : NON PRÊT** · **Prochaine action :** décision humaine **G4** (réception avec réserves ou ajournement) + arbitrage **G1** résiduel (E09, A01, A05, A06, A07, A09) · **Dernier événement :** bilan de réception produit, 3 P1 ouverts · **Prompt en cours :** aucun — workflow arrêté à la porte G4, comme prévu
+**Phase actuelle :** PH09 (révision 2) · **Statut global : PRÊT POUR DÉMONSTRATION — NON PRÊT POUR RÉCEPTION CLIENT** · **Prochaine action :** démonstration au directeur, puis arbitrage **E09** et tests navigateur · **Dernier événement :** interface React livrée — 17 écrans, 71 états, 6/6 contrôles d'audit, 29/29 routes rendues · **Prompt en cours :** aucun — portes G5/G6 fermées
 
-| Phase | Statut | Sortie / preuve / version | Porte / prochaine action |
+## Changement de cycle (2026-11-08)
+
+Le cycle 1 produisait une maquette **HTML statique** (16 écrans, 60 états, boutons inertes) et concluait **NON PRÊT**.
+Le cycle 2 produit une **application React 19 + TypeScript** (17 écrans, 71 états, routage réel), sur demande expresse de l'utilisateur. **Tout le cycle 1 est conservé** dans `02_MAQUETTE_HTML_V1/` et n'est pas présenté comme remplacé.
+
+| Phase | Statut | Sortie / preuve | Porte / prochaine action |
 |---|---|---|---|
-| PH00 | **TERMINÉ** | `00_SUIVI/RESSOURCES_ET_CAPACITES.md` · `EMPREINTES_SOURCES.txt` (156 lignes) · 5 registres | G0 : D-001/D-003 précisées, D-002 à confirmer |
-| PH01 | **TERMINÉ** | `PH01_COMPREHENSION_ET_ECARTS.md` (10 écarts) · `PH01_MATRICE_PERIMETRE_ECRANS.md` (22 écrans) | G1 : lot tranché (D-007), E09 + 5 écrans encore à arbitrer |
-| PH02 | **TERMINÉ** | `PH02_SELECTION_DRI.md` — 13 ressources examinées, **0 intégrée** | licences à vérifier avant tout usage réel |
-| PH03 | **TERMINÉ** | 6 vues A/B/C + portail · `PH03_DIRECTION_ET_COMPARAISON.md` · contrastes calculés | **G2 tranchée : direction A (D-010)** |
-| PH04 | **TERMINÉ** | `systeme/tokens.css`, `base.css`, `composants.css`, `galerie.html` | G4 structure : à valider avec la réception |
-| PH05 | **TERMINÉ AVEC RÉSERVES** | `ecrans/` — **16 écrans, 60 états** · `PH05_RAPPORT_ECRANS.md` | 8 exigences V3 non illustrées ; E09 non produit |
-| PH06 | **TERMINÉ AVEC RÉSERVES** | `parcours.html` · `PH06_MATRICE_PARCOURS.md` (23 transitions, 156 liens, 0 cassé) | boutons statiques = réserve P1 |
-| PH07 | **TERMINÉ AVEC RÉSERVES** | `PH07_RAPPORT_AUDITS.md` · `PH07_PREUVES_CONTROLES.txt` (15 contrôles, 3 défauts corrigés) | 0 P0 · 3 P1 ouverts |
-| PH08 | **TERMINÉ** | `03_HANDOFF/PAQUET_HANDOFF.md` | paquet transférable ; aucune conclusion « prêt » |
-| PH09 | **EN_ATTENTE_HUMAIN** | `PH09_BILAN_RECEPTION.md` — B01–B10 : 5 satisfaits, 2 avec réserves, 1 partiel, 2 non satisfaits | **G4 non prononcée** ; aucun code sans G6 |
+| PH00 | **TERMINÉ** | `RESSOURCES_ET_CAPACITES.md` · `EMPREINTES_SOURCES.txt` | G0 franchie |
+| PH01 | **TERMINÉ** | `PH01_COMPREHENSION_ET_ECARTS.md` · `PH01_MATRICE_PERIMETRE_ECRANS.md` (22 écrans) | G1 : lot de 16 + E09 (D-013) |
+| PH02 | **TERMINÉ (v2)** | `PH02_SELECTION_DRI_v2.md` — 177 ressources analysées, 4 dépendances retenues, React Bits écarté (D-012) | licences à vérifier à la source (JUR-1) |
+| PH03 | **TERMINÉ** | 6 vues A/B/C + portail · `PH03_DIRECTION_ET_COMPARAISON.md` | G2 tranchée : direction A (D-010) |
+| PH04 | **TERMINÉ (v2)** | `PH04_DESIGN_SYSTEM.md` · `03_INTERFACE_REACT/src/styles/` + `components/ui/` · galerie `/systeme` | réserve : accessibilité non mesurée |
+| PH05 | **TERMINÉ** | `03_INTERFACE_REACT/src/features/` — **17 écrans, 71 états** | E09 en attente d'arbitrage |
+| PH06 | **TERMINÉ** | Routage réel `react-router-dom` · `PH06_MATRICE_PARCOURS.md` (v1) · audit : 13 destinations, 0 cassée | — |
+| PH07 | **TERMINÉ AVEC RÉSERVES** | `PH07_RAPPORT_AUDITS.md` (v1) · **audit v2 : 6/6** · **rendu : 29/29** | réserve : aucun test navigateur |
+| PH08 | **TERMINÉ** | `PH08_HANDOFF_TECHNIQUE.md` · `04_HANDOFF/PAQUET_HANDOFF.md` | transférable ; G6 fermée |
+| PH09 | **EN_ATTENTE_HUMAIN** | `PH09_BILAN_RECEPTION_v2.md` — B01–B10 : 3 satisfaits, 4 réserves, 2 partiels, 1 NA | **réception client non prononcée** |
 
-**Écrans :** 16 produits · 1 à arbitrer (E09) · 5 différés (A01, A05, A06, A07, A09).
-**Contrôles exécutés :** empreinte PDF V3, unicité de la racine, inventaire DRI, audit lecture seule du code, capacités, structure HTML (26 pages), labels/ARIA/légendes, liens internes (156), contrastes calculés (≥ 4,5:1), correction + retest.
-**Jamais exécutés :** rendu navigateur, clavier, lecteur d'écran, zoom/reflow, WebAuthn réel, tests de sécurité, performance, audit WCAG.
-**Problèmes ouverts :** UX-1 (boutons statiques P1) · UX-2/FN-1 (écrans différés P1) · SEC-5 (fenêtres natives simulées P1) · accessibilité non évaluée (P1) · B-008 (B08 Figma) · FN-2 (8 exigences non illustrées) · B-002/B-004/B-005 (P2).
-**Dernière mise à jour / auteur :** 2026-11-08T19:45Z, agent d'orchestration.
+**Écrans :** 17 produits (16 du lot + E09) · 0 différé produit · 5 hors lot déclarés absents (A01, A05, A06, A07, A09).
+**Contrôles exécutés en v2 :** `tsc` strict (0 erreur) · contrastes recalculés (15/15) · registre écrans/composants (17/17) · catalogue d'états (71, clés uniques) · destinations de navigation (13, 0 cassée) · appels réseau (0) · couleurs hors jetons (0) · rendu jsdom (29/29) · build de production (452 kB).
+**Jamais exécutés :** rendu visuel, clavier, lecteur d'écran, zoom/reflow, axe-core, Lighthouse, WebAuthn réel, tests de sécurité ou de charge.
+**Problèmes ouverts :** UX-3 (accessibilité non mesurée, P1) · G1-E09 (arbitrage, P1) · JUR-1 (licences non vérifiées, P2) · FN-2 (exigences non illustrées, P2) · B-008 (Figma, NA justifié). **0 P0.** UX-1 **levé**.
+**Dernière mise à jour / auteur :** 2026-11-08, agent d'orchestration.

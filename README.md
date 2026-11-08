@@ -1,26 +1,52 @@
-# EM-Auth-Maquette
+# EM AUTH — Maquette de démonstration
 
-**Zone isolée de conception documentaire et de maquettes fictives** pour le projet EM AUTH.
+Maquette navigable de la plateforme d'authentification **EM AUTH**, en trois livrables distincts et **aucune mise en production**.
 
-| | |
+> ⚠️ Maquette de démonstration. Aucun service connecté, aucune donnée réelle.
+> Une maquette ne prouve ni sécurité, ni conformité, ni disponibilité.
+
+## Ce qu'il faut regarder
+
+**`03_INTERFACE_REACT/` — le livrable visuel principal.** Application React 19 + TypeScript : **17 écrans, 71 états**, routage réel, état par URL.
+
+```bash
+cd 03_INTERFACE_REACT
+npm install && npm run dev      # http://localhost:5173
+```
+
+| Route | Contenu |
 |---|---|
-| Objet | Exécuter le workflow documentaire PH00 → PH09 (système `EM_AUTH_PROTOTYPING_SYSTEM`) jusqu'à la validation du prototype et la préparation du transfert — **pas** jusqu'à la mise en production |
-| Source de référence (lecture seule) | `Stane316/EM-Auth` @ `main` `a80a47855277ae851679790b56d7e640c7e9b41d` |
-| Système de prompts | `EM-Auth/EM_AUTH_PROTOTYPING_SYSTEM/` (77 fichiers) |
-| Cahier officiel | V3.0 du 2026-11-01, SHA-256 `25c1e0513c80461e5855ae50c7dd08733ce45bcb684604bd39b9fc8eb931f1cf` — **empreinte vérifiée** |
-| DRI | `EM-Auth/dri/` — 13 fichiers ; annexes `12*`, `13-harnai`, `14`, `15` **absentes** |
-| Écriture | Uniquement dans ce dépôt ; aucun fichier du projet `EM-Auth` n'est modifié |
+| `/` | portail de démonstration |
+| `/ecran/<slug>` | les 17 écrans, avec leurs états (`?etat=…`) |
+| `/systeme` | jetons, composants, contrastes calculés |
+| `/dossier` | couverture, décisions, ressources, limites |
 
-## Sommaire
+## Arborescence
 
-- `00_SUIVI/` — cinq registres de suivi (copies de travail) + rapport ressources/capacités + manifeste d'empreintes
-- `01_PHASES/` — livrables de phase PH00 → PH09
-- `02_MAQUETTES/` — maquettes **fictives**, sans donnée réelle, sans service
-- `03_HANDOFF/` — paquet de transfert
+| Dossier | Rôle |
+|---|---|
+| `03_INTERFACE_REACT/` | **interface React** — le livrable visuel (v2) |
+| `02_MAQUETTE_HTML_V1/` | maquette statique du cycle 1, conservée telle quelle |
+| `01_PHASES/` | livrables PH00 → PH09 |
+| `00_SUIVI/` | registres : état, journal, décisions, problèmes, conventions |
+| `04_HANDOFF/` | paquet de transfert |
+| `dri/` | bibliothèque de ressources fournie (13 fichiers, 177 ressources) |
 
-## Avertissements permanents
+## Contrôles
 
-- Une maquette ne prouve **ni la sécurité, ni la conformité, ni la disponibilité**.
-- Aucun résultat de test, budget, SLA, client ou métrique n'est inventé ici.
-- Les données sont **fictives** ; aucune PII, aucun secret, aucune capture réelle.
-- Les données du DRI datent du 5 octobre 2026 : toute réutilisation exige une vérification de licence, version et maintenance à l'usage.
+```bash
+cd 03_INTERFACE_REACT
+npm run verifier   # TypeScript strict — 0 erreur
+npm run audit      # 6/6 : contrastes, registre, états, navigation, réseau, jetons
+npm run rendu      # 29/29 routes rendues hors navigateur, 0 erreur JS
+```
+
+## État réel
+
+**PRÊT POUR DÉMONSTRATION — NON PRÊT POUR RÉCEPTION CLIENT.**
+0 P0 · 2 P1 (accessibilité non mesurée, arbitrage E09) · aucun test navigateur, clavier, lecteur d'écran ou WebAuthn réel.
+Détail : `01_PHASES/PH09_BILAN_RECEPTION_v2.md`.
+
+## Règles tenues
+
+Aucune PR · aucune écriture hors de ce dépôt · aucun service tiers · aucune donnée personnelle · aucune durée, aucun SLA, aucun budget inventés.
