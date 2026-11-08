@@ -12,6 +12,9 @@ Aucune décision ci-dessous ne peut être citée comme validée par le directeur
 | D-004 | 2026-11-08 / UTC | **Outils** : aucun navigateur ni Figma/Stitch ; prototype **HTML/CSS/JS local** fictif comme substitut, sans dépendance ni service | Agent (proposition) | **PROPOSÉ** | Si refusé → PH04/PH05 classés `EN_ATTENTE_OUTIL`, paquet transférable seulement ; un prototype local ne vaut pas réception Figma |
 | D-005 | 2026-11-08 / UTC | **Transmission externe (G3)** : aucune donnée, capture ou document envoyé à un service tiers | Agent (proposition) | **PROPOSÉ** (refus par défaut appliqué) | Stitch/Figma restent inutilisés ; aucun secret, aucune PII, aucun contenu projet transmis |
 | D-006 | 2026-11-08 / UTC | **Priorité documentaire** : cahier V3.0 du 2026-11-01 (SHA-256 `25c1e051…f1cf`) seul texte de référence métier ; brief, inventaire E/A et sources historiques = propositions | Constat vérifié + instruction utilisateur | APPROUVÉ (constat) | Toute divergence métier sera signalée et non arbitrée par l'agent |
+| D-007 | 2026-11-08 / UTC | **Lot d'écrans** : 4 options soumises (7 / 13 / 17 / 22 écrans) ; option 4 (17 écrans, cœur + retrait) recommandée | Agent (proposition) | **PROPOSÉ** | Détermine le périmètre PH05 et la couverture B03/B05 |
+| D-008 | 2026-11-08 / UTC | **Rôles et capacités** : répartition proposée (utilisateur, privilégié, demandeur, approbateur distinct, support, administrateur, responsable sécurité) | Agent (proposition) | **PROPOSÉ** | Aucune capacité n'est approuvée ; E09/A02/A03/A04/A09 en dépendent |
+| D-009 | 2026-11-08 / UTC | **Propriétaire de rendu** par écran : thème Keycloak / page BFF / interface React / fenêtre native / procédure | Agent (proposition) | **PROPOSÉ** | B02 exige que les propriétaires non décidés restent « à arbitrer » |
 
 ## Décisions humaines attendues (portes ouvertes)
 

@@ -17,6 +17,9 @@ Aucune donnée sensible, aucun secret, aucune PII.
 | 10 | 2026-11-08T17:20Z / UTC | PH00 — initialisation du suivi en zone isolée | Agent (écriture limitée à `EM-Auth-Maquette`) | `00_SUIVI/*` créés comme copies de travail ; modèles `09_EXECUTION_RECORDS/` **non modifiés** | 5 registres + `RESSOURCES_ET_CAPACITES.md` + manifeste d'empreintes (156 lignes) |
 | 11 | 2026-11-08T17:21Z / UTC | PH00 — porte G0 | Agent (analyse) | §7 de `RESSOURCES_ET_CAPACITES.md` | Porte **ouverte** sur D-001 (source), D-003 (zone), D-004 (outils) ; propositions consignées, aucune décision humaine acquise |
 | 12 | 2026-11-08T17:22Z / UTC | PH00 — clôture de phase | Agent | `EXECUTION_STATE.md` mis à jour | PH00 **TERMINÉ** pour la découverte ; PH01 engagée en analyse |
+| 13 | 2026-11-08T17:30Z / UTC | PH01 — lecture des références obligatoires | Agent (lecture) | PDF V3 (5 blocs), brief intégral, inventaire E/A, critères B01–B10, direction visuelle, sources historiques P14 | Compréhension établie ; 10 écarts documentés (É-1…É-10) |
+| 14 | 2026-11-08T17:35Z / UTC | PH01 — livrables | Agent (écriture zone isolée) | `01_PHASES/PH01_COMPREHENSION_ET_ECARTS.md`, `01_PHASES/PH01_MATRICE_PERIMETRE_ECRANS.md` | Matrice des 22 écrans produite, tous `À_ARBITRER` ; 4 options de lot proposées ; G1 ouverte |
+| 15 | 2026-11-08T17:36Z / UTC | PH01 — porte | Agent (analyse) | §5 de la matrice ; §8 du rapport | Porte **ouverte** : périmètre non arbitré ; analyses indépendantes poursuivies, PH05 bloquée |
 
 ## Entrées à venir
 
