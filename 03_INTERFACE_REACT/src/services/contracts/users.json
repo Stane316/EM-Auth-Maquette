@@ -1,0 +1,23 @@
+{
+  "synthetic": true,
+  "comment": "Utilisateurs fictifs de laboratoire (domaines reserves). Aucun compte reel. Les roles servent a l'exemple d'autorisation cote ressource (S04-T07).",
+  "users": [
+    {
+      "subject": "lab-user-alice",
+      "email": "alice@example.com",
+      "roles": ["reader"],
+      "note": "lectrice fictive : acces lecture a la ressource /api/notes"
+    },
+    {
+      "subject": "lab-user-bob",
+      "email": "bob@example.org",
+      "roles": [],
+      "note": "aucun role : doit etre refuse sur la ressource protegee (S04-T07)"
+    }
+  ],
+  "resource": {
+    "path": "/api/notes",
+    "readRole": "reader",
+    "writeRole": "writer"
+  }
+}

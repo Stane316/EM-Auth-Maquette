@@ -1,13 +1,15 @@
-import { Menu, PanelLeftClose, ShieldAlert } from 'lucide-react';
+import { Menu, PanelLeftClose } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ecranParSlug, GROUPES } from '../../donnees/ecrans';
 import { cx } from '../../lib/cx';
+import { EnteteSession } from './EnteteSession';
 import { Navigation } from './Navigation';
 import styles from './shell.module.css';
 
 const TITRES_SIMPLES: Readonly<Record<string, string>> = {
   '/': 'Portail de démonstration',
+  '/parcours': 'Parcours de bout en bout',
   '/systeme': 'Système de design',
   '/dossier': 'Dossier de démonstration',
 };
@@ -99,10 +101,7 @@ export const CoquilleApp = () => {
             </p>
 
             <div className={styles.entete__actions}>
-              <span className={styles.fiction}>
-                <ShieldAlert aria-hidden="true" />
-                Maquette — données fictives
-              </span>
+              <EnteteSession />
             </div>
           </header>
 

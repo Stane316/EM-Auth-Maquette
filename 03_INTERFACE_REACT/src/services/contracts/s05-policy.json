@@ -1,0 +1,71 @@
+{
+  "synthetic": true,
+  "version": "1.0",
+  "date": "2026-11-04",
+  "source": "S05.2 politique candidate, validee par D1-D4 (ANIAMBOSSOU Stane, 04-11-2026)",
+  "comment": "Contrat de laboratoire S05. Donnees fictives. Ce fichier est une SPECIFICATION, pas un comportement.",
+  "webauthn": {
+    "origin": "http://localhost:3000",
+    "rpId": "localhost",
+    "challengeBytes": 32,
+    "challengeTtlMs": 120000,
+    "challengeSingleUse": true,
+    "attestation": "none",
+    "userVerification": {
+      "enrolment": "required",
+      "profileP1": "preferred",
+      "profileP2": "required",
+      "sensitiveAction": "required",
+      "recoveryOperator": "required"
+    }
+  },
+  "freshness": {
+    "windowMs": 300000,
+    "silentRefreshIsProof": false
+  },
+  "criticalAlwaysReauth": [
+    "recovery.approve",
+    "habilitation.change"
+  ],
+  "profiles": {
+    "P1": "profil ordinaire",
+    "P2": "profil a privileges",
+    "P3": "operateur de support"
+  },
+  "sensitiveActions": [
+    "factor.enrol",
+    "factor.retire",
+    "contact.change",
+    "privilege.elevate",
+    "habilitation.change",
+    "recovery.approve",
+    "data.export",
+    "admin.operation"
+  ],
+  "forbidSilentDowngrade": true,
+  "otpAloneSufficientForSensitive": false,
+  "grantAalAutomatically": false,
+  "recovery": {
+    "independentProofRequired": true,
+    "requesterSuppliedContactIsIndependentProof": false,
+    "distinctAuthorizedHumansRequired": true,
+    "rejectInitiatorEqualsApprover": true,
+    "rejectSameAccountAcrossSessions": true,
+    "invalidateOnTargetOrChannelChange": true,
+    "notificationChannel": "journal-local-fictif",
+    "escalateOnNotificationFailure": true
+  },
+  "proofLevels": [
+    "double",
+    "navigateur-reel-authentificateur-virtuel",
+    "authentificateur-physique-autorise",
+    "simulation-humaine",
+    "deux-humains-habilites"
+  ],
+  "outOfScope": [
+    "revocation.globale.sessions",
+    "copies.passkey.synchronisees",
+    "acces.urgence",
+    "pilote.reel"
+  ]
+}
