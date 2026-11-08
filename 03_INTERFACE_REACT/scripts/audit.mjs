@@ -9,7 +9,9 @@
  *  2. Registre : les slugs des écrans et les clés des composants sont identiques.
  *  3. États : chaque écran a des états, les clés sont uniques, le total est cohérent.
  *  4. Navigation : tout lien interne pointe vers une route qui existe.
- *  5. Réseau : aucun appel sortant dans le code de l'interface.
+ *  5. Réseau : les appels sortants sont confinés au client HTTP (`src/services/http`).
+ *     Aucun écran, aucun hook, aucun composant n'appelle le réseau directement,
+ *     et aucune cérémonie WebAuthn n'est exécutée côté navigateur.
  *  6. Jetons : détection des couleurs écrites en dehors de tokens.css.
  */
 import { readFile, readdir } from 'node:fs/promises';
@@ -151,8 +153,18 @@ for (const fichier of [...(await fichiers(SRC)), ...(await fichiers(SRC, '.ts'))
     appelsReseau.push(relative(RACINE, fichier));
   }
 }
-if (appelsReseau.length) echec('5. Réseau', `appel sortant détecté : ${appelsReseau.join(', ')}`);
-else succes('5. Réseau', 'aucun appel réseau, aucun WebAuthn réel dans le code de l’interface');
+const CLIENT_HTTP = join('src', 'services', 'http');
+const horsClient = appelsReseau.filter((fichier) => !fichier.startsWith(CLIENT_HTTP));
+if (horsClient.length) {
+  echec('5. Réseau', `appel sortant hors du client HTTP : ${horsClient.join(', ')}`);
+} else if (appelsReseau.length) {
+  succes(
+    '5. Réseau',
+    `${appelsReseau.length} fichier(s) d'appel, tous dans src/services/http ; aucun écran n'appelle le réseau`,
+  );
+} else {
+  succes('5. Réseau', 'aucun appel réseau, aucun WebAuthn réel dans le code de l’interface');
+}
 
 /* --- 6. Couleurs hors jetons --------------------------------------------- */
 const horsJetons = [];

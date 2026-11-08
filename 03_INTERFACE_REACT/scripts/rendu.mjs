@@ -41,6 +41,7 @@ const ROUTES = [
   { chemin: '/ecran/decision-recuperation', attendu: 'Dossiers en attente de décision' },
   { chemin: '/ecran/orchestration-retrait', attendu: 'Orchestration — retrait usr_0388' },
   { chemin: '/ecran/enrolement-facteur', attendu: 'Enrôler une clé de sécurité' },
+  { chemin: '/parcours', attendu: 'Parcours de bout en bout' },
   { chemin: '/systeme', attendu: 'Un système de design' },
   { chemin: '/dossier', attendu: 'Ce que cette maquette démontre' },
   // États adressables : l'URL porte l'état, donc on peut vérifier qu'un état

@@ -10,7 +10,12 @@ export default defineConfig({
   plugins: [react()],
   // Certaines dépendances lisent `process.env.NODE_ENV` : le bundle navigateur
   // doit la recevoir figée, sinon le montage échoue hors toolchain Node.
-  define: { 'process.env.NODE_ENV': '"production"' },
+  define: {
+    'process.env.NODE_ENV': '"production"',
+    // Le test de rendu part d'une session de démonstration ouverte : il vérifie
+    // que les écrans protégés se montent, pas leur garde (testée par Vitest).
+    'import.meta.env.VITE_DEMO_SESSION_INITIALE': '"1"',
+  },
   build: {
     outDir: 'dist-rendu',
     emptyOutDir: true,
