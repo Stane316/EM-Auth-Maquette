@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E01 — Accéder à votre application · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E01 · M02 · REQ-13-03/04</p>
+  <h1>Accéder à votre application</h1>
+  <p class="lede">Invitation et accueil — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Destinataire d'une invitation vérifiée</dd>
+    <dt>Rendu pressenti</dt><dd>Page publique — thème Keycloak ou page du BFF (à arbitrer)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Invitation · étape 1</p>
+    
+    <p class="lede">Votre organisation vous a adressé une invitation nominative. Elle ne confirme pas à elle seule votre identité : la vérification du destinataire et le mandat sont contrôlés séparément.</p>
+    <dl class="defs">
+      <dt>Application</dt><dd>Application interne de démonstration <span class="mono">(fictive)</span></dd>
+      <dt>Invité</dt><dd>Compte de démonstration <span class="mono">U-0042</span></dd>
+      <dt>Validité</dt><dd>Usage unique — durée <span class="mono">[à convenir]</span></dd>
+    </dl>
+    <p class="hint">Aucun numéro, aucune adresse et aucun horaire d'assistance ne sont affichés : ces informations ne sont pas encore convenues.</p>
+    <div class="btn-row">
+      <button class="btn btn--primary" type="button" >Continuer</button>
+      <a href="#" class="btn btn--quiet">Besoin d'aide</a>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (3)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Lien valide</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Ouverture d'un lien d'invitation non expiré et non rejoué</dd>
+        <dt>Actions autorisées</dt><dd>Continuer ; Besoin d'aide</dd>
+        <dt>Destination</dt><dd>E02 — Identification</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Invitation reconnue</span><p>Vous pouvez poursuivre l'enrôlement. L'invitation reste à usage unique : elle sera consommée à l'activation.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Traitement</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Après activation de « Continuer »</dd>
+        <dt>Actions autorisées</dt><dd>Aucune (en attente) ; l'utilisateur peut fermer la page</dd>
+        <dt>Destination</dt><dd>E02 si le traitement aboutit</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Vérification de l'invitation en cours</span><p>Ne fermez pas cette page. Un indicateur de chargement ne signifie pas que l'invitation a été acceptée.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Expiré ou rejoué</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Lien hors validité, déjà consommé, ou destinataire non concordant</dd>
+        <dt>Actions autorisées</dt><dd>Demander une nouvelle invitation (via l'organisation) ; aucun détail sur le compte</dd>
+        <dt>Destination</dt><dd>Procédure d'aide — hors application</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Ce lien ne peut pas être utilisé</span><p>Demandez une nouvelle invitation par le canal prévu par votre organisation. Aucun compte n'a été activé.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Lien d'évitement → titre → contenu → « Continuer » → « Besoin d'aide ». Aucun contrôle masqué dans l'ordre de tabulation.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Le passage en « Traitement » modifie une zone <code>aria-live="polite"</code> unique ; aucun message n'est répété.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>En cas de refus, le focus va au titre du message d'erreur ; le bloc est annoncé une seule fois.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Aucune information ne dépend d'une largeur fixe ; le contenu doit se réorganiser en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucun template d'invitation, aucune durée de validité et aucun canal d'envoi ne sont décidés : les valeurs restent « à convenir ».</li>
+      <li>La vérification réelle du destinataire et l'usage unique sont des comportements serveur, non démontrables par une maquette.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E01 — Invitation et accueil · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

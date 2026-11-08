@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E13 — Service momentanément indisponible · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E13 · M08/M11 · REQ-13-21/28</p>
+  <h1>Service momentanément indisponible</h1>
+  <p class="lede">Service indisponible — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Tout acteur</dd>
+    <dt>Rendu pressenti</dt><dd>Composant partagé (proxy/BFF)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Indisponibilité · aucune reprise automatique</p>
+    
+    <div class="msg msg--error"><span class="msg__title">Aucune action sensible ne peut être confirmée pour le moment</span><p>Réessayez plus tard ou contactez l'assistance prévue. La vérification forte n'est pas désactivée : l'action sensible est refusée.</p></div>
+    <p class="hint">Aucun délai de rétablissement n'est annoncé : il n'est pas connu.</p>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Réessayer</button><a class="btn btn--secondary" href="#">Contacter l'assistance prévue</a></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (3)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Panne</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Contrôle d'authentification ou de droits indisponible</dd>
+        <dt>Actions autorisées</dt><dd>Réessayer ; assistance</dd>
+        <dt>Destination</dt><dd>E13 ou écran d'origine</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Service indisponible</span><p>Aucune opération n'est engagée. Aucun mode de secours n'est activé.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Action sensible bloquée</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Tentative d'action sensible pendant l'indisponibilité</dd>
+        <dt>Actions autorisées</dt><dd>Attendre ; assistance</dd>
+        <dt>Destination</dt><dd>Refus explicite</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Action sensible refusée</span><p>Le contrôle requis est indisponible : l'action est refusée plutôt que dégradée. Aucune MFA n'est désactivée globalement.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Assistance</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Orientation vers l'aide</dd>
+        <dt>Actions autorisées</dt><dd>Suivre la procédure d'aide</dd>
+        <dt>Destination</dt><dd>E07 / canal convenu</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Orientation vers l'assistance</span><p>L'assistance ne demandera aucun secret et ne contournera pas la vérification.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → message → « Réessayer » → assistance.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>L'indisponibilité est annoncée par <code>role="alert"</code>, une seule fois.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après « Réessayer », le focus reste sur le message de statut.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Le message reste lisible sans défilement horizontal (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucun suivi d'incident, aucune page de statut et aucun engagement de délai ne sont décidés.</li>
+      <li>Le comportement en cas de panne partielle (IdP disponible, base indisponible) doit être spécifié côté service.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E13 — Service indisponible · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

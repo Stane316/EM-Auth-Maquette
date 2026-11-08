@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E05 — Connexion en cours · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E05 · M07 · REQ-13-16/36</p>
+  <h1>Connexion en cours</h1>
+  <p class="lede">Transition vers l'application — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur authentifié + système</dd>
+    <dt>Rendu pressenti</dt><dd>BFF — page de transition (peu ou pas d'interface)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Transition · aucun code, aucun jeton affiché</p>
+    
+    <p class="lede">Nous transférons votre session vers l'application de démonstration. Aucun code, aucun jeton et aucune adresse sensible ne sont affichés.</p>
+    <p aria-live="polite"><strong>Vérification de la session…</strong></p>
+    <p class="hint">Si le transfert n'aboutit pas, aucun accès n'est accordé et vous serez orienté vers l'aide ou vers l'état « Résultat non confirmé ».</p>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (4)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Chargement</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Retour d'authentification validé côté serveur</dd>
+        <dt>Actions autorisées</dt><dd>Aucune (attente courte)</dd>
+        <dt>Destination</dt><dd>Application de démonstration</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Transition en cours</span><p>Merci de patienter. Cette page ne dure que le temps du transfert.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Transfert confirmé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Session serveur établie et vérifiée</dd>
+        <dt>Actions autorisées</dt><dd>Arriver dans l'application</dd>
+        <dt>Destination</dt><dd>Application interne de démonstration</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Connexion confirmée</span><p>Vous accédez à l'application de démonstration. Les droits sont contrôlés par l'application à chaque requête.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Retour échoué</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Paramètres de retour invalides ou transaction non retrouvée</dd>
+        <dt>Actions autorisées</dt><dd>Recommencer ; Aide</dd>
+        <dt>Destination</dt><dd>E02 ou E07</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">La connexion n'a pas abouti</span><p>Recommencez la connexion. Si le problème persiste, demandez de l'aide. Aucune session n'a été ouverte.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Résultat inconnu</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Réponse du fournisseur non reçue après envoi</dd>
+        <dt>Actions autorisées</dt><dd>Voir l'état de la demande</dd>
+        <dt>Destination</dt><dd>E11 — Résultat non confirmé</dd>
+      </dl>
+      <div class="msg msg--unknown"><span class="msg__title">Résultat non confirmé</span><p>Nous ne pouvons pas confirmer si la connexion a abouti. Vérifiez son état avant de recommencer.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Page sans contrôle interactif pendant le chargement ; un lien d'aide reste atteignable si un délai anormal se produit.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Chaque changement est annoncé une seule fois ; pas d'animation de chargement infinie.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Sur échec, focus sur le titre du message ; sur succès, la page suivante reprend le focus au début.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Le message reste lisible en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucun échange OIDC réel n'est effectué : la maquette ne démontre ni validation d'émetteur, d'audience, de signature, d'état ni de nonce.</li>
+      <li>La conservation des jetons côté serveur est une propriété du BFF, non visible dans une maquette.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E05 — Transition vers l'application · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

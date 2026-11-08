@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A03 — Décision de récupération d'accès · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">A03 · M04 · REQ-13-08/09</p>
+  <h1>Décision de récupération d'accès</h1>
+  <p class="lede">Décision de récupération — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Support mandaté + second acteur distinct</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH (React, future) — à arbitrer</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Demande <span class="mono">R-2041</span> · récupération d'accès</p>
+    
+    <p class="lede">Une preuve indépendante et un second acteur distinct sont requis avant tout nouvel enrôlement.</p>
+    <dl class="defs">
+      <dt>Compte</dt><dd><span class="mono">U-0042</span> — compte de démonstration</dd>
+      <dt>Moyen perdu</dt><dd>Clé d'accès déclarée perdue</dd>
+      <dt>Demandeur</dt><dd>K. ADJOVI — support mandaté</dd>
+      <dt>Statut</dt><dd><span class="tag tag--pending">En attente d'un second acteur</span></dd>
+    </dl>
+    <h2>Preuves examinées</h2>
+    <ul class="checks">
+      <li><span class="check-label">Vérification par canal indépendant<span class="check-meta">canal convenu avec l'organisation</span></span><span class="tag tag--ok">Vérifiée</span></li>
+      <li><span class="check-label">Contrôle du mandat du demandeur</span><span class="tag tag--ok">Vérifié</span></li>
+      <li><span class="check-label">Accusé de notification au titulaire</span><span class="tag tag--unknown">Non confirmé</span></li>
+      <li><span class="check-label">Second acteur distinct (double contrôle)</span><span class="tag tag--pending">Requis — non fourni</span></li>
+    </ul>
+    <div class="msg msg--info"><span class="msg__title">Deux personnes distinctes</span><p>Le demandeur ne peut pas approuver sa propre demande.</p></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Demander une seconde validation</button><button class="btn btn--danger" type="button" >Refuser la demande</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (4)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Preuve insuffisante</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Absence de vérification indépendante</dd>
+        <dt>Actions autorisées</dt><dd>Compléter la vérification ; refuser</dd>
+        <dt>Destination</dt><dd>Aucun enrôlement</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Demande non recevable en l'état</span><p>La vérification indépendante n'est pas établie. Aucun nouvel authentificateur ne peut être enrôlé.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Second contrôle requis</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Preuve établie, approbation manquante</dd>
+        <dt>Actions autorisées</dt><dd>Demander une seconde validation ; refuser</dd>
+        <dt>Destination</dt><dd>Décision</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Un second acteur distinct doit approuver</span><p>L'approbation par le demandeur lui-même est impossible. La décision reste en attente.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Refus</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Décision négative motivée</dd>
+        <dt>Actions autorisées</dt><dd>Notifier selon la procédure ; clôturer</dd>
+        <dt>Destination</dt><dd>Clôture avec motif</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Demande refusée</span><p>Le refus est motivé et notifié selon la procédure de l'organisation. Aucun facteur n'est modifié.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Traitement</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Décision favorable, retrait de l'ancien facteur en cours</dd>
+        <dt>Actions autorisées</dt><dd>Suivre l'état ; ne pas relancer</dd>
+        <dt>Destination</dt><dd>E08 / E11</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Traitement en cours</span><p>Le retrait de l'ancien facteur et la notification doivent être confirmés avant clôture. À défaut, l'état est inconnu.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → fiche → liste de preuves → message → « Demander une seconde validation » → « Refuser ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Les changements de statut des preuves sont annoncés individuellement, sans redondance.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après refus, focus sur le message de confirmation, jamais sur un bouton d'action destructive.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Liste de preuves en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Les preuves réellement exigées et le canal indépendant ne sont pas décidés : ils restent « à convenir ».</li>
+      <li>L'impossibilité d'auto-approbation est une règle serveur ; la maquette ne fait que l'exprimer.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · A03 — Décision de récupération · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Écrans de la maquette EM AUTH (fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>écrans · direction A</span></span>
+  <nav aria-label="Navigation"><ul>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+  </ul></nav>
+</header>
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">PH05 · lot de 16 écrans (décision D-007)</p>
+  <h1>Écrans de la maquette</h1>
+  <p class="lede">Seize écrans du lot sont accessibles ci-dessous ; E02 et A03 sont également disponibles dans la comparaison PH03. Chaque page présente une vue principale, ses états nommés et ses annotations de conception.</p>
+  <p class="scope-note">Aucun écran n'est approuvé : tous restent « à arbitrer » quant à leur propriétaire technique (thème Keycloak, page BFF, interface React, fenêtre native, procédure).</p>
+
+  <table class="table">
+    <caption>Écrans du lot retenu</caption>
+    <thead><tr><th scope="col">ID</th><th scope="col">Écran</th><th scope="col">Acteur</th><th scope="col">Traçabilité</th><th scope="col">États</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><a href="e01-invitation.html">E01</a></th><td>Invitation et accueil</td><td>Destinataire d'une invitation vérifiée</td><td class="mono">M02 · REQ-13-03/04</td><td>3</td></tr>
+      <tr><th scope="row"><a href="e02-identification.html">E02</a></th><td>Identification</td><td>Utilisateur (ordinaire ou privilégié)</td><td class="mono">M03 · REQ-13-06/07</td><td>4</td></tr>
+      <tr><th scope="row"><a href="e03-moyen-autorise.html">E03</a></th><td>Choix du moyen autorisé</td><td>Utilisateur identifié</td><td class="mono">M03 · REQ-13-05/06</td><td>3</td></tr>
+      <tr><th scope="row"><a href="e04-preuve-fraiche.html">E04</a></th><td>Défi et preuve fraîche</td><td>Utilisateur en cours d'authentification ou d'action sensible</td><td class="mono">M03/M08 · REQ-13-05/20</td><td>5</td></tr>
+      <tr><th scope="row"><a href="e05-transition.html">E05</a></th><td>Transition vers l'application</td><td>Utilisateur authentifié + système</td><td class="mono">M07 · REQ-13-16/36</td><td>4</td></tr>
+      <tr><th scope="row"><a href="e06-fin-de-session.html">E06</a></th><td>Fin de session</td><td>Utilisateur</td><td class="mono">M08/M12 · REQ-13-19/31</td><td>3</td></tr>
+      <tr><th scope="row"><a href="e07-perte-ou-aide.html">E07</a></th><td>Perte ou aide</td><td>Utilisateur ayant perdu un moyen, ou en difficulté</td><td class="mono">M04/M12 · REQ-13-08/09/30</td><td>3</td></tr>
+      <tr><th scope="row"><a href="e08-suivi-recuperation.html">E08</a></th><td>Suivi de récupération</td><td>Titulaire du compte, après autorisation</td><td class="mono">M04 · REQ-13-08/09</td><td>5</td></tr>
+      <tr><th scope="row"><a href="e10-retrait-par-cible.html">E10</a></th><td>Retrait par cible</td><td>Administrateur ou responsable habilité</td><td class="mono">M05 · REQ-13-11/12/13</td><td>4</td></tr>
+      <tr><th scope="row"><a href="e11-resultat-non-confirme.html">E11</a></th><td>Résultat non confirmé</td><td>Tout acteur, après une action dont l'effet est inconnu</td><td class="mono">M05/M08 · REQ-13-12/21</td><td>3</td></tr>
+      <tr><th scope="row"><a href="e12-expiration.html">E12</a></th><td>Expiration et inactivité</td><td>Utilisateur connecté</td><td class="mono">M08/M12 · REQ-13-18/20/31</td><td>2</td></tr>
+      <tr><th scope="row"><a href="e13-indisponibilite.html">E13</a></th><td>Service indisponible</td><td>Tout acteur</td><td class="mono">M08/M11 · REQ-13-21/28</td><td>3</td></tr>
+      <tr><th scope="row"><a href="a02-mandat-enrolement.html">A02</a></th><td>Identité et mandat d'enrôlement</td><td>Gestionnaire d'accès mandaté</td><td class="mono">M01/M02 · REQ-13-02/03/04</td><td>4</td></tr>
+      <tr><th scope="row"><a href="a03-decision-recuperation.html">A03</a></th><td>Décision de récupération</td><td>Support mandaté + second acteur distinct</td><td class="mono">M04 · REQ-13-08/09</td><td>4</td></tr>
+      <tr><th scope="row"><a href="a04-orchestration-retrait.html">A04</a></th><td>Orchestration du retrait</td><td>Responsable habilité</td><td class="mono">M05 · REQ-13-11/12/13</td><td>5</td></tr>
+      <tr><th scope="row"><a href="a08-enrolement-facteur.html">A08</a></th><td>Enrôlement du facteur</td><td>Utilisateur invité + opérateur selon procédure</td><td class="mono">M02/M03 · REQ-13-04/05</td><td>5</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top:32px">Écrans non produits — décision G1</h2>
+  <table class="table">
+    <caption>Classement explicite : un écran non traité n'est pas un écran réalisé.</caption>
+    <thead><tr><th scope="col">ID</th><th scope="col">Écran</th><th scope="col" colspan="3">Classement et raison</th></tr></thead>
+    <tbody>
+
+      <tr><th scope="row">A01</th><td>Qualification de l'application</td><td colspan="3">DIFFÉRÉ — procédure probable plutôt qu'écran ; décision G1</td></tr>
+      <tr><th scope="row">A05</th><td>Journal d'audit minimal</td><td colspan="3">DIFFÉRÉ — réutilisation d'un outil existant possible ; décision G1</td></tr>
+      <tr><th scope="row">A06</th><td>Exploitation et reprise</td><td colspan="3">DIFFÉRÉ — procédure documentaire ; décision G1</td></tr>
+      <tr><th scope="row">A07</th><td>Sortie et portabilité</td><td colspan="3">DIFFÉRÉ — mandat contractuel non disponible ; décision G1</td></tr>
+      <tr><th scope="row">A09</th><td>Gestion d'urgence</td><td colspan="3">DIFFÉRÉ — mandat séparé requis ; décision G1</td></tr>
+      <tr><th scope="row">E09</th><td>Demande ou approbation sensible</td><td colspan="3">DIFFÉRÉ — recoupe A03/A04 ; décision G1 (le lot de 17 ne le comprend pas)</td></tr>
+
+    </tbody>
+  </table>
+  <p class="small muted">Note : le lot retenu (D-007) comprend 16 écrans : E01–E08, E10–E13, A02, A03, A04, A08. E09 n'en fait pas partie et reste à arbitrer. Le nombre « 17 » annoncé au PH01 était une erreur d'étiquetage de ma part, corrigée ici. ; A01, A05, A06, A07 et A09 sont différés.</p>
+</main>
+<footer class="pagefoot">
+  <p>EM AUTH · écrans PH05 · direction A · fichiers générés par <span class="mono">systeme/generer_ecrans.py</span>.</p>
+  <p>Maquette fictive — aucun test réel exécuté.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E11 — Résultat non confirmé · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E11 · M05/M08 · REQ-13-12/21</p>
+  <h1>Résultat non confirmé</h1>
+  <p class="lede">Résultat non confirmé — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Tout acteur, après une action dont l'effet est inconnu</dd>
+    <dt>Rendu pressenti</dt><dd>Composant partagé BFF / interface (transversal)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">État transversal · aucune conclusion automatique</p>
+    
+    <div class="msg msg--unknown"><span class="msg__title">Nous ne pouvons pas confirmer si votre demande a été traitée</span><p>La connexion a été interrompue. Vérifiez son état <strong>avant de recommencer</strong>. Aucun renvoi automatique n'est effectué.</p></div>
+    <p class="hint">Une opération sensible rejouée en boucle peut créer un doublon. Le bouton d'action n'est pas réactivé automatiquement.</p>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Vérifier l'état de la demande</button><a class="btn btn--secondary" href="#">Contacter l'assistance prévue</a><button class="btn btn--quiet" type="button" >Fermer</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (3)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Réponse perdue</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Envoi effectué, réponse non reçue</dd>
+        <dt>Actions autorisées</dt><dd>Vérifier l'état ; contacter l'assistance</dd>
+        <dt>Destination</dt><dd>État vérifiable si un service autorisé existe</dd>
+      </dl>
+      <div class="msg msg--unknown"><span class="msg__title">Résultat non confirmé</span><p>La demande a peut-être été traitée. Aucune conclusion n'est affichée avant vérification.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Statut vérifiable</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Consultation d'un état serveur autorisé</dd>
+        <dt>Actions autorisées</dt><dd>Consulter ; décider ensuite</dd>
+        <dt>Destination</dt><dd>Écran d'origine ou E10</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Un état peut être consulté</span><p>L'état affiché provient d'un service autorisé. S'il n'existe pas, l'état reste inconnu.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Vérification indisponible</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Service d'état indisponible ou droits insuffisants</dd>
+        <dt>Actions autorisées</dt><dd>Contacter l'assistance ; ne pas relancer</dd>
+        <dt>Destination</dt><dd>E13 / assistance</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Vérification impossible pour le moment</span><p>L'état reste inconnu. Contactez l'assistance prévue ; ne réémettez pas la demande à l'aveugle.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → message → « Vérifier l'état » → assistance → « Fermer ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Le message est annoncé une seule fois : une notification répétée est évitée.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>À la fermeture, retour à l'écran d'origine sans relancer l'action.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Les trois actions s'empilent ; aucune n'est masquée (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>La prévention des doublons (idempotence, identifiant d'opération) relève du service, non de la maquette.</li>
+      <li>Aucune vérification d'état réelle n'est branchée : le bouton est une intention de conception.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E11 — Résultat non confirmé · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

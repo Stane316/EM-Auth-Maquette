@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E07 — Vous ne pouvez plus vous connecter ? · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E07 · M04/M12 · REQ-13-08/09/30</p>
+  <h1>Vous ne pouvez plus vous connecter ?</h1>
+  <p class="lede">Perte ou aide — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur ayant perdu un moyen, ou en difficulté</dd>
+    <dt>Rendu pressenti</dt><dd>Page publique EM AUTH (BFF)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Demande d'aide · aucune confirmation de compte</p>
+    
+    <p class="lede">Indiquez seulement l'identifiant que vous utilisez habituellement. Cette demande ne confirme pas l'existence d'un compte et ne remplace pas la vérification d'identité.</p>
+    <div class="msg msg--warn"><span class="msg__title">Ne communiquez jamais vos secrets</span><p>L'assistance ne vous demandera jamais votre mot de passe, un code, un PIN, une image de clé d'accès ni une copie de pièce d'identité par défaut.</p></div>
+    <div class="field"><label for="demande-ident">Identifiant utilisé </label><p class="hint" id="demande-ident-hint">Ne saisissez pas d'adresse électronique si votre organisation utilise un identifiant court.</p><input class="input" id="demande-ident" type="text" value="" aria-describedby="demande-ident-hint"></div>
+    <div class="field"><label for="demande-desc">Que se passe-t-il ? <span class="required">(facultatif)</span></label><p class="hint" id="demande-desc-hint">Décrivez brièvement : appareil perdu, clé cassée, changement de poste. Aucun détail sensible.</p><input class="input" id="demande-desc" type="text" value="" aria-describedby="demande-desc-hint"></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Demander de l'aide</button><button class="btn btn--secondary" type="button" >Annuler</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (3)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Demande</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Ouverture de la page depuis E03, E04 ou E06</dd>
+        <dt>Actions autorisées</dt><dd>Envoyer la demande ; Annuler</dd>
+        <dt>Destination</dt><dd>État suivant</dd>
+      </dl>
+      <p>Aucun numéro, aucun horaire et aucun délai ne sont affichés : ils ne sont pas convenus.</p>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Attente</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Envoi de la demande</dd>
+        <dt>Actions autorisées</dt><dd>Aucune (attente) ; quitter la page possible</dd>
+        <dt>Destination</dt><dd>E08 si un suivi est autorisé</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Demande en cours d'enregistrement</span><p>Ne renvoyez pas la demande en boucle ; un doublon peut retarder le traitement.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Réponse générique</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Demande enregistrée, quel que soit l'état du compte</dd>
+        <dt>Actions autorisées</dt><dd>Suivre la demande si un moyen de suivi est autorisé</dd>
+        <dt>Destination</dt><dd>E08 ou fin de parcours</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Si la demande peut être traitée, l'assistance utilisera les coordonnées vérifiées par votre organisation</span><p>Aucun message n'indique si un compte existe. Aucun délai de traitement n'est communiqué.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → avertissement (lecture) → champ identifiant → champ description → « Demander de l'aide » → « Annuler ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>La réponse générique est annoncée par une région de statut ; elle ne révèle rien sur le compte.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après envoi, focus sur le titre du message de confirmation.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Deux champs tiennent en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Le canal d'assistance, ses horaires et ses engagements de délai sont inconnus : rien n'est affiché à leur place.</li>
+      <li>Le formulaire ne doit collecter que le minimum ; la liste définitive des champs exige une validation des finalités (M10).</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E07 — Perte ou aide · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

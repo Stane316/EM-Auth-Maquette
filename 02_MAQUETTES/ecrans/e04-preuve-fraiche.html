@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E04 — Confirmer votre identité · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E04 · M03/M08 · REQ-13-05/20</p>
+  <h1>Confirmer votre identité</h1>
+  <p class="lede">Défi et preuve fraîche — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur en cours d'authentification ou d'action sensible</dd>
+    <dt>Rendu pressenti</dt><dd>Page d'attente EM AUTH + fenêtre native du navigateur/système</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Preuve · le navigateur peut prendre la main</p>
+    
+    <p class="lede">Votre navigateur ou votre appareil va afficher sa propre fenêtre de vérification. EM AUTH ne contrôle ni son apparence, ni sa langue, ni son accessibilité.</p>
+    <div class="native-sim"><span class="native-sim__badge">Simulation — interface non maîtrisée par EM AUTH</span><p style="margin-bottom:0">« Vérifiez votre identité » : l'appareil peut proposer son propre déverrouillage (code, empreinte, visage). <strong>EM AUTH ne demande jamais votre PIN et ne le reçoit jamais.</strong></p></div>
+    <p class="hint" style="margin-top:16px">Aucun succès n'est affiché avant la vérification côté serveur. Si la fenêtre est fermée sans réponse, rien n'est validé.</p>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Continuer</button><button class="btn btn--secondary" type="button" >Annuler</button><button class="btn btn--quiet" type="button" >Besoin d'aide</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (5)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Prêt</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Moyen choisi en E03</dd>
+        <dt>Actions autorisées</dt><dd>Continuer ; Annuler</dd>
+        <dt>Destination</dt><dd>Fenêtre native puis retour</dd>
+      </dl>
+      <p>La page attend le déclenchement de la vérification par l'utilisateur. Aucune action automatique.</p>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Fenêtre native</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Activation de « Continuer »</dd>
+        <dt>Actions autorisées</dt><dd>Poursuivre ou annuler dans la fenêtre système</dd>
+        <dt>Destination</dt><dd>Retour sur la page EM AUTH avec un résultat</dd>
+      </dl>
+      <div class="native-sim"><span class="native-sim__badge">Simulation — interface non maîtrisée par EM AUTH</span><p style="margin-bottom:0">Fenêtre rendue par l'appareil. Si elle échoue ou est absente, EM AUTH revient en état « non vérifié », sans repli faible.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Annulé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Fermeture de la fenêtre native ou « Annuler »</dd>
+        <dt>Actions autorisées</dt><dd>Réessayer ; Demander de l'aide</dd>
+        <dt>Destination</dt><dd>E04 ou E07</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Vérification non terminée</span><p>Vous pouvez réessayer ou demander de l'aide. Aucune session n'a été ouverte.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Expiré</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Délai du défi dépassé <span class="mono">[seuil à convenir]</span></dd>
+        <dt>Actions autorisées</dt><dd>Relancer explicitement une nouvelle demande</dd>
+        <dt>Destination</dt><dd>E04 (nouveau défi) ou E02</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Cette demande a expiré</span><p>Relancez la vérification depuis le début. Aucune relance automatique n'est effectuée.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-5">
+      <div class="card__head"><h3 style="margin:0">État 5 — Non vérifié</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Retour de la fenêtre native sans preuve exploitable</dd>
+        <dt>Actions autorisées</dt><dd>Réessayer ; Aide</dd>
+        <dt>Destination</dt><dd>E04 ou E07 ; jamais E05</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Vérification non aboutie</span><p>Aucune preuve n'a été reçue. Vous pouvez réessayer ou demander de l'aide.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Le focus revient à la page après la fenêtre native, sur le titre de statut, jamais sur un bouton d'action sensible.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Le résultat est annoncé une seule fois ; un retour silencieux n'annonce ni succès ni échec.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après échec, focus sur le message ; après succès, sur le titre de la page suivante.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>La simulation de fenêtre native se réorganise ; le texte reste lisible (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>La fenêtre native n'est pas maîtrisée : sa langue, son accessibilité et son ergonomie ne peuvent pas être garanties par EM AUTH.</li>
+      <li>La fraîcheur de la preuve (durée, plafond depuis la dernière authentification forte) est un comportement serveur non montrable.</li>
+      <li>Aucune simulation interactive : les états sont rendus statiquement.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E04 — Défi et preuve fraîche · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E10 — État du retrait d'accès · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--wide">
+  <p class="eyebrow">E10 · M05 · REQ-13-11/12/13</p>
+  <h1>État du retrait d'accès</h1>
+  <p class="lede">Retrait par cible — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Administrateur ou responsable habilité</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH (React, future) — accès restreint</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Retrait · portée par cible · <span class="mono">D-2210</span></p>
+    
+    <p class="lede">Chaque cible porte son propre état et son heure de mesure. Un retrait n'est déclaré global que si <strong>toutes</strong> les cibles prévues sont confirmées.</p>
+    <table class="table">
+      <caption>Compte de démonstration <span class="mono">U-0042</span> — données fictives</caption>
+      <thead><tr><th scope="col">Cible</th><th scope="col">Portée</th><th scope="col">État</th><th scope="col">Mesuré à</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Fournisseur d'identité</th><td>Nouvelles connexions</td><td><span class="tag tag--ok">Confirmé</span></td><td class="mono">14:31:05 UTC</td></tr>
+        <tr><th scope="row">Application interne</th><td>Session et jetons</td><td><span class="tag tag--pending">En cours</span></td><td class="mono">14:31:12 UTC</td></tr>
+        <tr><th scope="row">API métier</th><td>Jetons d'accès</td><td><span class="tag tag--unknown">Non confirmé</span></td><td class="mono">non observé</td></tr>
+      </tbody>
+    </table>
+    <div class="msg msg--warn"><span class="msg__title">Certaines cibles ne sont pas confirmées</span><p>Une vérification est nécessaire. Le retrait ne peut pas être déclaré complet : une cible non observée reste <strong>inconnue</strong>, jamais réussie.</p></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Relancer la vérification des cibles non confirmées</button><a class="btn btn--secondary" href="#">Voir le journal</a></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (4)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Confirmé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Refus observé sur toutes les cibles incluses</dd>
+        <dt>Actions autorisées</dt><dd>Clôturer ; consulter le journal</dd>
+        <dt>Destination</dt><dd>Clôture de l'opération</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Retrait confirmé pour toutes les cibles prévues</span><p>Chaque cible a été observée conformément au critère convenu. Cette confirmation vaut pour les cibles listées, pas au-delà.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — En cours</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Ordre autorisé, mesures en cours</dd>
+        <dt>Actions autorisées</dt><dd>Attendre ; consulter</dd>
+        <dt>Destination</dt><dd>État suivant</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Mesure des cibles en cours</span><p>Aucune conclusion n'est tirée avant observation de chaque cible.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Échec</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Refus non obtenu sur une cible après le délai convenu</dd>
+        <dt>Actions autorisées</dt><dd>Escalader ; relancer la vérification</dd>
+        <dt>Destination</dt><dd>Procédure d'escalade</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Une cible ne refuse pas l'accès</span><p>La cible concernée doit être traitée avant toute conclusion. Les autres cibles conservent leur propre état.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Inconnu</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Cible non joignable ou mesure impossible</dd>
+        <dt>Actions autorisées</dt><dd>Vérifier ultérieurement ; escalader</dd>
+        <dt>Destination</dt><dd>E11 / escalade</dd>
+      </dl>
+      <div class="msg msg--unknown"><span class="msg__title">Une ou plusieurs cibles restent non confirmées</span><p>L'état réel est inconnu. Il ne doit être présenté ni comme un succès, ni comme un échec.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → tableau (navigation de lecture) → actions. Le tableau n'est pas rendu interactif sans décision.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Chaque changement de statut est annoncé par le texte de la cellule ; la couleur seule ne porte pas l'information.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après relance, focus sur le résumé d'état, pas sur la première ligne du tableau.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Tableau large : réorganisation en cartes par cible à prévoir (non implémentée ici).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Les cibles réelles, les seuils de délai et les mécanismes d'observation par cible ne sont pas décidés : aucune API n'est présumée.</li>
+      <li>La maquette affiche un jeu fictif figé ; elle ne démontre aucune mesure réelle.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E10 — Retrait par cible · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

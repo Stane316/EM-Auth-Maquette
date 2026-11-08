@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E02 — Se connecter · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E02 · M03 · REQ-13-06/07</p>
+  <h1>Se connecter</h1>
+  <p class="lede">Identification — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur (ordinaire ou privilégié)</dd>
+    <dt>Rendu pressenti</dt><dd>Page de connexion — thème Keycloak (à arbitrer)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Identification · étape 1 sur 2</p>
+    
+    <p class="lede">Espace de démonstration EM AUTH. Votre organisation vous a communiqué un identifiant.</p>
+    <div class="field"><label for="ident">Identifiant <span class="required">(obligatoire)</span></label><p class="hint" id="ident-hint">Utilisez l'identifiant fourni par votre organisation. Ne saisissez jamais de mot de passe ni de code ici.</p><input class="input" id="ident" type="text" value="" aria-describedby="ident-hint"></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Continuer</button></div>
+    <p class="help-line"><a href="#">Obtenir de l'aide</a> — sans communiquer de mot de passe, de code, de PIN ni d'image de clé d'accès.</p>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (4)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Vide</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Soumission sans identifiant</dd>
+        <dt>Actions autorisées</dt><dd>Corriger la saisie</dd>
+        <dt>Destination</dt><dd>Même écran, focus sur le résumé d'erreur</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Corrigez la saisie</span><p>Renseignez votre identifiant.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Saisie</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Frappe dans le champ, sans soumission</dd>
+        <dt>Actions autorisées</dt><dd>Continuer ; Obtenir de l'aide</dd>
+        <dt>Destination</dt><dd>E03 — Choix du moyen autorisé</dd>
+      </dl>
+      <div class="field"><label for="ident2">Identifiant </label><p class="hint" id="ident2-hint">Saisie en cours. Aucun préremplissage : sur un poste partagé, l'identifiant précédent ne doit pas apparaître.</p><input class="input" id="ident2" type="text" value="u.0042" aria-describedby="ident2-hint"></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Attente</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Après « Continuer », pendant la vérification</dd>
+        <dt>Actions autorisées</dt><dd>Aucune action sensible ; abandon possible</dd>
+        <dt>Destination</dt><dd>E03 ou échec générique</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Vérification en cours</span><p>Merci de patienter. Une réponse n'est pas encore disponible.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Échec générique</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Identifiant inconnu, compte désactivé ou preuve erronée</dd>
+        <dt>Actions autorisées</dt><dd>Réessayer ; Obtenir de l'aide</dd>
+        <dt>Destination</dt><dd>E02 (nouvelle tentative) ou aide</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Connexion impossible</span><p>Vérifiez vos informations ou demandez de l'aide.</p></div><p class="small muted">Même message pour un compte inexistant, suspendu ou une preuve erronée : aucune indication sur l'existence du compte.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → champ « Identifiant » → « Continuer » → « Obtenir de l'aide ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>L'échec est annoncé par <code>role="alert"</code> ; le message est unique et non dupliqué dans le résumé.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après échec, focus sur le résumé d'erreur puis sur le champ, sans perte de la saisie non sensible.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Le formulaire tient sur une colonne ; aucune troncature attendue (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucune politique de verrouillage, de temporisation ni de limitation de tentatives n'est décidée : la maquette ne montre donc aucun compteur.</li>
+      <li>La résistance à l'énumération (timing, codes) est un comportement serveur, non démontrable ici.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E02 — Identification · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

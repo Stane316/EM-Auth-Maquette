@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A04 — Demander un retrait d'accès · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">A04 · M05 · REQ-13-11/12/13</p>
+  <h1>Demander un retrait d'accès</h1>
+  <p class="lede">Orchestration du retrait — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Responsable habilité</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH (React, future) — à arbitrer</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Retrait · demande autorisée</p>
+    
+    <p class="lede">Le retrait porte sur des cibles identifiées. Les sessions et les droits sont traités séparément, puis mesurés par cible.</p>
+    <dl class="defs">
+      <dt>Compte cible</dt><dd><span class="mono">U-0042</span> — compte de démonstration</dd>
+      <dt>Motif</dt><dd>Départ de poste <span class="mono">(fictif)</span></dd>
+      <dt>Mandat</dt><dd>Demande <span class="mono">D-2210</span> — responsable habilité</dd>
+    </dl>
+    <fieldset>
+      <legend>Cibles incluses dans l'ordre</legend>
+      <label class="choice" for="c1"><input type="checkbox" id="c1" checked><span class="choice__body"><span class="choice__title">Fournisseur d'identité</span>Nouvelles connexions refusées</span></label>
+      <label class="choice" for="c2"><input type="checkbox" id="c2" checked><span class="choice__body"><span class="choice__title">Application interne</span>Session et jetons invalidés</span></label>
+      <label class="choice" for="c3"><input type="checkbox" id="c3" checked><span class="choice__body"><span class="choice__title">API métier</span>Jetons d'accès révoqués</span></label>
+    </fieldset>
+    <div class="msg msg--warn"><span class="msg__title">La confirmation globale dépend de l'observation de chaque cible</span><p>Aucun ordre n'est lancé automatiquement depuis cet écran : la demande doit être validée, puis mesurée dans E10.</p></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Confirmer la demande de retrait</button><button class="btn btn--secondary" type="button" >Annuler</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (5)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Mandat</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Ouverture de la demande sans mandat valide</dd>
+        <dt>Actions autorisées</dt><dd>Bloquer ; demander un mandat</dd>
+        <dt>Destination</dt><dd>Refus / attente</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Mandat absent ou invalide</span><p>Le retrait ne peut pas être demandé. Une demande motivée est requise.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Confirmation</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Mandat valide, cibles sélectionnées</dd>
+        <dt>Actions autorisées</dt><dd>Confirmer ; annuler</dd>
+        <dt>Destination</dt><dd>Traitement</dd>
+      </dl>
+      <p>L'écran récapitule les cibles avant confirmation ; aucune action destructive sur simple clic.</p>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Traitement</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Demande confirmée</dd>
+        <dt>Actions autorisées</dt><dd>Suivre l'état</dd>
+        <dt>Destination</dt><dd>E10 — Retrait par cible</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Demande enregistrée</span><p>Le traitement se poursuit ; l'état par cible est visible dans E10.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Partiel</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Certaines cibles seulement ont refusé l'accès</dd>
+        <dt>Actions autorisées</dt><dd>Escalader ; relancer la vérification</dd>
+        <dt>Destination</dt><dd>E10 / escalade</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Retrait partiel</span><p>Certaines cibles ne sont pas confirmées. Aucune conclusion globale n'est affichée.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-5">
+      <div class="card__head"><h3 style="margin:0">État 5 — Résultat inconnu</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Réponse perdue après confirmation</dd>
+        <dt>Actions autorisées</dt><dd>Vérifier l'état</dd>
+        <dt>Destination</dt><dd>E11 — Résultat non confirmé</dd>
+      </dl>
+      <div class="msg msg--unknown"><span class="msg__title">Résultat non confirmé</span><p>La demande a peut-être été enregistrée. Vérifiez son état avant de recommencer.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → fiche → groupes de cibles → message → « Confirmer » → « Annuler ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>La confirmation est annoncée ; aucun message de succès n'est affiché avant l'état par cible.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après annulation, retour à la fiche ; après confirmation, focus sur le résumé d'état.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Les cases et libellés s'empilent (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucune API de retrait n'existe : la maquette ne présume aucun contrat.</li>
+      <li>Les mécanismes par cible (révocation de jetons, sessions) sont des comportements serveur non démontrables.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · A04 — Orchestration du retrait · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

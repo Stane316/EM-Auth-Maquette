@@ -1,0 +1,70 @@
+/* ==========================================================================
+   EM AUTH — SYSTÈME DE DESIGN · JETONS SÉMANTIQUES
+   Direction retenue : A « Clarté institutionnelle » (décision D-010, G2).
+   Maquette fictive — aucun service, aucune donnée réelle.
+   --------------------------------------------------------------------------
+   Règle : aucun composant ne définit de couleur en dur. Toute couleur passe
+   par un jeton ci-dessous, ce qui rend le thème vérifiable et remplaçable.
+   Contrastes mesurés par calcul déterministe (WCAG 2.x) — voir PH04_DESIGN_SYSTEM.md
+   ========================================================================== */
+
+:root {
+  /* --- Couleurs de base ------------------------------------------------- */
+  --c-bg: #F6F8FA;              /* fond de page       · ink dessus = 13.70:1 */
+  --c-surface: #FFFFFF;         /* cartes, champs     · ink dessus = 14.59:1 */
+  --c-surface-sunken: #EDF1F4;  /* zones secondaires  · ink dessus = 12.9:1  */
+  --c-ink: #102B3F;             /* texte principal                          */
+  --c-muted: #4A5A68;           /* texte secondaire   · sur blanc = 7.11:1  */
+  --c-border: #D3DBE3;          /* séparateurs non textuels                 */
+  --c-border-strong: #8FA2B1;   /* bordure de champ   · sur blanc = 3.3:1   */
+
+  /* --- Accent et actions ------------------------------------------------ */
+  --c-accent: #17645E;          /* action principale · blanc dessus = 6.95:1 */
+  --c-accent-hover: #12524D;    /* survol            · blanc dessus = 8.98:1 */
+  --c-accent-soft: #E7F1EF;     /* fond d'accent très clair                 */
+  --c-link: #14615B;            /* liens             · sur blanc = 6.95:1   */
+  --c-focus: #0B57D0;           /* anneau de focus   · sur blanc = 6.39:1   */
+
+  /* --- États sémantiques (toujours accompagnés de texte + icône) -------- */
+  --c-ok: #14614B;      --c-ok-bg: #EAF5F0;        /* 6.62:1 */
+  --c-warn: #7A4A00;    --c-warn-bg: #FFF6E5;      /* 6.97:1 */
+  --c-danger: #9A2318;  --c-danger-bg: #FDF1EF;    /* 7.23:1 */
+  --c-info: #1B4C7E;    --c-info-bg: #EEF4FB;      /* 7.96:1 */
+  --c-unknown: #4A3A63; --c-unknown-bg: #F4F0F8;   /* 8.99:1 — état « non confirmé » */
+
+  /* --- Typographie ------------------------------------------------------ */
+  /* Pile système uniquement : aucune police distante, aucune licence tierce. */
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --fs-xs: 0.8125rem;   /* 13 px — annotations, mentions légères */
+  --fs-sm: 0.875rem;    /* 14 px — texte secondaire */
+  --fs-base: 1rem;      /* 16 px — texte courant */
+  --fs-lg: 1.125rem;    /* 18 px — sous-titres */
+  --fs-xl: 1.375rem;    /* 22 px — titres de section */
+  --fs-2xl: 1.75rem;    /* 28 px — titre de page */
+
+  --lh-tight: 1.25;
+  --lh-base: 1.55;
+  --measure: 68ch;      /* longueur de ligne maximale pour le confort de lecture */
+
+  /* --- Espacements (pas de 4 px) ---------------------------------------- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  /* --- Formes et profondeur --------------------------------------------- */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(16, 43, 63, 0.05);
+  --shadow-2: 0 2px 8px rgba(16, 43, 63, 0.08);
+
+  /* --- Gabarits --------------------------------------------------------- */
+  --w-form: 560px;      /* formulaires focalisés */
+  --w-default: 1040px;  /* pages de travail */
+  --w-wide: 1240px;     /* tableaux d'administration */
+  --nav-rail: 232px;
+
+  /* --- Cibles interactives ---------------------------------------------- */
+  --target-min: 44px;   /* hauteur minimale des contrôles (usage tactile) */
+}

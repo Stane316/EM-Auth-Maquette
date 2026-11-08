@@ -1,0 +1,49 @@
+PREUVES DE CONTRÔLE — MAQUETTE EM AUTH (fictive)
+Instance : EM-AUTH-MAQUETTE · direction A · lot PH05 (16 écrans)
+Méthode : analyse syntaxique et textuelle des fichiers HTML/CSS par script local.
+Aucune installation, aucun navigateur, aucun service distant.
+==============================================================================
+
+1. VOLUMÉTRIE
+   fichiers HTML analysés ......... 26
+   volume total ................... 188.3 Ko
+   images ......................... 0  (aucune image binaire)
+   polices distantes .............. 0  (pile système uniquement)
+   dépendances JavaScript ......... 0  (aucun script dans les pages)
+   REMARQUE : ces chiffres décrivent la maquette statique. Ils ne constituent
+   pas une mesure de performance réelle (aucun navigateur, aucun réseau, aucun rendu).
+
+2. RÉSULTATS PAR CONTRÔLE
+   [OK  ] Structure HTML (balises équilibrées)       0 erreur(s)
+   [OK  ] Langue déclarée fr sur chaque document     0 écart(s)
+   [OK  ] Lien d'évitement présent                   0 écart(s)
+   [OK  ] Bandeau « maquette fictive » présent       0 écart(s)
+   [OK  ] Aucun script embarqué                      0 écart(s)
+   [OK  ] Aucune requête réseau externe              0 écart(s)
+   [OK  ] Identifiants uniques par page              0 page(s) en défaut
+   [OK  ] Références ARIA résolues                   0 page(s) en défaut
+   [OK  ] Chaque champ a un label associé            0 champ(s)
+   [OK  ] Chaque fieldset a une légende              0 page(s)
+   [OK  ] Chaque tableau a une légende               0 page(s)
+   [OK  ] Tableaux avec portée d'en-tête             0 page(s)
+   [OK  ] Images avec alternative                    0 image(s)
+   [OK  ] Un seul titre de niveau 1 par page         0 page(s)
+   [OK  ] Hiérarchie de titres sans saut             0 page(s)
+
+3. DÉTAIL DES ÉCARTS
+   Aucun écart détecté par ces contrôles automatiques.
+
+4. CONTRÔLES NON EXÉCUTABLES ICI (marqués NON TESTÉ, jamais CONFORME)
+   [NON TESTÉ] rendu visuel réel et comparaison aux maquettes
+   [NON TESTÉ] navigation clavier effective, piège de focus, ordre de tabulation
+   [NON TESTÉ] anneaux de focus rendus (le CSS les définit, ils n'ont pas été vus)
+   [NON TESTÉ] lecteur d'écran (NVDA/JAWS/VoiceOver) et annonces dynamiques
+   [NON TESTÉ] zoom 200 %, reflow, 320 px, rotation
+   [NON TESTÉ] contraste rendu à l'écran (seule une valeur calculée est disponible)
+   [NON TESTÉ] mouvement réduit (règle CSS présente, non vérifiée en exécution)
+   [NON TESTÉ] fenêtres natives WebAuthn et leur accessibilité
+   [NON TESTÉ] mesure de performance (LCP, CLS, poids réseau réel)
+   [NON TESTÉ] tout comportement serveur : session, jetons, CSRF, droits, journalisation
+
+==============================================================================
+Une maquette ne prouve ni sécurité, ni conformité WCAG, ni disponibilité.

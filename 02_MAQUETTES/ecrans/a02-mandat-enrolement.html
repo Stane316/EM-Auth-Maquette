@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A02 — Autoriser l'enrôlement d'une identité · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">A02 · M01/M02 · REQ-13-02/03/04</p>
+  <h1>Autoriser l'enrôlement d'une identité</h1>
+  <p class="lede">Identité et mandat d'enrôlement — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Gestionnaire d'accès mandaté</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH (React, future) — à arbitrer</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Demande d'enrôlement · <span class="mono">D-118</span></p>
+    
+    <p class="lede">L'activation exige une identité stable, un destinataire vérifié et un mandat. Une correspondance ambiguë suspend la demande au lieu de la forcer.</p>
+    <dl class="defs">
+      <dt>Identité déclarée</dt><dd>Compte de démonstration <span class="mono">U-0042</span> — identifiant stable fourni par l'organisation</dd>
+      <dt>Destinataire</dt><dd>Canal vérifié par l'organisation <span class="mono">[canal à convenir]</span></dd>
+      <dt>Mandat</dt><dd>Demande <span class="mono">D-118</span> — gestionnaire habilité</dd>
+      <dt>Risque</dt><dd><span class="tag tag--pending">À qualifier</span></dd>
+    </dl>
+    <div class="msg msg--info"><span class="msg__title">Une invitation à usage unique sera émise</span><p>L'invitation ne prouve pas l'identité par elle-même : elle sera refusée si elle est expirée, rejouée ou adressée au mauvais destinataire.</p></div>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Émettre l'invitation</button><button class="btn btn--secondary" type="button" >Suspendre la demande</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (4)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Demande</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Création d'une demande d'enrôlement par un rôle habilité</dd>
+        <dt>Actions autorisées</dt><dd>Compléter ; suspendre</dd>
+        <dt>Destination</dt><dd>En attente ou suspendue</dd>
+      </dl>
+      <p>Aucune invitation n'est émise tant que l'identité et le destinataire ne sont pas vérifiés.</p>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Identité ambiguë</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Deux identités possibles, ou rapprochement fondé sur la seule adresse électronique</dd>
+        <dt>Actions autorisées</dt><dd>Suspendre ; escalader</dd>
+        <dt>Destination</dt><dd>Escalade — aucun enrôlement</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Correspondance ambiguë</span><p>La demande est suspendue et escaladée. Aucune activation n'est possible tant que l'identité n'est pas levée d'ambiguïté.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — En attente</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Invitation émise, non encore utilisée</dd>
+        <dt>Actions autorisées</dt><dd>Consulter ; révoquer l'invitation</dd>
+        <dt>Destination</dt><dd>E01 côté utilisateur</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Invitation émise</span><p>L'invitation est à usage unique. Sa validité expirée ou son rejeu entraîne un refus.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Autorisée</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Activation confirmée après vérification du destinataire</dd>
+        <dt>Actions autorisées</dt><dd>Consulter le journal</dd>
+        <dt>Destination</dt><dd>A08 / journal</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Enrôlement autorisé</span><p>L'activation n'est enregistrée qu'après confirmation par le service.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → fiche (lecture) → message → « Émettre l'invitation » → « Suspendre ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>La suspension est annoncée par une alerte ; aucune émission silencieuse.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après suspension, focus sur le titre du message d'état.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>La fiche se réorganise en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucune API d'enrôlement n'existe : les actions sont des intentions, sans contrat.</li>
+      <li>Le canal de vérification du destinataire et les pièces exigées ne sont pas décidés.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · A02 — Identité et mandat d'enrôlement · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

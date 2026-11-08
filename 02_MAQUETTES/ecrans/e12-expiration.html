@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E12 — Votre session se termine · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E12 · M08/M12 · REQ-13-18/20/31</p>
+  <h1>Votre session se termine</h1>
+  <p class="lede">Expiration et inactivité — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur connecté</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH / BFF (transversal)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Session · avertissement</p>
+    
+    <div class="msg msg--warn"><span class="msg__title">Fin de session imminente pour protéger vos informations</span><p>Vous pouvez continuer si votre politique l'autorise. Cette action ne remplace ni une preuve fraîche ni le plafond absolu de session.</p></div>
+    <p class="hint">Durée restante : <span class="mono">[seuil à convenir]</span>. Aucune valeur n'est inventée.</p>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Continuer</button><button class="btn btn--secondary" type="button" >Se déconnecter</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (2)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Avertissement si possible</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Inactivité approchant la limite de politique</dd>
+        <dt>Actions autorisées</dt><dd>Continuer si autorisé ; se déconnecter</dd>
+        <dt>Destination</dt><dd>Session conservée ou E06</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Avertissement affiché avant expiration</span><p>L'avertissement n'est présenté que si la politique et le contexte le permettent ; aucune durée n'est inventée.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Session expirée</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Limite atteinte</dd>
+        <dt>Actions autorisées</dt><dd>Se connecter ; Besoin d'aide</dd>
+        <dt>Destination</dt><dd>E02 — Identification</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Votre session est terminée</span><p>Connectez-vous à nouveau. Le contenu protégé n'est plus affiché et aucun travail n'est déclaré sauvegardé.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → message → « Continuer » → « Se déconnecter ». Le focus initial va au message, pas au bouton.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>L'avertissement est annoncé sans répétition ; l'expiration masque immédiatement le contenu protégé.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après expiration, focus sur le titre de la page de connexion.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Le bandeau d'avertissement ne doit pas recouvrir le contenu (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Aucune durée de session, de préavis ni de plafond absolu n'est décidée : tout chiffre serait inventé.</li>
+      <li>Le comportement réel dépend du serveur (Keycloak et BFF), non de la maquette.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E12 — Expiration et inactivité · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

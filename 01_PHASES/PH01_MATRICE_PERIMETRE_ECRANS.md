@@ -84,9 +84,11 @@ Couvre qualification→invitation→accès→perte→session→panne côté util
 Tous les écrans, administration incluse (A01–A07, A09, E09, E10).
 *Avantage :* couverture maximale, répond à B05 et à la matrice complète. *Limite :* effort élevé, risque de qualité inégale, plusieurs écrans `conditionnel` selon l'inventaire, et des procédures (A06) qui ne sont pas des écrans.
 
-### Option 4 — « Cœur + retrait » (17 écrans) — **compromis**
+### Option 4 — « Cœur + retrait » (16 écrans) — **compromis retenu (D-007)**
 `E01–E08, E10, E11, E12, E13, A02, A03, A04, A08`
-Ajoute à l'option 2 le **retrait mesuré par cible** (E10/A04/A03), qui porte le critère B05, et laisse hors lot `A01, A05, A06, A07, A09`.
+Ajoute à l'option 2 le **retrait mesuré par cible** (E10/A04/A03), qui porte le critère B05, et laisse hors lot `E09, A01, A05, A06, A07, A09`.
+
+> **Correctif du 2026-11-08 (transparence)** : cette option a d'abord été annoncée « 17 écrans ». Son énumération réelle en contient **16** : `E01–E08` (8) + `E10–E13` (4) + `A02, A03, A04, A08` (4). E09 n'était pas inclus et n'a jamais été inclus. L'utilisateur a retenu cette option lors de la porte G1 en lecture du libellé « 17 » ; le lot effectivement produit est donc de **16 écrans**, et E09 reste `À_ARBITRER`. Aucun écran supplémentaire n'a été ajouté pour atteindre un chiffre.
 *Avantage :* couvre les exigences les plus sensibles et démontrables visuellement. *Limite :* journal, sortie et urgence restent `DIFFÉRÉ` avec justification.
 
 ---

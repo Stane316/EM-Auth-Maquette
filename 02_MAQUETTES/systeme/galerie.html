@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galerie du système de design — EM AUTH (maquette fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — jetons et composants de démonstration, aucun service connecté, aucune donnée réelle.</p>
+
+<header class="topbar">
+  <span class="brand">EM AUTH <span>système de design · direction A</span></span>
+  <nav aria-label="Navigation"><ul>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+    <li><a href="../ecrans/index.html">Écrans</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+
+  <p class="eyebrow">PH04 · inventaire réellement rendu</p>
+  <h1>Système de design — direction A</h1>
+  <p class="lede">Direction retenue par décision <strong>D-010</strong> (porte G2). Tous les composants ci-dessous sont rendus par les feuilles <span class="mono">tokens.css</span>, <span class="mono">base.css</span> et <span class="mono">composants.css</span> — aucune image, aucune police distante, aucun script.</p>
+  <p class="scope-note">Les rapports de contraste sont <strong>calculés</strong> (formule WCAG 2.x), pas mesurés à l'écran. Aucun test clavier, lecteur d'écran, zoom ou changement de thème système n'a été exécuté. Cette galerie ne prouve pas la conformité WCAG.</p>
+
+  <!-- ================= COULEURS ================= -->
+  <section class="section" aria-labelledby="couleurs">
+    <h2 id="couleurs">1. Jetons de couleur et contrastes mesurés</h2>
+    <table class="table">
+      <caption>Chaque paire texte/fond utilisée dans le système, avec le rapport calculé et le seuil applicable.</caption>
+      <thead><tr><th scope="col">Jeton</th><th scope="col">Valeur</th><th scope="col">Usage</th><th scope="col">Paire mesurée</th><th scope="col">Rapport</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">--c-ink</th><td class="mono">#102B3F</td><td>texte principal</td><td>sur --c-surface #FFFFFF</td><td class="mono">14.59:1</td></tr>
+        <tr><th scope="row">--c-ink</th><td class="mono">#102B3F</td><td>texte principal</td><td>sur --c-bg #F6F8FA</td><td class="mono">13.70:1</td></tr>
+        <tr><th scope="row">--c-muted</th><td class="mono">#4A5A68</td><td>texte secondaire</td><td>sur --c-surface</td><td class="mono">7.11:1</td></tr>
+        <tr><th scope="row">--c-link</th><td class="mono">#14615B</td><td>liens</td><td>sur --c-surface</td><td class="mono">6.95:1</td></tr>
+        <tr><th scope="row">--c-accent</th><td class="mono">#17645E</td><td>action principale</td><td>blanc dessus</td><td class="mono">6.95:1</td></tr>
+        <tr><th scope="row">--c-focus</th><td class="mono">#0B57D0</td><td>anneau de focus</td><td>sur --c-surface</td><td class="mono">6.39:1</td></tr>
+        <tr><th scope="row">--c-danger</th><td class="mono">#9A2318</td><td>erreur</td><td>sur --c-danger-bg #FDF1EF</td><td class="mono">7.23:1</td></tr>
+        <tr><th scope="row">--c-warn</th><td class="mono">#7A4A00</td><td>avertissement</td><td>sur --c-warn-bg #FFF6E5</td><td class="mono">6.97:1</td></tr>
+        <tr><th scope="row">--c-unknown</th><td class="mono">#4A3A63</td><td>résultat non confirmé</td><td>sur --c-unknown-bg #F4F0F8</td><td class="mono">8.99:1</td></tr>
+        <tr><th scope="row">--c-ok</th><td class="mono">#14614B</td><td>confirmé</td><td>sur --c-ok-bg #EAF5F0</td><td class="mono">6.62:1</td></tr>
+        <tr><th scope="row">--c-info</th><td class="mono">#1B4C7E</td><td>information</td><td>sur --c-info-bg #EEF4FB</td><td class="mono">7.96:1</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">Toutes les paires texte sont ≥ 4,5:1 (seuil texte normal). Les bordures décoratives ne sont pas soumises au seuil ; les bordures de champs (--c-border-strong) doivent rester ≥ 3:1 sur leur fond, ce qui est le cas sur blanc.</p>
+  </section>
+
+  <!-- ================= TYPOGRAPHIE ================= -->
+  <section class="section" aria-labelledby="typo">
+    <h2 id="typo">2. Typographie</h2>
+    <p>Pile <strong>système uniquement</strong> : aucune police sous licence tierce, aucune requête réseau, aucun risque de licence. Échelle relative respectant le zoom du navigateur.</p>
+    <div class="card card--plain stack-sm">
+      <p class="mono">--fs-2xl · 1.75rem · titre de page</p>
+      <p style="font-size:var(--fs-2xl);font-weight:650;letter-spacing:-0.012em;line-height:1.25;margin:0">Se connecter</p>
+      <p class="mono" style="margin-top:16px">--fs-xl · 1.375rem · section</p>
+      <h2 style="margin:0">Double contrôle</h2>
+      <p class="mono" style="margin-top:16px">--fs-lg · 1.125rem · sous-titre</p>
+      <h3 style="margin:0">Preuves examinées</h3>
+      <p class="mono" style="margin-top:16px">--fs-base · 1rem · texte courant</p>
+      <p>Le titulaire a perdu son moyen d'authentification. Une preuve indépendante et un second acteur distinct sont requis.</p>
+      <p class="mono">--fs-sm · 0.875rem · texte secondaire</p>
+      <p class="small muted">Identifiant fourni par votre organisation.</p>
+      <p class="mono">--fs-xs · 0.8125rem · annotation</p>
+      <p class="small muted" style="margin:0">Maquette fictive — rendu non vérifié par l'agent.</p>
+    </div>
+  </section>
+
+  <!-- ================= ESPACEMENTS ================= -->
+  <section class="section" aria-labelledby="espace">
+    <h2 id="espace">3. Espacements et gabarits</h2>
+    <table class="table table--compact">
+      <caption>Jetons d'espacement, gabarits et cible interactive minimale du système.</caption>
+      <thead><tr><th scope="col">Jeton</th><th scope="col">Valeur</th><th scope="col">Usage</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">--sp-1 … --sp-8</td><td>4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 px</td><td>pas de 4 px, aligné sur une grille compatible 8 px</td></tr>
+        <tr><td class="mono">--w-form</td><td>560 px</td><td>formulaires focalisés (E02, E04, A08)</td></tr>
+        <tr><td class="mono">--w-default</td><td>1040 px</td><td>pages de travail (E09, A03)</td></tr>
+        <tr><td class="mono">--w-wide</td><td>1240 px</td><td>tableaux et listes de cibles (E10, A05)</td></tr>
+        <tr><td class="mono">--target-min</td><td>44 px</td><td>hauteur minimale de tout contrôle interactif</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">Points d'essai responsive : 320 / 360 / 768 / 1440 px. Ce sont des <em>points d'essai</em>, pas des points de rupture contractuels — et aucun n'a été testé ici.</p>
+  </section>
+
+  <!-- ================= BOUTONS ================= -->
+  <section class="section" aria-labelledby="boutons">
+    <h2 id="boutons">4. Boutons — toutes les variantes et tous les états</h2>
+    <div class="card card--plain">
+      <div class="btn-row">
+        <button class="btn btn--primary" type="button">Action principale</button>
+        <button class="btn btn--secondary" type="button">Action secondaire</button>
+        <button class="btn btn--danger" type="button">Refuser</button>
+        <button class="btn btn--quiet" type="button">Lien discret</button>
+      </div>
+      <hr class="divider">
+      <p class="small muted">État désactivé — le texte reste à 7,11:1 (pas d'opacité qui casserait le contraste) :</p>
+      <div class="btn-row">
+        <button class="btn btn--primary" type="button" disabled>Action principale</button>
+        <button class="btn btn--secondary" type="button" aria-disabled="true">Action secondaire</button>
+      </div>
+      <hr class="divider">
+      <p class="small muted">État attente — libellé explicite, jamais un simple indicateur visuel :</p>
+      <button class="btn btn--primary" type="button" aria-disabled="true">Vérification en cours…</button>
+    </div>
+  </section>
+
+  <!-- ================= CHAMPS ================= -->
+  <section class="section" aria-labelledby="champs">
+    <h2 id="champs">5. Champs et formulaires</h2>
+    <div class="card card--plain">
+      <div class="field">
+        <label for="g-ident">Identifiant <span class="required">(obligatoire)</span></label>
+        <p class="hint" id="g-hint">Identifiant fourni par votre organisation. Ne saisissez jamais de mot de passe ni de code ici.</p>
+        <input class="input" id="g-ident" type="text" aria-describedby="g-hint">
+      </div>
+      <div class="field">
+        <label for="g-err">Champ en erreur</label>
+        <p class="hint" id="g-err-hint">L'erreur est liée au champ par aria-describedby et porte un texte, pas seulement une bordure rouge.</p>
+        <input class="input" id="g-err" type="text" aria-invalid="true" aria-describedby="g-err-hint g-err-msg" value="">
+        <p class="msg msg--error" id="g-err-msg" style="margin-top:8px"><span class="msg__title">Erreur</span>Renseignez votre identifiant.</p>
+      </div>
+      <div class="field">
+        <label for="g-dis">Champ désactivé</label>
+        <p class="hint">Utilisé uniquement quand la valeur ne peut pas être modifiée ; le motif est toujours expliqué à côté.</p>
+        <input class="input" id="g-dis" type="text" value="U-0042" disabled>
+      </div>
+      <fieldset>
+        <legend>Choix du moyen autorisé</legend>
+        <label class="choice" for="g-c1">
+          <input type="radio" id="g-c1" name="g-moyen" checked>
+          <span class="choice__body"><span class="choice__title">Utiliser une clé d'accès</span>Méthode résistante au phishing enregistrée sur cet appareil.</span>
+        </label>
+        <label class="choice" for="g-c2">
+          <input type="radio" id="g-c2" name="g-moyen">
+          <span class="choice__body"><span class="choice__title">Utiliser une clé de sécurité</span>Boîtier physique personnel, à brancher ou approcher.</span>
+        </label>
+      </fieldset>
+    </div>
+  </section>
+
+  <!-- ================= MESSAGES ================= -->
+  <section class="section" aria-labelledby="messages">
+    <h2 id="messages">6. Messages — cinq niveaux distincts</h2>
+    <div class="msg msg--error"><span class="msg__title">Connexion impossible</span><p>Vérifiez vos informations ou demandez de l'aide.</p></div>
+    <div class="msg msg--warn"><span class="msg__title">Approbation impossible</span><p>Vous êtes le demandeur de cette récupération. L'approbation doit être réalisée par une personne distincte.</p></div>
+    <div class="msg msg--info"><span class="msg__title">Deux personnes distinctes</span><p>Le demandeur ne peut pas approuver sa propre demande.</p></div>
+    <div class="msg msg--ok"><span class="msg__title">Vérification terminée</span><p>La preuve a été vérifiée. Aucune action n'est encore enregistrée.</p></div>
+    <div class="msg msg--unknown"><span class="msg__title">Résultat non confirmé</span><p>Nous ne pouvons pas confirmer si votre demande a été traitée. Vérifiez son état avant de recommencer.</p></div>
+    <p class="small muted">Chaque message porte un titre, un texte et une bordure colorée : l'information ne dépend jamais de la seule couleur.</p>
+  </section>
+
+  <!-- ================= ÉTIQUETTES ================= -->
+  <section class="section" aria-labelledby="etiquettes">
+    <h2 id="etiquettes">7. Étiquettes d'état (cibles, preuves, opérations)</h2>
+    <div class="row">
+      <span class="tag tag--ok">Confirmé</span>
+      <span class="tag tag--pending">En cours</span>
+      <span class="tag tag--fail">Échec</span>
+      <span class="tag tag--unknown">Non confirmé</span>
+      <span class="tag tag--neutral">Non applicable</span>
+    </div>
+    <p class="small muted" style="margin-top:12px">La valeur <strong>« Non confirmé »</strong> est obligatoire pour tout résultat non observé : elle ne doit jamais être remplacée par « Échec » ni par « Confirmé ».</p>
+  </section>
+
+  <!-- ================= DONNÉES ================= -->
+  <section class="section" aria-labelledby="donnees">
+    <h2 id="donnees">8. Fiches, listes de vérification, tableaux</h2>
+    <div class="card card--plain">
+      <dl class="defs">
+        <dt>Compte</dt><dd><span class="mono">U-0042</span> — compte de démonstration</dd>
+        <dt>Moyen perdu</dt><dd>Clé d'accès déclarée perdue</dd>
+        <dt>Statut</dt><dd><span class="tag tag--pending">En attente d'un second acteur</span></dd>
+      </dl>
+      <ul class="checks">
+        <li><span class="check-label">Vérification par canal indépendant<span class="check-meta">2026-11-08 14:20 UTC</span></span><span class="tag tag--ok">Vérifiée</span></li>
+        <li><span class="check-label">Second acteur distinct<span class="check-meta">requis avant enrôlement</span></span><span class="tag tag--pending">Requis — non fourni</span></li>
+        <li><span class="check-label">Accusé de notification<span class="check-meta">canal non convenu</span></span><span class="tag tag--unknown">Non confirmé</span></li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:24px">Tableau de cibles (E10)</h3>
+    <table class="table">
+      <caption>Exemple fictif — chaque cible porte son propre état ; une cible non observée reste « Non confirmé ».</caption>
+      <thead><tr><th scope="col">Cible</th><th scope="col">Portée</th><th scope="col">État</th><th scope="col">Mesuré à</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Fournisseur d'identité</th><td>Nouvelles connexions</td><td><span class="tag tag--ok">Confirmé</span></td><td class="mono">14:31:05 UTC</td></tr>
+        <tr><th scope="row">Application interne</th><td>Session et jetons</td><td><span class="tag tag--pending">En cours</span></td><td class="mono">14:31:12 UTC</td></tr>
+        <tr><th scope="row">API métier</th><td>Jetons d'accès</td><td><span class="tag tag--unknown">Non confirmé</span></td><td class="mono">non observé</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= NAVIGATION ================= -->
+  <section class="section" aria-labelledby="nav">
+    <h2 id="nav">9. Étapes, rail de navigation, dialogue, état vide</h2>
+    <ol class="steps" aria-label="Étapes de la procédure">
+      <li aria-current="step">Demande reçue</li>
+      <li>Preuve indépendante</li>
+      <li>Second acteur</li>
+      <li>Nouvel enrôlement</li>
+    </ol>
+
+    <div class="layout--rail" style="padding:0">
+      <nav class="rail" aria-label="Navigation d'administration (démonstration)">
+        <h2>Administration</h2>
+        <ul>
+          <li><a href="#" aria-current="page">Récupérations</a></li>
+          <li><a href="#">Inscriptions</a></li>
+          <li><a href="#">Retraits</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+        <p class="small muted" style="margin:0">Rail réservé aux rôles habilités.</p>
+      </nav>
+      <div>
+        <div class="dialog" role="group" aria-labelledby="g-dlg">
+          <h2 id="g-dlg">Confirmer la demande de récupération ?</h2>
+          <p>Cette action notifie le titulaire et ouvre une vérification indépendante. Elle n'enrôle encore aucun facteur.</p>
+          <div class="btn-row">
+            <button class="btn btn--primary" type="button">Demander une vérification</button>
+            <button class="btn btn--secondary" type="button">Annuler</button>
+          </div>
+        </div>
+        <p class="small muted" style="margin-top:8px">Dialogue rendu statique : le piège de focus, la fermeture par <kbd>Échap</kbd> et le retour de focus ne sont pas testés ici.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px">État vide</h3>
+    <div class="empty">Aucune demande en attente.<br><span class="small">Aucun élément n'est inventé pour remplir la vue.</span></div>
+  </section>
+
+  <!-- ================= FENÊTRE NATIVE ================= -->
+  <section class="section" aria-labelledby="natif">
+    <h2 id="natif">10. Simulation de fenêtre native (WebAuthn)</h2>
+    <div class="native-sim">
+      <span class="native-sim__badge">Simulation — interface non maîtrisée par EM AUTH</span>
+      <p style="margin-bottom:8px"><strong>Votre navigateur va afficher sa propre fenêtre de vérification.</strong></p>
+      <p class="small" style="margin-bottom:0">Cette zone est une <em>reproduction schématique</em> destinée à la revue de conception. Le rendu réel dépend du navigateur et du système d'exploitation ; son accessibilité, sa langue et son comportement ne sont pas contrôlés par EM AUTH et ne peuvent pas être certifiés ici.</p>
+    </div>
+  </section>
+
+  <p class="scope-note" style="margin-top:32px">Limites du système de design : aucun composant n'a été vérifié en exécution (pas de navigateur, pas de framework). Les comportements interactifs (piège de focus, annonces dynamiques, gestion d'erreur en direct) sont <strong>documentés</strong> et doivent être implémentés puis testés en React 19/Vite lors de l'intégration — sous autorisation distincte (G6).</p>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · système de design PH04 · direction A · fichiers <span class="mono">systeme/tokens.css</span>, <span class="mono">base.css</span>, <span class="mono">composants.css</span>.</p>
+  <p>Maquette fictive — aucune donnée réelle, aucun service, aucune preuve de sécurité ou de conformité.</p>
+</footer>
+</body>
+</html>

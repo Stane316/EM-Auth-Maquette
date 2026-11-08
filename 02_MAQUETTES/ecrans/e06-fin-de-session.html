@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E06 — Se déconnecter de cette application · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">E06 · M08/M12 · REQ-13-19/31</p>
+  <h1>Se déconnecter de cette application</h1>
+  <p class="lede">Fin de session — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur</dd>
+    <dt>Rendu pressenti</dt><dd>Thème Keycloak (logout) ou page du BFF (à arbitrer)</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Déconnexion · portée limitée</p>
+    
+    <p class="lede">La déconnexion met fin à la session de <strong>cette application</strong>. D'autres applications ou le fournisseur d'identité peuvent rester connectés : EM AUTH ne le promettra pas sans preuve.</p>
+    <ul class="checks">
+      <li><span class="check-label">Session de cette application</span><span class="tag tag--pending">Sera invalidée</span></li>
+      <li><span class="check-label">Autres applications</span><span class="tag tag--neutral">Non vérifié</span></li>
+      <li><span class="check-label">Fournisseur d'identité</span><span class="tag tag--neutral">Non vérifié</span></li>
+    </ul>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Se déconnecter</button><button class="btn btn--secondary" type="button" >Annuler</button></div>
+    <p class="hint">Sur un appareil partagé, verrouillez le poste après la déconnexion et suivez les consignes de votre organisation.</p>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (3)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Confirmation</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Ouverture de la page de déconnexion</dd>
+        <dt>Actions autorisées</dt><dd>Se déconnecter ; Annuler</dd>
+        <dt>Destination</dt><dd>État suivant ou retour à l'application</dd>
+      </dl>
+      <p>La portée est explicitée avant l'action, pas après.</p>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Fin locale confirmée</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Invalidation de session confirmée par le serveur de l'application</dd>
+        <dt>Actions autorisées</dt><dd>Fermer l'onglet ; se reconnecter</dd>
+        <dt>Destination</dt><dd>Page publique</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Vous êtes déconnecté de cette application</span><p>D'autres applications ou votre fournisseur d'identité peuvent rester connectés. Sur un appareil partagé, verrouillez le poste.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Résultat incertain</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Aucune confirmation d'invalidation reçue</dd>
+        <dt>Actions autorisées</dt><dd>Contacter l'assistance prévue ; éviter de laisser le poste accessible</dd>
+        <dt>Destination</dt><dd>E11 / procédure d'aide</dd>
+      </dl>
+      <div class="msg msg--unknown"><span class="msg__title">Nous ne pouvons pas confirmer la déconnexion</span><p>Contactez l'assistance prévue et évitez de laisser le poste accessible. Fermer la fenêtre ne prouve pas la fin de la session.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → liste de portée (lecture) → « Se déconnecter » → « Annuler ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Le résultat est annoncé une fois ; l'état « incertain » n'est jamais remplacé par un succès.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après annulation, retour à l'application d'origine ; après succès, focus sur le titre de la page publique.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>La liste de portée s'empile ; les étiquettes restent lisibles (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>La déconnexion globale (autres RP, fournisseur d'identité) n'est pas démontrée et ne doit pas être promise.</li>
+      <li>L'invalidation serveur est un comportement non visible dans une maquette.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E06 — Fin de session · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

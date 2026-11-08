@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A08 — Enregistrer un moyen d'authentification · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--form">
+  <p class="eyebrow">A08 · M02/M03 · REQ-13-04/05</p>
+  <h1>Enregistrer un moyen d'authentification</h1>
+  <p class="lede">Enrôlement du facteur — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Utilisateur invité + opérateur selon procédure</dd>
+    <dt>Rendu pressenti</dt><dd>Page EM AUTH + dialogue natif navigateur/appareil</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Enrôlement · invitation vérifiée</p>
+    
+    <p class="lede">L'enregistrement se fait dans une fenêtre du navigateur ou de l'appareil. EM AUTH ne reçoit jamais votre PIN ni vos données biométriques.</p>
+    <div class="native-sim"><span class="native-sim__badge">Simulation — interface non maîtrisée par EM AUTH</span><p style="margin-bottom:0">« Créer une clé d'accès pour EM AUTH » : la fenêtre est rendue par le navigateur ou le système. L'appareil peut demander son propre déverrouillage, qu'EM AUTH ne voit pas.</p></div>
+    <p class="hint" style="margin-top:16px">L'activation n'est enregistrée qu'après confirmation par le service. Une annulation ou une expiration n'active rien.</p>
+    <div class="btn-row"><button class="btn btn--primary" type="button" >Commencer l'enregistrement</button><button class="btn btn--secondary" type="button" >Plus tard</button></div>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (5)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Préparation</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Invitation vérifiée, écran ouvert</dd>
+        <dt>Actions autorisées</dt><dd>Commencer ; plus tard</dd>
+        <dt>Destination</dt><dd>Dialogue natif</dd>
+      </dl>
+      <p>Les explications précèdent l'appel natif : l'utilisateur sait ce qui va s'ouvrir et pourquoi.</p>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Appel natif</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Activation de « Commencer l'enregistrement »</dd>
+        <dt>Actions autorisées</dt><dd>Poursuivre ou annuler dans la fenêtre système</dd>
+        <dt>Destination</dt><dd>Retour avec résultat</dd>
+      </dl>
+      <div class="native-sim"><span class="native-sim__badge">Simulation — interface non maîtrisée par EM AUTH</span><p style="margin-bottom:0">Fenêtre du navigateur/système. Aucune capture, aucun PIN demandé par EM AUTH, aucune biométrie collectée.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Annulé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Fermeture de la fenêtre native</dd>
+        <dt>Actions autorisées</dt><dd>Réessayer ; demander de l'aide</dd>
+        <dt>Destination</dt><dd>A08 ou E07</dd>
+      </dl>
+      <div class="msg msg--warn"><span class="msg__title">Enregistrement non terminé</span><p>Aucun moyen n'a été activé. Vous pouvez réessayer ou demander de l'aide.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Réussi si confirmé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Confirmation serveur de l'enregistrement</dd>
+        <dt>Actions autorisées</dt><dd>Continuer vers l'application</dd>
+        <dt>Destination</dt><dd>E05 / E02</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Moyen enregistré</span><p>L'enregistrement a été confirmé par le service. Conservez un moyen de secours indépendant : sa procédure reste à définir.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-5">
+      <div class="card__head"><h3 style="margin:0">État 5 — Expiré</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Délai de l'invitation ou du défi dépassé</dd>
+        <dt>Actions autorisées</dt><dd>Demander une nouvelle invitation</dd>
+        <dt>Destination</dt><dd>E01 / procédure d'aide</dd>
+      </dl>
+      <div class="msg msg--error"><span class="msg__title">Cette invitation a expiré</span><p>Aucun moyen n'a été enregistré. Une nouvelle invitation doit être demandée par le canal prévu.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → message natif (lecture) → « Commencer » → « Plus tard ».</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Le résultat est annoncé une seule fois ; « réussi » n'apparaît qu'après confirmation.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après la fenêtre native, focus sur le titre du message de résultat.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Les explications restent lisibles en une colonne (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>Le dialogue natif n'est pas maîtrisé ; ses libellés et son accessibilité dépendent du navigateur et du système.</li>
+      <li>Aucun moyen de secours n'est défini : il doit l'être avant tout déploiement (risque de perte d'accès).</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · A08 — Enrôlement du facteur · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>

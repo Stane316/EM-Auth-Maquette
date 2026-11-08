@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parcours et transitions — EM AUTH (maquette fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="systeme/base.css">
+<link rel="stylesheet" href="systeme/composants.css">
+<style>
+  .flow { list-style: none; padding: 0; margin: 0 0 24px; }
+  .flow li { margin: 0 0 8px; padding: 12px 14px; background: #fff; border: 1px solid var(--c-border); border-left: 4px solid var(--c-accent); border-radius: var(--r-sm); }
+  .flow .flow-cond { display: block; color: var(--c-muted); font-size: var(--fs-sm); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+
+<header class="topbar">
+  <span class="brand">EM AUTH <span>parcours · direction A</span></span>
+  <nav aria-label="Navigation"><ul>
+    <li><a href="index.html">Comparaison A/B/C</a></li>
+    <li><a href="ecrans/index.html">Écrans</a></li>
+    <li><a href="systeme/galerie.html">Système de design</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">PH06 · transitions documentées et liens réels</p>
+  <h1>Parcours et transitions</h1>
+  <p class="lede">Les liens ci-dessous fonctionnent réellement entre les pages statiques. Ils ne démontrent pas une logique serveur : chaque destination est une <strong>intention de conception</strong>, pas un contrat.</p>
+  <p class="scope-note">Les états internes à chaque écran restent statiques : on peut naviguer d'écran en écran, pas déclencher un enchaînement d'états. Aucun contrôle de droits, aucune session et aucune donnée ne sont simulés.</p>
+
+  <h2>1. Parcours d'accès (utilisateur)</h2>
+  <ol class="flow">
+    <li><a href="ecrans/e02-identification.html">E02 — Identification</a><span class="flow-cond">Condition : identifiant fourni par l'organisation · Échec → même écran, message générique</span></li>
+    <li><a href="ecrans/e03-moyen-autorise.html">E03 — Choix du moyen autorisé</a><span class="flow-cond">Condition : identification suffisante · Aucun moyen → <a href="ecrans/e07-perte-ou-aide.html">E07</a></span></li>
+    <li><a href="ecrans/e04-preuve-fraiche.html">E04 — Défi et preuve fraîche</a><span class="flow-cond">Condition : moyen choisi · Annulé/expiré → E04 ou E07 · Jamais de repli faible</span></li>
+    <li><a href="ecrans/e05-transition.html">E05 — Transition vers l'application</a><span class="flow-cond">Condition : preuve vérifiée côté serveur · Résultat incertain → <a href="ecrans/e11-resultat-non-confirme.html">E11</a></span></li>
+    <li><a href="ecrans/e06-fin-de-session.html">E06 — Fin de session</a><span class="flow-cond">Condition : déconnexion demandée · Invalidation non confirmée → E11</span></li>
+  </ol>
+
+  <h2>2. Parcours d'invitation et d'enrôlement</h2>
+  <ol class="flow">
+    <li><a href="ecrans/a02-mandat-enrolement.html">A02 — Identité et mandat d'enrôlement</a><span class="flow-cond">Condition : gestionnaire mandaté · Identité ambiguë → suspension, aucun enrôlement</span></li>
+    <li><a href="ecrans/e01-invitation.html">E01 — Invitation et accueil</a><span class="flow-cond">Condition : invitation non expirée · Expirée ou rejouée → refus + nouvelle invitation</span></li>
+    <li><a href="ecrans/a08-enrolement-facteur.html">A08 — Enrôlement du facteur</a><span class="flow-cond">Condition : invitation vérifiée · Annulé → rien d'activé · Réussi uniquement si confirmé</span></li>
+    <li><a href="ecrans/e02-identification.html">E02 — Identification</a><span class="flow-cond">Suite : première connexion après enrôlement</span></li>
+  </ol>
+
+  <h2>3. Parcours de récupération (deux acteurs distincts)</h2>
+  <ol class="flow">
+    <li><a href="ecrans/e07-perte-ou-aide.html">E07 — Perte ou aide</a><span class="flow-cond">Condition : aucune confirmation d'existence de compte · Réponse générique</span></li>
+    <li><a href="ecrans/a03-decision-recuperation.html">A03 — Décision de récupération</a><span class="flow-cond">Condition : preuve indépendante <strong>et</strong> second acteur distinct · Auto-approbation impossible · Preuve insuffisante → arrêt</span></li>
+    <li><a href="ecrans/e08-suivi-recuperation.html">E08 — Suivi de récupération</a><span class="flow-cond">Condition : accès autorisé · Notification non confirmée → escalade, pas de clôture</span></li>
+    <li><a href="ecrans/a08-enrolement-facteur.html">A08 — Enrôlement du facteur</a><span class="flow-cond">Suite : nouvel enrôlement après décision favorable</span></li>
+  </ol>
+
+  <h2>4. Parcours de retrait</h2>
+  <ol class="flow">
+    <li><a href="ecrans/a04-orchestration-retrait.html">A04 — Orchestration du retrait</a><span class="flow-cond">Condition : mandat valide · Retrait partiel → pas de conclusion globale</span></li>
+    <li><a href="ecrans/e10-retrait-par-cible.html">E10 — Retrait par cible</a><span class="flow-cond">Condition : ordre enregistré · Cible non observée = <strong>non confirmé</strong></span></li>
+    <li><a href="ecrans/e11-resultat-non-confirme.html">E11 — Résultat non confirmé</a><span class="flow-cond">Condition : réponse perdue · Aucune relance automatique</span></li>
+  </ol>
+
+  <h2>5. États transversaux</h2>
+  <ul class="flow">
+    <li><a href="ecrans/e11-resultat-non-confirme.html">E11 — Résultat non confirmé</a><span class="flow-cond">Accessible depuis : E05, E06, E10, A04, A03 (réponse perdue)</span></li>
+    <li><a href="ecrans/e12-expiration.html">E12 — Expiration et inactivité</a><span class="flow-cond">Accessible depuis : toute page authentifiée · Expiration → E02</span></li>
+    <li><a href="ecrans/e13-indisponibilite.html">E13 — Service indisponible</a><span class="flow-cond">Accessible depuis : toute page · Action sensible refusée, MFA jamais désactivée</span></li>
+  </ul>
+
+  <h2>6. Points de rupture contrôlés dans cette matrice</h2>
+  <table class="table">
+    <caption>Vérification de conception : les règles qui ne doivent jamais être contredites par une transition.</caption>
+    <thead><tr><th scope="col">Règle</th><th scope="col">Où elle s'applique</th><th scope="col">État dans la maquette</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Aucun succès sans preuve</th><td>E04, E05, A08, A03, E10</td><td>respectée dans le texte des états — non démontrable en exécution</td></tr>
+      <tr><th scope="row">Cible non observée = INCONNU</th><td>E10, A04, E11</td><td>respectée</td></tr>
+      <tr><th scope="row">Deux personnes distinctes</th><td>A03, E08</td><td>respectée dans le contenu — règle serveur non démontrée</td></tr>
+      <tr><th scope="row">Aucun repli MFA silencieux</th><td>E03, E04, E13</td><td>respectée</td></tr>
+      <tr><th scope="row">Panne → refus, jamais dégradation</th><td>E13, E11</td><td>respectée</td></tr>
+      <tr><th scope="row">Déconnexion à portée limitée</th><td>E06</td><td>respectée</td></tr>
+      <tr><th scope="row">Pas de canal/délai inventé</th><td>E01, E07, E13, E12</td><td>respectée : marqueurs « à convenir »</td></tr>
+      <tr><th scope="row">Action sensible sur simple clic</th><td>A04, A03</td><td><strong>point ouvert</strong> : les boutons sont statiques ; le comportement réel (double contrôle, preuve fraîche) reste à spécifier côté service</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Impasses et boutons sans action</h2>
+  <ul>
+    <li>Les actions « Continuer », « Se déconnecter », « Confirmer la demande de retrait » sont des <strong>éléments statiques</strong> : elles n'ont pas de destination réelle. La navigation se fait par le portail ci-dessus, pas par les boutons.</li>
+    <li>Aucun écran ne mène à une page inexistante : les liens de ce portail pointent tous vers un fichier présent.</li>
+    <li>Les procédures externes (A01, A06, A07, A09, A05) ne sont pas reliées : elles sont <strong>différées</strong>, et un parcours qui en dépendrait s'arrêterait là — c'est documenté et non masqué.</li>
+  </ul>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · parcours PH06 · direction A · liens vérifiés vers les fichiers de <span class="mono">ecrans/</span>.</p>
+  <p>Maquette fictive — aucune transition serveur, aucune session, aucun contrôle d'accès simulé.</p>
+</footer>
+</body>
+</html>

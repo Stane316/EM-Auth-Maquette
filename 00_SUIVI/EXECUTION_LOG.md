@@ -25,6 +25,17 @@ Aucune donnée sensible, aucun secret, aucune PII.
 | 18 | 2026-11-08T18:00Z / UTC | PH03 — production des vues A/B/C sur E02 et A03 | Agent (écriture zone isolée, zéro dépendance) | 6 fichiers HTML + 4 CSS + générateur + portail `02_MAQUETTES/index.html` | Vues **réellement produites** ; contenu éditorial identique vérifié ; structure HTML valide (0 balise non fermée, 0 id dupliqué) |
 | 19 | 2026-11-08T18:03Z / UTC | PH03 — limite de rendu | Agent (constat) | `command -v chromium/firefox` → absents | **Aucune vue examinée visuellement** : rendu, clavier, zoom et lecteur d'écran **NON TESTÉS** ; examen humain requis |
 | 20 | 2026-11-08T18:05Z / UTC | PH03 — porte G2 | Agent (analyse) | `01_PHASES/PH03_DIRECTION_ET_COMPARAISON.md` §7 | **EN_ATTENTE_HUMAIN** : recommandation A formulée, aucune direction retenue |
+| 21 | 2026-11-08T18:25Z / UTC | Portes G0/G1/G2 — décisions utilisateur | Décideur humain | Réponses du 2026-11-08 | **D-001** précisée (dépôt de travail = `EM-Auth-Maquette`), **D-004** approuvée (serveur statique local), **D-007** approuvée (lot), **D-010** approuvée (direction A) |
+| 22 | 2026-11-08T18:30Z / UTC | Aperçu local | Agent (service autorisé) | `python3 -m http.server 8000 --bind 0.0.0.0` | Serveur statique lancé, aucune installation, aucune donnée externe ; vues consultables |
+| 23 | 2026-11-08T18:35Z / UTC | PH04 — système de design | Agent (écriture zone isolée) | `systeme/tokens.css`, `base.css`, `composants.css`, `galerie.html` | Jetons, composants, variantes et états créés ; 10 paires de contraste calculées, toutes ≥ 4,5:1 |
+| 24 | 2026-11-08T18:40Z / UTC | PH05 — lecture des 22 prompts d'écran | Agent (lecture) | `04_SCREEN_SPECIFIC_PROMPTS/*` | 22 fichiers lus ; gabarit commun vérifié ; états et traçabilité relevés |
+| 25 | 2026-11-08T18:45Z / UTC | PH05 — production de 16 écrans | Agent (écriture zone isolée) | `02_MAQUETTES/ecrans/` (16 pages + index) | 60 états documentés ; contrôles structure/labels/liens exécutés |
+| 26 | 2026-11-08T18:50Z / UTC | PH05 — correctif de comptage | Agent | PH01 §3 et PH05 §2 | Option de lot annoncée « 17 » corrigée en **16** ; E09 reste à arbitrer ; aucun écran inventé pour atteindre un chiffre |
+| 27 | 2026-11-08T18:55Z / UTC | PH06 — parcours | Agent | `02_MAQUETTES/parcours.html`, `01_PHASES/PH06_MATRICE_PARCOURS.md` | 23 transitions documentées ; 156 liens internes vérifiés, **0 cassé** |
+| 28 | 2026-11-08T19:05Z / UTC | PH07 — audit outillé | Agent | `systeme/audit_structurel.py` → `01_PHASES/PH07_PREUVES_CONTROLES.txt` | 15 contrôles sur 26 pages ; 3 défauts réels détectés |
+| 29 | 2026-11-08T19:10Z / UTC | PH07 — corrections et retest | Agent (périmètre autorisé) | h1 dupliqué (17 pages), légende de tableau, nommage du lien d'évitement | Corrigés ; **retest : 0 écart** ; aucun P0 |
+| 30 | 2026-11-08T19:25Z / UTC | PH08 — paquet de transfert | Agent | `03_HANDOFF/PAQUET_HANDOFF.md` | Versions, jetons, matrice écran/contrat, inconnues, licences, instructions Figma manuelles |
+| 31 | 2026-11-08T19:40Z / UTC | PH09 — bilan de réception | Agent (évaluation) | `01_PHASES/PH09_BILAN_RECEPTION.md` | **NON PRÊT** : B03 partiel, B08 et B09 non satisfaits ; 3 P1 ouverts ; G4 non prononcée |
 
 ## Entrées à venir
 

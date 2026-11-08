@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E08 — Suivi de votre demande · maquette fictive EM AUTH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../systeme/base.css">
+<link rel="stylesheet" href="../systeme/composants.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="topbar">
+  <span class="brand">EM AUTH <span>maquette · direction A</span></span>
+  <nav aria-label="Navigation des écrans"><ul>
+    <li><a href="index.html">Tous les écrans</a></li>
+    <li><a href="../systeme/galerie.html">Système de design</a></li>
+    <li><a href="../index.html">Comparaison A/B/C</a></li>
+  </ul></nav>
+</header>
+
+<main id="contenu" class="layout layout--default">
+  <p class="eyebrow">E08 · M04 · REQ-13-08/09</p>
+  <h1>Suivi de votre demande</h1>
+  <p class="lede">Suivi de récupération — écran <strong>proposé</strong>, non approuvé.</p>
+
+  <dl class="defs">
+    <dt>Acteur</dt><dd>Titulaire du compte, après autorisation</dd>
+    <dt>Rendu pressenti</dt><dd>Interface EM AUTH (React, future) — accès restreint</dd>
+    <dt>Statut de l'écran</dt><dd><span class="tag tag--neutral">À arbitrer</span> — propriétaire technique non décidé</dd>
+  </dl>
+
+  <h2 class="sr-only">Vue principale de l'écran</h2>
+  <div class="card">
+<p class="eyebrow">Suivi · accès après autorisation seulement</p>
+    
+    <p class="lede">Vous voyez uniquement l'avancement de votre demande. Aucun détail n'est affiché qui faciliterait une usurpation.</p>
+    <ol class="steps" aria-label="Étapes de la demande">
+      <li aria-current="step">Demande reçue</li><li>Vérification</li><li>Décision</li><li>Nouvel enrôlement</li><li>Clôture</li>
+    </ol>
+    <dl class="defs">
+      <dt>Référence</dt><dd><span class="mono">R-2041</span></dd>
+      <dt>État</dt><dd><span class="tag tag--pending">Vérification en cours</span></dd>
+      <dt>Dernière mise à jour</dt><dd><span class="mono">2026-11-08 14:20 UTC</span></dd>
+    </dl>
+    <p class="hint">Les étapes suivantes ne sont validées qu'après confirmation par le service. Un affichage d'étape n'est pas une preuve.</p>
+  </div>
+
+  <section class="section" aria-labelledby="etats">
+    <h2 id="etats">États de l'écran (5)</h2>
+    <p class="scope-note">Chaque état est nommé avec son événement d'entrée, les actions autorisées et sa destination. Aucune réponse serveur n'est inventée : les destinations sont des intentions de conception.</p>
+    <div class="card card--plain" id="etat-1">
+      <div class="card__head"><h3 style="margin:0">État 1 — Reçue si confirmé</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Accusé de réception effectivement enregistré</dd>
+        <dt>Actions autorisées</dt><dd>Consulter ; se déconnecter</dd>
+        <dt>Destination</dt><dd>Étape suivante</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Demande reçue</span><p>Un accusé de réception a été enregistré. S'il n'est pas confirmé, aucune étape n'est affichée comme reçue.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-2">
+      <div class="card__head"><h3 style="margin:0">État 2 — Vérification</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Vérification d'identité en cours par canal indépendant</dd>
+        <dt>Actions autorisées</dt><dd>Attendre ; aucune relance automatique</dd>
+        <dt>Destination</dt><dd>Décision</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Vérification en cours</span><p>Votre identité est vérifiée par un canal indépendant. Aucun délai n'est garanti.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-3">
+      <div class="card__head"><h3 style="margin:0">État 3 — Décision</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Décision prise par deux acteurs distincts</dd>
+        <dt>Actions autorisées</dt><dd>Consulter la décision</dd>
+        <dt>Destination</dt><dd>Nouvel enrôlement ou refus motivé</dd>
+      </dl>
+      <div class="msg msg--info"><span class="msg__title">Décision enregistrée</span><p>La décision a été prise par une personne distincte du demandeur. Aucun facteur n'est encore actif.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-4">
+      <div class="card__head"><h3 style="margin:0">État 4 — Nouvel enrôlement</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Décision favorable et enrôlement lancé</dd>
+        <dt>Actions autorisées</dt><dd>Poursuivre l'enrôlement</dd>
+        <dt>Destination</dt><dd>A08 — Enrôlement du facteur</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Vous pouvez enregistrer un nouveau moyen</span><p>L'enrôlement n'est effectif qu'après confirmation par le service.</p></div>
+    </div>
+    <div class="card card--plain" id="etat-5">
+      <div class="card__head"><h3 style="margin:0">État 5 — Clôture</h3></div>
+      <dl class="defs">
+        <dt>Événement d'entrée</dt><dd>Facteur perdu retiré et notification confirmée</dd>
+        <dt>Actions autorisées</dt><dd>Se connecter</dd>
+        <dt>Destination</dt><dd>E02 — Identification</dd>
+      </dl>
+      <div class="msg msg--ok"><span class="msg__title">Demande clôturée</span><p>L'ancien moyen a été retiré. Si la notification n'a pas été confirmée, la demande ne doit pas être close.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="annotations">
+    <h2 id="annotations">Annotations de conception</h2>
+    <table class="table">
+      <caption>À vérifier à l'implémentation : aucune de ces annotations n'a été testée dans cet environnement.</caption>
+      <tbody>
+        <tr><th scope="row">Ordre clavier</th><td>Titre → étapes (liste) → fiche → actions. Les étapes ne sont pas des contrôles interactifs.</td></tr>
+        <tr><th scope="row">Annonce d'état</th><td>Un changement d'étape est annoncé une fois ; aucune boucle de rafraîchissement automatique.</td></tr>
+        <tr><th scope="row">Retour de focus</th><td>Après consultation d'un détail, retour à l'étape en cours.</td></tr>
+        <tr><th scope="row">Zoom 200 %</th><td>Les cinq étapes se réorganisent en plusieurs lignes (non testé).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="limites">
+    <h2 id="limites">Limites et points non prouvés</h2>
+    <ul>
+      <li>L'accès au suivi exige une autorisation : la maquette ne montre pas la page de garde, qui reste à concevoir si le suivi est retenu.</li>
+      <li>Aucune notification réelle n'est envoyée ; un échec de notification est un événement serveur.</li>
+    </ul>
+    <p class="scope-note">Cette vue est un fichier HTML statique : aucun script, aucune requête réseau, aucune donnée réelle. Elle ne démontre ni sécurité, ni conformité WCAG, ni disponibilité.</p>
+  </section>
+</main>
+
+<footer class="pagefoot">
+  <p>EM AUTH · E08 — Suivi de récupération · lot PH05 (décision D-007) · direction A (décision D-010).</p>
+  <p>Maquette fictive — rendu non vérifié par l'agent, aucun test clavier/lecteur d'écran/WebAuthn exécuté.</p>
+</footer>
+</body>
+</html>
