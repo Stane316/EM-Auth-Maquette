@@ -15,11 +15,27 @@ import { useEtatEcran } from '../lib/useEtatEcran';
 import { Alerte } from '../components/ui/Alerte';
 import { Bouton, BoutonLien } from '../components/ui/Bouton';
 import { Pastille } from '../components/ui/Pastille';
+import { useSession } from '../session/SessionProvider';
+import { services } from '../services';
 import scene from '../components/layout/scene.module.css';
 
 export const E06FinDeSession = ({ ecran }: { readonly ecran: Ecran }) => {
   const { etats, actif, changer } = useEtatEcran(ecran.slug);
+  const { session, deconnecter } = useSession();
   const [fermees, setFermees] = useState(false);
+  const [detail, setDetail] = useState<string | null>(null);
+  const [enCours, setEnCours] = useState(false);
+
+  const fermerLaSession = async () => {
+    setEnCours(true);
+    const resultat = await deconnecter();
+    setEnCours(false);
+    setDetail(
+      resultat
+        ? resultat.message
+        : 'La déconnexion n’a pas pu être confirmée. Sur un poste partagé, fermez le navigateur et signalez le poste.',
+    );
+  };
   const partielle = actif.cle === 'revocation-partielle';
   const echec = actif.cle === 'echec-local';
 
@@ -119,6 +135,20 @@ export const E06FinDeSession = ({ ecran }: { readonly ecran: Ecran }) => {
             ) : null}
 
             <div className={scene.actions} style={{ marginTop: 'var(--e-4)' }}>
+              <Bouton
+                bloc
+                variante={session.authentifie ? 'danger' : 'secondaire'}
+                disabled={enCours || !session.authentifie}
+                onClick={() => void fermerLaSession()}
+                icone={<LogOut aria-hidden="true" size={16} />}
+              >
+                {enCours ? 'Déconnexion…' : session.authentifie ? 'Fermer ma session maintenant' : 'Aucune session ouverte'}
+              </Bouton>
+              {detail ? (
+                <Alerte ton="info" role="status" titre={`Déconnexion — ${services.mode === 'demo' ? 'démonstration' : 'BFF réel'}`}>
+                  {detail}
+                </Alerte>
+              ) : null}
               {!fermees ? (
                 <Bouton
                   variante="secondaire"

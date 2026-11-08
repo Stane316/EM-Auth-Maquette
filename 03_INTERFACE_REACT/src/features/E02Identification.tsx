@@ -5,11 +5,13 @@
  * Rendu pressenti : thème Keycloak (démonstration ici)
  * Nature : maquette fictive, aucun service connecté
  */
-import { ArrowRight, Eye, EyeOff, LifeBuoy, Lock } from 'lucide-react';
+import { ArrowRight, LifeBuoy, Loader2, Lock } from 'lucide-react';
 import { useState } from 'react';
 import type { Ecran } from '../donnees/ecrans';
 import { useEtatEcran } from '../lib/useEtatEcran';
 import { useNavigate } from 'react-router-dom';
+import { services } from '../services';
+import type { FacteurDto } from '../services/contracts/api';
 import { CoquilleEcran } from '../components/layout/CoquilleEcran';
 import { BlocContexte, SceneAuth } from '../components/layout/SceneAuth';
 import { Alerte } from '../components/ui/Alerte';
@@ -20,19 +22,44 @@ import scene from '../components/layout/scene.module.css';
 export const E02Identification = ({ ecran }: { readonly ecran: Ecran }) => {
   const { etats, actif, changer } = useEtatEcran(ecran.slug);
   const navigate = useNavigate();
-  const [motDePasseVisible, setMotDePasseVisible] = useState(false);
   const [identifiant, setIdentifiant] = useState('');
+  const [envoi, setEnvoi] = useState(false);
+  const [erreurService, setErreurService] = useState<string | null>(null);
+  const [videLocale, setVideLocale] = useState(false);
 
-  const vide = actif.cle === 'vide';
+  const vide = actif.cle === 'vide' || videLocale;
   const verrouille = actif.cle === 'verrouillage';
   const echec = actif.cle === 'erreur-generique';
   const degrade = actif.cle === 'degrade';
+  const oidc = services.auth.strategie === 'redirection-oidc';
 
-  const soumettre = (evenement: React.FormEvent) => {
+  const soumettre = async (evenement: React.FormEvent) => {
     evenement.preventDefault();
-    if (verrouille) return;
-    if (echec) return;
-    navigate('/ecran/moyen-autorise?etat=choix');
+    if (verrouille || envoi) return;
+
+    if (oidc) {
+      // Le mot de passe est saisi chez le fournisseur d'identité, jamais ici.
+      await services.auth.redirigerVersConnexion();
+      return;
+    }
+
+    if (identifiant.trim().length < 3) {
+      setVideLocale(true);
+      return;
+    }
+    setVideLocale(false);
+    setErreurService(null);
+    setEnvoi(true);
+    const reponse = await services.auth.identifier(identifiant);
+    setEnvoi(false);
+
+    if (!reponse.ok) {
+      setErreurService(reponse.message);
+      return;
+    }
+
+    const etat = { identifiant: reponse.donnees.identifiant, facteurs: reponse.donnees.facteurs as readonly FacteurDto[] };
+    navigate('/ecran/moyen-autorise?etat=choix', { state: etat });
   };
 
   return (
@@ -81,6 +108,27 @@ export const E02Identification = ({ ecran }: { readonly ecran: Ecran }) => {
           </div>
         ) : null}
 
+        {erreurService ? (
+          <div style={{ marginTop: 'var(--e-4)' }}>
+            <Alerte ton="danger" titre="Identification impossible" role="alert">
+              {erreurService}
+            </Alerte>
+          </div>
+        ) : null}
+
+        {oidc ? (
+          <div style={{ marginTop: 'var(--e-4)' }}>
+            <Alerte ton="info" role="status" titre="Identifiant et mot de passe saisis chez le fournisseur">
+              Cette interface ne collecte aucun mot de passe : la saisie a lieu dans le thème Keycloak, puis le BFF ouvre
+              une session opaque (cookie HttpOnly) et revient ici.
+            </Alerte>
+          </div>
+        ) : (
+          <p style={{ marginTop: 'var(--e-3)', color: 'var(--encre-500)', fontSize: 'var(--t-2xs)', lineHeight: 1.5 }}>
+            Mode démonstration : seul l’identifiant est collecté, aucun mot de passe n’est demandé ni vérifié.
+          </p>
+        )}
+
         <form className={scene.formulaire} onSubmit={soumettre} noValidate>
           <Champ
             label="Identifiant professionnel"
@@ -95,35 +143,32 @@ export const E02Identification = ({ ecran }: { readonly ecran: Ecran }) => {
             disabled={verrouille}
           />
 
-          <div>
+          <div hidden={oidc}>
             <div style={{ position: 'relative' }}>
               <Champ
-                label="Mot de passe"
+                label="Mot de passe (fournisseur d’identité)"
                 name="motdepasse"
-                type={motDePasseVisible ? 'text' : 'password'}
+                type="password"
                 autoComplete="current-password"
                 placeholder="••••••••••"
-                erreur={vide ? 'Le mot de passe ne peut pas être vide.' : undefined}
                 obligatoire
-                disabled={verrouille}
-                aide="Jamais demandé par courriel, par téléphone ou par message."
+                disabled
+                aide="Champ non actif : la saisie du secret appartient au thème Keycloak, pas à ce client."
               />
             </div>
-            <Bouton
-              variante="discret"
-              taille="sm"
-              onClick={() => setMotDePasseVisible((valeur) => !valeur)}
-              aria-pressed={motDePasseVisible}
-              icone={motDePasseVisible ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
-              style={{ paddingLeft: 0, marginTop: 2 }}
-            >
-              {motDePasseVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
-            </Bouton>
+            <p style={{ paddingLeft: 0, marginTop: 4, color: 'var(--encre-500)', fontSize: 'var(--t-3xs)' }}>
+              Jamais demandé par courriel, par téléphone ou par message.
+            </p>
           </div>
 
           <div className={scene.actions}>
-            <Bouton type="submit" bloc disabled={verrouille} icone={<Lock aria-hidden="true" size={16} />}>
-              Continuer
+            <Bouton
+              type="submit"
+              bloc
+              disabled={verrouille || envoi}
+              icone={envoi ? <Loader2 aria-hidden="true" size={16} /> : <Lock aria-hidden="true" size={16} />}
+            >
+              {envoi ? 'Vérification…' : oidc ? 'Continuer vers le fournisseur d’identité' : 'Continuer'}
             </Bouton>
             <Bouton
               variante="secondaire"
