@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Se connecter — Direction C — Accompagnement humain (maquette fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Maquette fictive EM AUTH, vue de comparaison PH03. Aucune donnée réelle, aucun service connecté.">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/dir-c.css">
+</head>
+<body class="dir-c" data-direction="C">
+<a class="skip" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="site-head">
+  <span class="brand">EM AUTH <span class="brand-sub">démonstration</span></span>
+  <nav aria-label="Navigation de comparaison">
+    <a href="../index.html">Comparer les directions</a>
+  </nav>
+</header>
+<main id="contenu" class="shell">
+  <div class="content">
+    <div class="panel">
+      <p class="lede" style="margin-bottom:4px"><strong>E02 — Identification</strong> · écran public proposé</p>
+      <p class="eyebrow">Étape 1 sur 2 — identification</p>
+      <div class="mark" aria-hidden="true">
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" role="presentation">
+    <circle cx="28" cy="28" r="26" stroke="#26355B" stroke-width="2"/>
+    <path d="M16 30.5c3.4 0 5.6-2.4 6.4-6.1C23.2 20 25.6 17 28 17s4.8 3 5.6 7.4c.8 3.7 3 6.1 6.4 6.1" stroke="#2F6E5B" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="28" cy="36.5" r="3" fill="#26355B"/>
+  </svg>
+</div>
+<h1>Se connecter</h1>
+      <p class="lede">Espace de démonstration EM AUTH. Votre organisation vous a communiqué un identifiant.</p>
+
+      <form class="stack" novalidate>
+        <div class="field">
+          <label for="ident">Identifiant</label>
+          <p class="hint" id="ident-hint">Utilisez l'identifiant fourni par votre organisation. Ne saisissez jamais de mot de passe ni de code ici.</p>
+          <input id="ident" name="identifiant" type="text" autocomplete="username" spellcheck="false" aria-describedby="ident-hint">
+        </div>
+        <div>
+          <button class="btn btn-primary" type="submit">Continuer</button>
+        </div>
+      </form>
+
+      <p class="help-line"><a href="#">Obtenir de l'aide</a> — sans communiquer de mot de passe, de code, de PIN ni d'image de clé d'accès.</p>
+    </div>
+  </div>
+
+</main>
+<section class="states" aria-labelledby="e02-etats">
+  <h2 id="e02-etats">États de l'écran — démonstration statique</h2>
+  <p class="state-note">Chaque bloc montre un état tel qu'il serait rendu. Aucune interaction réelle n'est branchée : cette page ne comporte pas de script.</p>
+
+  <div class="panel">
+    <h3>Champ vide (validation de forme locale)</h3>
+    <p class="state-note">Le focus irait au résumé d'erreur, puis au champ.</p>
+    <div class="msg msg-error" role="alert">
+      <span class="msg-title">Corrigez la saisie</span>
+      <p><a href="#ident-etat">Renseignez votre identifiant.</a></p>
+    </div>
+    <div class="field">
+      <label for="ident-etat">Identifiant</label>
+      <p class="hint" id="ident-etat-hint">Identifiant fourni par votre organisation. Ne saisissez jamais de mot de passe ni de code dans ce champ.</p>
+      <input id="ident-etat" type="text" value="" aria-invalid="true" aria-describedby="ident-etat-hint ident-etat-err">
+      <p class="msg msg-error" id="ident-etat-err" style="margin-top:8px"><span class="msg-title">Erreur</span>Renseignez votre identifiant.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Échec d'authentification (message générique)</h3>
+    <p class="state-note">Même famille de réponse pour compte inconnu, désactivé ou preuve erronée : aucune énumération de compte.</p>
+    <div class="msg msg-error" role="alert">
+      <span class="msg-title">Connexion impossible</span>
+      <p>Vérifiez vos informations ou demandez de l'aide.</p>
+    </div>
+    <p><a href="#">Obtenir de l'aide</a></p>
+  </div>
+
+  <div class="panel">
+    <h3>Vérification en cours</h3>
+    <p class="state-note">Un indicateur de chargement ne certifie pas la réussite.</p>
+    <p aria-live="polite">Vérification en cours… Merci de patienter.</p>
+    <p><button class="btn btn-secondary" type="button" aria-disabled="true" disabled>Continuer</button></p>
+  </div>
+
+  <div class="panel">
+    <h3>Issue inconnue après envoi</h3>
+    <p class="state-note">La page équivalente est « Résultat non confirmé » (E11) : l'utilisateur ne doit ni lire un succès, ni relancer en boucle.</p>
+    <div class="msg msg-unknown" role="status">
+      <span class="msg-title">Résultat non confirmé</span>
+      <p>La connexion a été interrompue. Nous ne pouvons pas confirmer si votre demande a été traitée. Vérifiez son état avant de recommencer.</p>
+    </div>
+    <p><a href="#">Vérifier l'état de la demande</a> · <a href="#">Contacter l'assistance prévue</a></p>
+  </div>
+</section>
+<footer class="site-foot">
+  <p><strong>Direction C — Accompagnement humain</strong> · vue de comparaison PH03 · contenu identique dans les trois directions.</p>
+  <p>Maquette statique sans dépendance ni requête réseau. Les fenêtres natives du navigateur (WebAuthn) ne sont pas simulées ici. Contrastes des textes calculés, rendu réel non vérifié par l'agent.</p>
+</footer>
+</body>
+</html>

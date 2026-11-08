@@ -20,6 +20,11 @@ Aucune donnée sensible, aucun secret, aucune PII.
 | 13 | 2026-11-08T17:30Z / UTC | PH01 — lecture des références obligatoires | Agent (lecture) | PDF V3 (5 blocs), brief intégral, inventaire E/A, critères B01–B10, direction visuelle, sources historiques P14 | Compréhension établie ; 10 écarts documentés (É-1…É-10) |
 | 14 | 2026-11-08T17:35Z / UTC | PH01 — livrables | Agent (écriture zone isolée) | `01_PHASES/PH01_COMPREHENSION_ET_ECARTS.md`, `01_PHASES/PH01_MATRICE_PERIMETRE_ECRANS.md` | Matrice des 22 écrans produite, tous `À_ARBITRER` ; 4 options de lot proposées ; G1 ouverte |
 | 15 | 2026-11-08T17:36Z / UTC | PH01 — porte | Agent (analyse) | §5 de la matrice ; §8 du rapport | Porte **ouverte** : périmètre non arbitré ; analyses indépendantes poursuivies, PH05 bloquée |
+| 16 | 2026-11-08T17:50Z / UTC | PH02 — sélection DRI | Agent (lecture + analyse) | `dri/` : `00-README`, `01`, `02` partiel, `08`, `catalogue-dri.csv` | Matrice `01_PHASES/PH02_SELECTION_DRI.md` : 13 ressources examinées, **0 intégrée**, licences non vérifiées à l'usage, annexes absentes signalées |
+| 17 | 2026-11-08T17:55Z / UTC | PH03 — calcul des contrastes | Agent (calcul déterministe) | formule WCAG 2.x sur les paires de chaque direction | 27 paires ≥ 4,5:1 ; paires « avertissement/inconnu » **non mesurées** (réserves consignées) |
+| 18 | 2026-11-08T18:00Z / UTC | PH03 — production des vues A/B/C sur E02 et A03 | Agent (écriture zone isolée, zéro dépendance) | 6 fichiers HTML + 4 CSS + générateur + portail `02_MAQUETTES/index.html` | Vues **réellement produites** ; contenu éditorial identique vérifié ; structure HTML valide (0 balise non fermée, 0 id dupliqué) |
+| 19 | 2026-11-08T18:03Z / UTC | PH03 — limite de rendu | Agent (constat) | `command -v chromium/firefox` → absents | **Aucune vue examinée visuellement** : rendu, clavier, zoom et lecteur d'écran **NON TESTÉS** ; examen humain requis |
+| 20 | 2026-11-08T18:05Z / UTC | PH03 — porte G2 | Agent (analyse) | `01_PHASES/PH03_DIRECTION_ET_COMPARAISON.md` §7 | **EN_ATTENTE_HUMAIN** : recommandation A formulée, aucune direction retenue |
 
 ## Entrées à venir
 

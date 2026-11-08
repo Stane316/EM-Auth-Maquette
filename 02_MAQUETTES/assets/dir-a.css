@@ -1,0 +1,47 @@
+/* ==========================================================================
+   DIRECTION A — « Clarté institutionnelle »
+   Fond clair, encre profonde, accent bleu-vert, lignes fines, hiérarchie éditoriale.
+   Contrastes mesurés (WCAG 2.x, calcul déterministe) :
+     ink #102B3F / #F6F8FA = 13.70:1 · ink / #FFFFFF = 14.59:1
+     muted #4A5A68 / #FFFFFF = 7.11:1 · muted / #F6F8FA = 6.68:1
+     blanc / accent #17645E = 6.95:1 · focus #0B57D0 / #FFFFFF = 6.39:1
+     danger #9A2318 / #FFFFFF = 7.99:1 · warn #7A4A00 / #FFF6E5 = à vérifier à l'usage
+   ========================================================================== */
+
+body.dir-a {
+  --bg: #F6F8FA;
+  --surface: #FFFFFF;
+  --ink: #102B3F;
+  --muted: #4A5A68;
+  --accent: #17645E;
+  --accent-ink: #FFFFFF;
+  --link: #14615B;
+  --border: #D3DBE3;
+  --border-strong: #9FB0BE;
+  --focus: #0B57D0;
+
+  --danger: #9A2318;
+  --danger-bg: #FDF1EF;
+  --warn: #7A4A00;
+  --warn-bg: #FFF6E5;
+  --info: #1B4C7E;
+  --info-bg: #EEF4FB;
+  --unknown: #4A3A63;
+  --unknown-bg: #F4F0F8;
+  --ok: #14614B;
+  --ok-bg: #EAF5F0;
+
+  --fiction-bg: #EEF2F5;
+  --fiction-ink: #3C4C5A;
+  --fiction-border: #D3DBE3;
+}
+
+body.dir-a .panel { box-shadow: 0 1px 2px rgba(16, 43, 63, 0.04); }
+body.dir-a h1 { font-weight: 650; }
+body.dir-a .lede { font-size: 0.975rem; max-width: 48ch; }
+body.dir-a .panel { border-top: 3px solid var(--accent); }
+body.dir-a .eyebrow { color: var(--accent); }
+body.dir-a .btn-primary:hover { background: #12524D; }
+body.dir-a .btn-secondary:hover { border-color: var(--ink); }
+body.dir-a .brand { color: var(--ink); }
+body.dir-a .states h2 { border-bottom: 2px solid var(--accent); padding-bottom: var(--space-2); }

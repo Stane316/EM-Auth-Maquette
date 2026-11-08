@@ -15,6 +15,7 @@ Aucune décision ci-dessous ne peut être citée comme validée par le directeur
 | D-007 | 2026-11-08 / UTC | **Lot d'écrans** : 4 options soumises (7 / 13 / 17 / 22 écrans) ; option 4 (17 écrans, cœur + retrait) recommandée | Agent (proposition) | **PROPOSÉ** | Détermine le périmètre PH05 et la couverture B03/B05 |
 | D-008 | 2026-11-08 / UTC | **Rôles et capacités** : répartition proposée (utilisateur, privilégié, demandeur, approbateur distinct, support, administrateur, responsable sécurité) | Agent (proposition) | **PROPOSÉ** | Aucune capacité n'est approuvée ; E09/A02/A03/A04/A09 en dépendent |
 | D-009 | 2026-11-08 / UTC | **Propriétaire de rendu** par écran : thème Keycloak / page BFF / interface React / fenêtre native / procédure | Agent (proposition) | **PROPOSÉ** | B02 exige que les propriétaires non décidés restent « à arbitrer » |
+| D-010 | 2026-11-08 / UTC | **Direction visuelle (G2)** : trois pistes produites sur E02 et A03 ; recommandation de l'agent = A, second choix A + rail pour l'administration | Agent (proposition motivée) | **PROPOSÉ** | Sans décision, PH04 ne peut pas établir de système définitif ; B abaisse les cibles à 38 px (à corriger si retenue) |
 
 ## Décisions humaines attendues (portes ouvertes)
 

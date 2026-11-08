@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparaison des directions visuelles — EM AUTH (maquette fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+  /* Jetons propres à la page de comparaison : neutres, sans appartenir à une direction */
+  body {
+    --bg: #F4F5F7; --surface: #FFFFFF; --ink: #16202B; --muted: #4C5865;
+    --accent: #1F4E79; --accent-ink: #FFFFFF; --link: #1B4C7E;
+    --border: #D5DCE3; --border-strong: #9AA7B3; --focus: #0B57D0;
+    --danger: #9A2318; --danger-bg: #FBEFED; --warn: #6E4300; --warn-bg: #FCF3E2;
+    --info: #1B4C7E; --info-bg: #EAF1F8; --unknown: #43355C; --unknown-bg: #F1EDF7;
+    --ok: #175C46; --ok-bg: #E9F4EF;
+    --fiction-bg: #16202B; --fiction-ink: #E7ECF1; --fiction-border: #16202B;
+    --maxw: 1000px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 18px; }
+  .card h2 { font-size: 1.05rem; margin-bottom: 4px; }
+  .card p { font-size: 0.9rem; color: var(--muted); }
+  .swatches { display: flex; gap: 6px; margin: 10px 0 14px; }
+  .sw { width: 34px; height: 34px; border-radius: 6px; border: 1px solid rgba(0,0,0,.18); }
+  .sw span { position: absolute; left: -9999px; }
+  .card ul.links { list-style: none; padding: 0; margin: 0 0 12px; font-size: 0.9rem; }
+  .card ul.links li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .card ul.links li:last-child { border-bottom: 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; background: var(--surface); }
+  caption { text-align: left; padding: 8px 0; color: var(--muted); font-size: 0.85rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th[scope="col"] { background: #EDF1F5; }
+  .tag-ok { color: var(--ok); background: var(--ok-bg); }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+
+<header class="site-head">
+  <span class="brand">EM AUTH <span class="brand-sub">démonstration — PH03</span></span>
+  <nav aria-label="Navigation secondaire"><a href="README.md">Notes de la maquette</a></nav>
+</header>
+
+<main id="contenu" class="shell">
+  <h1>Comparaison des directions visuelles</h1>
+  <p class="lede">Trois pistes, <strong>mêmes contenus fictifs</strong>, sur deux écrans : <strong>E02 — Identification</strong> et <strong>A03 — Décision de récupération</strong>. Le choix de la direction est une décision humaine (porte G2) : aucune piste n'est retenue par l'agent.</p>
+
+  <div class="msg msg-warn" role="status">
+    <span class="msg-title">Ce que ces vues ne prouvent pas</span>
+    <p>Aucun rendu n'a été vérifié par l'agent (aucun navigateur disponible dans cet environnement) ; les contrastes de texte ont été <em>calculés</em>, pas mesurés à l'écran. Aucune interaction n'est branchée, aucun test clavier, lecteur d'écran, zoom 200 % ni WebAuthn natif n'a été exécuté. Une maquette ne prouve ni sécurité, ni conformité, ni disponibilité.</p>
+  </div>
+
+  <div class="grid">
+    <section class="card" aria-labelledby="dira">
+      <h2 id="dira">Direction A — Clarté institutionnelle</h2>
+      <p>Fond clair, encre profonde, accent bleu-vert, lignes fines, hiérarchie éditoriale sobre. Recommandation du document de direction.</p>
+      <div class="swatches" aria-label="Aperçu des couleurs : fond, surface, encre, accent">
+        <span class="sw" style="background:#F6F8FA"><span>fond clair</span></span>
+        <span class="sw" style="background:#FFFFFF"><span>surface blanche</span></span>
+        <span class="sw" style="background:#102B3F"><span>encre profonde</span></span>
+        <span class="sw" style="background:#17645E"><span>accent bleu-vert</span></span>
+      </div>
+      <ul class="links">
+        <li><a href="direction-a/e02-identification.html">Voir E02 — Identification</a></li>
+        <li><a href="direction-a/a03-decision-recuperation.html">Voir A03 — Décision de récupération</a></li>
+      </ul>
+      <p><strong>Risque :</strong> peut paraître trop administrative.</p>
+    </section>
+
+    <section class="card" aria-labelledby="dirb">
+      <h2 id="dirb">Direction B — Console de précision</h2>
+      <p>Surfaces neutres, rail latéral compact, densité réglée, métadonnées en chasse fixe, accent cuivre.</p>
+      <div class="swatches" aria-label="Aperçu des couleurs : fond, surface, encre, accent">
+        <span class="sw" style="background:#EEF1F4"><span>fond neutre</span></span>
+        <span class="sw" style="background:#FFFFFF"><span>surface blanche</span></span>
+        <span class="sw" style="background:#1B2430"><span>encre ardoise</span></span>
+        <span class="sw" style="background:#8A4B24"><span>accent cuivre</span></span>
+      </div>
+      <ul class="links">
+        <li><a href="direction-b/e02-identification.html">Voir E02 — Identification</a></li>
+        <li><a href="direction-b/a03-decision-recuperation.html">Voir A03 — Décision de récupération</a></li>
+      </ul>
+      <p><strong>Risque :</strong> tableau de bord technique, lourd pour un usager ordinaire.</p>
+    </section>
+
+    <section class="card" aria-labelledby="dirc">
+      <h2 id="dirc">Direction C — Accompagnement humain</h2>
+      <p>Neutres chauds, bleu nuit, vert discret, étapes explicites, illustration abstraite minimale.</p>
+      <div class="swatches" aria-label="Aperçu des couleurs : fond, surface, encre, accent">
+        <span class="sw" style="background:#FBF7F2"><span>fond chaud</span></span>
+        <span class="sw" style="background:#FFFFFF"><span>surface blanche</span></span>
+        <span class="sw" style="background:#26355B"><span>bleu nuit</span></span>
+        <span class="sw" style="background:#2F6E5B"><span>vert discret</span></span>
+      </div>
+      <ul class="links">
+        <li><a href="direction-c/e02-identification.html">Voir E02 — Identification</a></li>
+        <li><a href="direction-c/a03-decision-recuperation.html">Voir A03 — Décision de récupération</a></li>
+      </ul>
+      <p><strong>Risque :</strong> esthétique grand public peu adaptée à une administration.</p>
+    </section>
+  </div>
+
+  <h2 style="margin-top:32px">Ce qui est identique, ce qui change</h2>
+  <table>
+    <caption>Comparaison structurelle des trois vues — même contenu éditorial, vérifié caractère par caractère hors éléments de navigation propres à chaque direction.</caption>
+    <thead>
+      <tr><th scope="col">Critère</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Contenu, libellés, messages</th><td>identique</td><td>identique</td><td>identique</td></tr>
+      <tr><th scope="row">Densité</th><td>aérée</td><td>compacte</td><td>très aérée</td></tr>
+      <tr><th scope="row">Navigation</th><td>centrée</td><td>rail latéral</td><td>étapes en pastilles</td></tr>
+      <tr><th scope="row">Formes</th><td>angles 4 px</td><td>angles 2 px</td><td>angles 14 px, boutons arrondis</td></tr>
+      <tr><th scope="row">Contraste texte minimal mesuré</th><td>6,39:1</td><td>5,66:1</td><td>5,62:1</td></tr>
+      <tr><th scope="row">Police</th><td colspan="3">pile système identique dans les trois cas — aucune police distante, aucune licence tierce</td></tr>
+      <tr><th scope="row">États (vide, échec, en cours, inconnu)</th><td>présents</td><td>présents</td><td>présents</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top:32px">Rappel de méthode</h2>
+  <p>Ces vues sont des <strong>propositions</strong>. L'identité de marque EM Consulting (logo, couleurs, polices, droits d'usage) est inconnue : rien n'est repris d'une charte existante. Aucun écran supplémentaire n'est créé ; l'inventaire E01–E13 / A01–A09 reste à arbitrer (porte G1).</p>
+</main>
+
+<footer class="site-foot">
+  <p>EM AUTH · maquette fictive PH03 · générée par <span class="mono">assets/generer_ph03.py</span> — aucune dépendance, aucune requête réseau.</p>
+  <p>Le rendu réel reste à examiner par une personne : c'est l'objet de la porte G2.</p>
+</footer>
+</body>
+</html>

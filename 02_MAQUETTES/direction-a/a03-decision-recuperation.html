@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décision de récupération d'accès — Direction A — Clarté institutionnelle (maquette fictive)</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Maquette fictive EM AUTH, vue de comparaison PH03. Aucune donnée réelle, aucun service connecté.">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/dir-a.css">
+</head>
+<body class="dir-a" data-direction="A">
+<a class="skip" href="#contenu">Aller au contenu principal</a>
+<p class="fiction-banner" role="note"><strong>Maquette fictive</strong> — données inventées, aucun service connecté, aucune preuve de sécurité, de conformité ou de disponibilité.</p>
+<header class="site-head">
+  <span class="brand">EM AUTH <span class="brand-sub">démonstration</span></span>
+  <nav aria-label="Navigation de comparaison">
+    <a href="../index.html">Comparer les directions</a>
+  </nav>
+</header>
+<main id="contenu" class="shell">
+  <div class="content">
+    <div class="panel">
+      <p class="lede" style="margin-bottom:4px"><strong>A03 — Décision de récupération</strong> · écran d'administration proposé</p>
+      <p class="eyebrow">Demande R-2041 · récupération d'accès</p>
+      <h1>Décision de récupération d'accès</h1>
+      <p class="lede">Le titulaire a perdu son moyen d'authentification. Une preuve indépendante et un second acteur distinct sont requis avant tout nouvel enrôlement.</p>
+
+      <dl class="defs">
+        <dt>Compte</dt><dd><span class="mono">U-0042</span> — compte de démonstration</dd>
+        <dt>Moyen perdu</dt><dd>Clé d'accès (passkey) déclarée perdue</dd>
+        <dt>Demande reçue</dt><dd><span class="mono">2026-11-08 14:12 UTC</span></dd>
+        <dt>Demandeur</dt><dd>K. ADJOVI — support mandaté</dd>
+        <dt>Statut</dt><dd><span class="tag tag-pending">En attente d'un second acteur</span></dd>
+      </dl>
+
+      <h2>Preuves examinées</h2>
+      <ul class="checks">
+        <li>
+          <span class="check-label">Vérification par canal indépendant <span class="state-note">(canal convenu avec l'organisation)</span></span>
+          <span class="tag tag-ok">Vérifiée</span>
+        </li>
+        <li>
+          <span class="check-label">Contrôle du mandat du demandeur</span>
+          <span class="tag tag-ok">Vérifié</span>
+        </li>
+        <li>
+          <span class="check-label">Accusé de notification au titulaire</span>
+          <span class="tag tag-unknown">Non confirmé</span>
+        </li>
+        <li>
+          <span class="check-label">Second acteur distinct (double contrôle)</span>
+          <span class="tag tag-pending">Requis — non fourni</span>
+        </li>
+      </ul>
+
+      <h2>Double contrôle</h2>
+      <div class="msg msg-info">
+        <p><strong>Deux personnes distinctes.</strong> Le demandeur ne peut pas approuver sa propre demande. L'approbation par la même personne est impossible dans cette maquette comme dans l'exigence REQ-13-08.</p>
+      </div>
+
+      <fieldset style="border:0;padding:0;margin:0 0 16px">
+        <legend class="hint" style="font-weight:700;color:var(--ink);margin-bottom:8px">Action à effectuer</legend>
+        <div class="btn-row">
+          <button class="btn btn-primary" type="button">Demander une seconde validation</button>
+          <button class="btn btn-secondary" type="button">Refuser la demande</button>
+        </div>
+      </fieldset>
+
+      <p class="help-line">Un refus doit être motivé et notifié selon la procédure de l'organisation. Aucun délai ni canal de contact n'est affiché : ils ne sont pas encore convenus.</p>
+    </div>
+  </div>
+
+</main>
+<section class="states" aria-labelledby="a03-etats">
+  <h2 id="a03-etats">États de l'écran — démonstration statique</h2>
+  <p class="state-note">Ces états portent le cœur de l'exigence : une preuve manquante, un même acteur ou une réponse perdue ne doivent jamais produire un succès apparent.</p>
+
+  <div class="panel">
+    <h3>Preuve insuffisante</h3>
+    <div class="msg msg-error" role="alert">
+      <span class="msg-title">Demande non recevable en l'état</span>
+      <p>La vérification indépendante n'est pas établie. Aucun nouvel authentificateur ne peut être enrôlé. Complétez la vérification ou refusez la demande.</p>
+    </div>
+    <p><a href="#">Contacter le demandeur par le canal prévu</a></p>
+  </div>
+
+  <div class="panel">
+    <h3>Le même acteur tente d'approuver</h3>
+    <div class="msg msg-warn" role="status">
+      <span class="msg-title">Approbation impossible</span>
+      <p>Vous êtes le demandeur de cette récupération. L'approbation doit être réalisée par une personne distincte.</p>
+    </div>
+    <p><button class="btn btn-primary" type="button" aria-disabled="true" disabled>Approuver l'enrôlement</button></p>
+  </div>
+
+  <div class="panel">
+    <h3>Réponse perdue après envoi</h3>
+    <div class="msg msg-unknown" role="status">
+      <span class="msg-title">Résultat non confirmé</span>
+      <p>La décision a peut-être été enregistrée. Nous ne pouvons pas le confirmer. Vérifiez l'état de la demande avant de recommencer.</p>
+    </div>
+    <p><a href="#">Vérifier l'état de la demande</a></p>
+    <p class="state-note">Aucun renvoi automatique : une opération sensible rejouée en boucle peut créer un doublon.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Décision prise, enrôlement non réalisé</h3>
+    <ul class="checks" style="margin-bottom:12px">
+      <li><span class="check-label">Second contrôle</span><span class="tag tag-ok">Fourni</span></li>
+      <li><span class="check-label">Retrait de l'ancien facteur</span><span class="tag tag-failed tag-unknown">Non confirmé</span></li>
+      <li><span class="check-label">Notification au titulaire</span><span class="tag tag-fail">Échec</span></li>
+    </ul>
+    <div class="msg msg-warn">
+      <span class="msg-title">Décision partielle</span>
+      <p>La récupération ne peut pas être close : une notification a échoué et le retrait n'est pas confirmé. Une escalade est nécessaire.</p>
+    </div>
+  </div>
+</section>
+<footer class="site-foot">
+  <p><strong>Direction A — Clarté institutionnelle</strong> · vue de comparaison PH03 · contenu identique dans les trois directions.</p>
+  <p>Maquette statique sans dépendance ni requête réseau. Les fenêtres natives du navigateur (WebAuthn) ne sont pas simulées ici. Contrastes des textes calculés, rendu réel non vérifié par l'agent.</p>
+</footer>
+</body>
+</html>

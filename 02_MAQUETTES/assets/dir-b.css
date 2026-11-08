@@ -1,0 +1,107 @@
+/* ==========================================================================
+   DIRECTION B — « Console de précision »
+   Surfaces neutres, rail latéral compact, densité réglée, repères typographiques,
+   métadonnées en chasse fixe. Accent cuivre.
+   Contrastes mesurés :
+     ink #1B2430 / #FFFFFF = 15.65:1 · ink / #EEF1F4 = 13.81:1
+     muted #55606B / #FFFFFF = 6.42:1 · muted / #EEF1F4 = 5.66:1
+     blanc / cuivre #8A4B24 = 6.75:1 · cuivre / #FFFFFF = 6.75:1
+     focus #0B57D0 / #FFFFFF = 6.39:1 · danger #9A2318 / #FFFFFF = 7.99:1
+   ========================================================================== */
+
+body.dir-b {
+  --bg: #EEF1F4;
+  --surface: #FFFFFF;
+  --ink: #1B2430;
+  --muted: #55606B;
+  --accent: #8A4B24;
+  --accent-ink: #FFFFFF;
+  --link: #7A411F;
+  --border: #C9D2DA;
+  --border-strong: #8E9BA6;
+  --focus: #0B57D0;
+
+  --danger: #9A2318;
+  --danger-bg: #FBEFED;
+  --warn: #6E4300;
+  --warn-bg: #FCF3E2;
+  --info: #1B4C7E;
+  --info-bg: #EAF1F8;
+  --unknown: #43355C;
+  --unknown-bg: #F1EDF7;
+  --ok: #175C46;
+  --ok-bg: #E9F4EF;
+
+  --fiction-bg: #1B2430;
+  --fiction-ink: #E7ECF1;
+  --fiction-border: #1B2430;
+
+  --radius: 2px;
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 10px;
+  --space-4: 14px;
+  --space-5: 18px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --maxw: 860px;
+  --line: 1.45;
+}
+
+body.dir-b { font-size: 15px; }
+
+/* Rail latéral + zone de contenu */
+body.dir-b .shell {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+  max-width: var(--maxw);
+  padding-top: var(--space-5);
+}
+body.dir-b .rail {
+  position: sticky;
+  top: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  font-size: 0.8125rem;
+}
+body.dir-b .rail h2 {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}
+body.dir-b .rail ul { list-style: none; margin: 0; padding: 0; }
+body.dir-b .rail li { padding: var(--space-1) 0; border-bottom: 1px dotted var(--border); }
+body.dir-b .rail li:last-child { border-bottom: 0; }
+body.dir-b .rail .rail-current { font-weight: 700; color: var(--ink); }
+body.dir-b .rail .rail-meta { color: var(--muted); font-size: 0.75rem; font-family: var(--font-mono); }
+
+body.dir-b .content { min-width: 0; }
+
+body.dir-b .panel { border-left: 3px solid var(--accent); }
+body.dir-b h1 { font-size: 1.4rem; font-weight: 700; }
+body.dir-b .eyebrow {
+  font-family: var(--font-mono);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--accent);
+  font-size: 0.8125rem;
+}
+body.dir-b .lede { font-size: 0.9375rem; }
+body.dir-b .checks li { padding: var(--space-2) 0; }
+body.dir-b .defs { gap: var(--space-1) var(--space-4); }
+body.dir-b .defs dt { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+body.dir-b input[type="text"] { min-height: 38px; }
+body.dir-b .btn { min-height: 38px; font-size: 0.9375rem; }
+body.dir-b .station-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--space-3); }
+
+@media (max-width: 760px) {
+  body.dir-b .shell { grid-template-columns: 1fr; }
+  body.dir-b .rail { position: static; }
+}
